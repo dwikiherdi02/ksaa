@@ -7,14 +7,12 @@ import java.sql.ResultSet;
 
 // System package
 import system.core.Model;
-
 /**
  *
  * @author Dwiki
  */
-public class Users extends Model {
-    
-    public Users() {
+public class UsersModel extends Model {
+    public UsersModel() {
         super("users");                
     }
     

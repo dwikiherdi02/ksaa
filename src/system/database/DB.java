@@ -18,15 +18,22 @@ public class DB {
     
     public String table;
     
-    public DB(String table) {
+    public DB(String table) throws ClassNotFoundException {
         this.table = table;
         
         try {
-            String url = "jdbc:sqlite:" 
-                       + app.config.DB.PATH 
-                       + app.config.DB.NAME;
+            Class.forName("com.mysql.jdbc.Driver");  
             
-            this.conn = DriverManager.getConnection(url);            
+            String url = "jdbc:mysql://" 
+                       + app.config.DB.HOST 
+                       + ":" + app.config.DB.PORT
+                       + "/" + app.config.DB.NAME;
+            
+            this.conn = DriverManager.getConnection(
+                    url,
+                    app.config.DB.USER,
+                    app.config.DB.PASS
+            );
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
