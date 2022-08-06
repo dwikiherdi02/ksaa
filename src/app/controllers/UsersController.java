@@ -12,7 +12,7 @@ import app.models.UsersModel;
  * @author Dwiki
  */
 public class UsersController {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UsersModel tbUser = new UsersModel();
         
         tbUser.getById(1);

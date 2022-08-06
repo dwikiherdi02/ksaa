@@ -12,7 +12,7 @@ import system.core.Model;
  * @author Dwiki
  */
 public class UsersModel extends Model {
-    public UsersModel() {
+    public UsersModel() throws ClassNotFoundException {
         super("users");                
     }
     
