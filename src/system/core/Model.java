@@ -14,7 +14,7 @@ import system.database.DB;
  */
 public class Model extends DB {
     
-    public Model(String table) {
+    public Model(String table) throws ClassNotFoundException {
         super(table);
     }
     

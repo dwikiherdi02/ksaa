@@ -4,6 +4,8 @@
  */
 package resources.views.layout;
 
+import java.awt.Color;
+
 /**
  *
  * @author Dwiki
@@ -15,6 +17,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+        panelMoving.iniMoving(Login.this);
     }
 
     /**
@@ -26,41 +30,210 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        panelBorder = new resources.views.component.PanelBorder();
+        panelBorderContent = new resources.views.component.PanelBorder();
+        panelMoving = new resources.views.component.PanelMoving();
+        btnClose = new resources.views.component.button.FlatButton();
+        btnMinimize = new resources.views.component.button.FlatButton();
+        logo = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        inputEmail = new resources.views.component.form.InputText();
+        labelPassword = new javax.swing.JLabel();
+        inputPassword = new resources.views.component.form.InputPassword();
+        btnMasuk = new resources.views.component.button.FlatButton();
+
+        jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(380, 600));
         setUndecorated(true);
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        panelBorder.setBackground(new java.awt.Color(238, 238, 238));
+        panelBorder.setForeground(new java.awt.Color(238, 238, 238));
+        panelBorder.setMaximumSize(new java.awt.Dimension(380, 600));
+        panelBorder.setMinimumSize(new java.awt.Dimension(380, 600));
+        panelBorder.setPreferredSize(new java.awt.Dimension(380, 600));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+        panelBorderContent.setBackground(new java.awt.Color(238, 238, 238));
+        panelBorderContent.setForeground(new java.awt.Color(238, 238, 238));
+        panelBorderContent.setMaximumSize(new java.awt.Dimension(380, 600));
+        panelBorderContent.setMinimumSize(new java.awt.Dimension(380, 600));
+        panelBorderContent.setPreferredSize(new java.awt.Dimension(380, 600));
+
+        btnClose.setBackground(new java.awt.Color(238, 238, 238));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/close.png"))); // NOI18N
+        btnClose.setBorderColor(new java.awt.Color(238, 238, 238));
+        btnClose.setColor(new java.awt.Color(238, 238, 238));
+        btnClose.setColorClick(new java.awt.Color(255, 51, 51));
+        btnClose.setColorOver(new java.awt.Color(255, 51, 51));
+        btnClose.setMaximumSize(new java.awt.Dimension(70, 70));
+        btnClose.setMinimumSize(new java.awt.Dimension(70, 70));
+        btnClose.setPreferredSize(new java.awt.Dimension(70, 70));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseApp(evt);
+            }
+        });
+
+        btnMinimize.setBackground(new java.awt.Color(238, 238, 238));
+        btnMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/minus.png"))); // NOI18N
+        btnMinimize.setBorderColor(new java.awt.Color(238, 238, 238));
+        btnMinimize.setColor(new java.awt.Color(238, 238, 238));
+        btnMinimize.setColorClick(new java.awt.Color(221, 221, 221));
+        btnMinimize.setColorOver(new java.awt.Color(221, 221, 221));
+        btnMinimize.setMaximumSize(new java.awt.Dimension(70, 70));
+        btnMinimize.setMinimumSize(new java.awt.Dimension(70, 70));
+        btnMinimize.setPreferredSize(new java.awt.Dimension(70, 70));
+        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMiniApp(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
+        panelMoving.setLayout(panelMovingLayout);
+        panelMovingLayout.setHorizontalGroup(
+            panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMovingLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+        panelMovingLayout.setVerticalGroup(
+            panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMovingLayout.createSequentialGroup()
+                .addGroup(panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/images/logo.png"))); // NOI18N
+
+        title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        title.setForeground(new java.awt.Color(72, 112, 58));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("KOPERASI SYARIAH");
+
+        labelEmail.setBackground(new java.awt.Color(255, 255, 255));
+        labelEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelEmail.setForeground(new java.awt.Color(136, 136, 136));
+        labelEmail.setText("Email");
+        labelEmail.setPreferredSize(new java.awt.Dimension(23, 16));
+
+        inputEmail.setFontColor(new java.awt.Color(102, 102, 102));
+        inputEmail.setPlaceholder("Masukan Email Anda");
+
+        labelPassword.setBackground(new java.awt.Color(255, 255, 255));
+        labelPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelPassword.setForeground(new java.awt.Color(136, 136, 136));
+        labelPassword.setText("Kata Sandi");
+        labelPassword.setPreferredSize(new java.awt.Dimension(23, 16));
+
+        inputPassword.setFontColor(new java.awt.Color(102, 102, 102));
+        inputPassword.setPlaceholder("Masukan Kata Sandi Anda");
+
+        btnMasuk.setText("MASUK");
+        btnMasuk.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMasuk.setRadius(10);
+        btnMasuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionClickbtnMasuk(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBorderContentLayout = new javax.swing.GroupLayout(panelBorderContent);
+        panelBorderContent.setLayout(panelBorderContentLayout);
+        panelBorderContentLayout.setHorizontalGroup(
+            panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorderContentLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelBorderContentLayout.setVerticalGroup(
+            panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorderContentLayout.createSequentialGroup()
+                .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(title)
+                .addGap(29, 29, 29)
+                .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout panelBorderLayout = new javax.swing.GroupLayout(panelBorder);
+        panelBorder.setLayout(panelBorderLayout);
+        panelBorderLayout.setHorizontalGroup(
+            panelBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBorderContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelBorderLayout.setVerticalGroup(
+            panelBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelBorderContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 374, Short.MAX_VALUE))
+            .addComponent(panelBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(panelBorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void actionClickbtnMasuk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionClickbtnMasuk
+        // disable tombol
+        btnMasuk.setEnabled(false);
+        btnMasuk.setText("MEMPROSES..");
+        
+        // ambil data inputan
+        String email = inputEmail.isInputNotNull() ? inputEmail.getText() : "";
+        String password = inputPassword.isInputNotNull() 
+                        ? inputPassword.getText()
+                        : "";
+        
+        System.out.println("Email: "+ email);
+        System.out.println("Password: "+ password);
+    }//GEN-LAST:event_actionClickbtnMasuk
+
+    private void btnCloseApp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseApp
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_btnCloseApp
+
+    private void btnMiniApp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMiniApp
+        this.setExtendedState(javax.swing.JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMiniApp
 
     /**
      * @param args the command line arguments
@@ -98,6 +271,19 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private resources.views.component.button.FlatButton btnClose;
+    private resources.views.component.button.FlatButton btnMasuk;
+    private resources.views.component.button.FlatButton btnMinimize;
+    private resources.views.component.form.InputText inputEmail;
+    private resources.views.component.form.InputPassword inputPassword;
+    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel logo;
+    private resources.views.component.PanelBorder panelBorder;
+    private resources.views.component.PanelBorder panelBorderContent;
+    private resources.views.component.PanelMoving panelMoving;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
