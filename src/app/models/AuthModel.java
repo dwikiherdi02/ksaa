@@ -4,22 +4,26 @@ package app.models;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Map;
 
 // System package
 import system.core.Model;
 
+// Other Packages
+import java.util.HashMap;
+import java.util.Map;
+
 public class AuthModel extends Model {
     
     public AuthModel() throws ClassNotFoundException {
-        super("users");
+        super("pengguna");
     }
     
-    public Map<String, Object> getDataByUsername(String username) throws SQLException {
-        String query = "SELECT * FROM "
-                     + this.table + " "
-                     + "WHERE username = ? ";
+//    public Map<String, Object> getDataByUsername(String username) throws SQLException {
+    public ResultSet getDataByUsername(String username) throws SQLException {
+        String query = "SELECT a.id, b.name, a.username, a.password, a.is_active FROM "
+                     + "pengguna a "
+                     + "LEFT JOIN karyawan b ON b.id = a.karyawan_id "
+                     + "WHERE username = ?";
             
         PreparedStatement ps = this.conn.prepareStatement(query);
 
@@ -27,30 +31,6 @@ public class AuthModel extends Model {
 
         ResultSet res = ps.executeQuery();
         
-        Map<String, Object> map;
-        
-        map = new HashMap<String, Object>();
-        
-        res.last();
-        int count = res.getRow();
-        res.beforeFirst();
-        
-        if(count > 0) {
-            while (res.next()) {
-                map.put("id", res.getInt("id"));
-
-                map.put("name", res.getString("name"));
-
-                map.put("username", res.getString("username"));
-
-                map.put("email", res.getString("email"));
-                
-                map.put("password", res.getString("password"));
-            }
-
-            return map;
-        } else {
-            return null;
-        }
+        return res;
     }
 }

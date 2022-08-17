@@ -7,11 +7,11 @@ package resources.views.layout;
 // Controllers
 import app.controllers.AuthController;
 
+// Packages
 import java.awt.Color;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
+import system.library.Session;
 
 /**
  *
@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         panelMoving.iniMoving(Login.this);
-        labelNotif.setVisible(false);
+        panelNotification.setVisible(false);
     }
 
     /**
@@ -38,8 +38,6 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
         panelBorder = new resources.views.component.PanelBorder();
         panelBorderContent = new resources.views.component.PanelBorder();
         panelMoving = new resources.views.component.PanelMoving();
@@ -47,14 +45,12 @@ public class Login extends javax.swing.JFrame {
         btnMinimize = new resources.views.component.button.FlatButton();
         logo = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
+        panelNotification = new resources.views.component.PanelNotification();
         labelUsername = new javax.swing.JLabel();
         inputUsername = new resources.views.component.form.InputText();
         labelPassword = new javax.swing.JLabel();
         inputPassword = new resources.views.component.form.InputPassword();
         btnMasuk = new resources.views.component.button.FlatButton();
-        labelNotif = new javax.swing.JLabel();
-
-        jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(380, 600));
@@ -156,11 +152,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        labelNotif.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelNotif.setForeground(new java.awt.Color(255, 51, 51));
-        labelNotif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNotif.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)), javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 51, 51))));
-
         javax.swing.GroupLayout panelBorderContentLayout = new javax.swing.GroupLayout(panelBorderContent);
         panelBorderContent.setLayout(panelBorderContentLayout);
         panelBorderContentLayout.setHorizontalGroup(
@@ -170,24 +161,27 @@ public class Login extends javax.swing.JFrame {
             .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelBorderContentLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(inputUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(btnMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                    .addComponent(labelNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addComponent(labelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addComponent(btnMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .addComponent(inputUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         panelBorderContentLayout.setVerticalGroup(
             panelBorderContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorderContentLayout.createSequentialGroup()
                 .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(40, 40, 40)
                 .addComponent(logo)
                 .addGap(12, 12, 12)
                 .addComponent(title)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
+                .addComponent(panelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(labelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,8 +191,6 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(btnMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -230,8 +222,7 @@ public class Login extends javax.swing.JFrame {
 
     private void actionClickbtnMasuk(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionClickbtnMasuk
         
-        labelNotif.setVisible(false);
-        labelNotif.setText("");
+        panelNotification.setVisible(false);
         
         // disable tombol
         btnMasuk.setText("MEMPROSES..");
@@ -252,12 +243,25 @@ public class Login extends javax.swing.JFrame {
         if(!username.isEmpty() && !password.isEmpty()) {
        
             try {
-                boolean attempt = authCtrl.attempt(username, password);
+                Map<String, Object> res = authCtrl.attempt(username, password);
 
-                if(attempt) {
-                    this.dispose();
-                    //this.setVisible(false);
-                    new Main().setVisible(true);
+                if(res != null) {
+                    if((int) res.get("is_active") == 1) {
+//                    this.setVisible(false);
+                        dispose();
+                        new Main(res).setVisible(true);
+                    } else {
+                        btnMasuk.setText("MASUK");
+                        btnMasuk.setEnabled(true);
+
+                        inputUsername.setText("");
+                        inputPassword.setText("");
+                        
+                        inputUsername.requestFocusInWindow();
+
+                        panelNotification.notify("error", "Pengguna tidak aktif.");
+                    }
+
                 } else {
                     btnMasuk.setText("MASUK");
                     btnMasuk.setEnabled(true);
@@ -265,8 +269,7 @@ public class Login extends javax.swing.JFrame {
                     inputPassword.setText("");
                     inputPassword.requestFocusInWindow();
                     
-                    labelNotif.setVisible(true);
-                    labelNotif.setText("Nama Pengguna atau Kata Sandi Salah.");
+                    panelNotification.notify("error", "Nama Pengguna atau Kata Sandi Salah.");
                 }
             } catch (ClassNotFoundException ex) {
                 btnMasuk.setText("MASUK");
@@ -275,8 +278,7 @@ public class Login extends javax.swing.JFrame {
                 inputPassword.setText("");
                 inputPassword.requestFocusInWindow();
                 
-                labelNotif.setVisible(true);
-                labelNotif.setText("Error Class.");
+                panelNotification.notify("error", "Error Class.");
             } catch (SQLException ex) {
                 btnMasuk.setText("MASUK");
                 btnMasuk.setEnabled(true);
@@ -284,8 +286,7 @@ public class Login extends javax.swing.JFrame {
                 inputPassword.setText("");
                 inputPassword.requestFocusInWindow();
                 
-                labelNotif.setVisible(true);
-                labelNotif.setText("Error SQL.");
+                panelNotification.notify("error", "Error SQL.");
             }
         } else {
             btnMasuk.setText("MASUK");
@@ -294,18 +295,15 @@ public class Login extends javax.swing.JFrame {
             if(username.isEmpty() && password.isEmpty()) {    
                 inputUsername.requestFocusInWindow();
                 
-                labelNotif.setVisible(true);
-                labelNotif.setText("Nama Pengguna atau Kata Sandi Tidak Boleh Kosong.");
+                panelNotification.notify("error", "Form Tidak Boleh Kosong.");
             } else if(username.isEmpty()) {
                 inputUsername.requestFocusInWindow();
                 
-                labelNotif.setVisible(true);
-                labelNotif.setText("Nama Pengguna Tidak Boleh Kosong.");
+                panelNotification.notify("error", "Nama Pengguna Tidak Boleh Kosong.");
             } else if (password.isEmpty()) {
                 inputPassword.requestFocusInWindow();
                 
-                labelNotif.setVisible(true);
-                labelNotif.setText("Kata Sandi Tidak Boleh Kosong.");
+                panelNotification.notify("error", "Kata Sandi Tidak Boleh Kosong.");
             }
         }
     }//GEN-LAST:event_actionClickbtnMasuk
@@ -360,15 +358,13 @@ public class Login extends javax.swing.JFrame {
     private resources.views.component.button.FlatButton btnMinimize;
     private resources.views.component.form.InputPassword inputPassword;
     private resources.views.component.form.InputText inputUsername;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelNotif;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel logo;
     private resources.views.component.PanelBorder panelBorder;
     private resources.views.component.PanelBorder panelBorderContent;
     private resources.views.component.PanelMoving panelMoving;
+    private resources.views.component.PanelNotification panelNotification;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

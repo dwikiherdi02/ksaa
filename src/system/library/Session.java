@@ -1,79 +1,62 @@
 package system.library;
 
+import java.util.HashMap;
+
 public class Session {
 
     /**
-     * @return the id
+     * @param key
+     * @return the item
      */
-    public int getId() {
-        return id;
+    public Object getItem(String key) {
+        Object i = this.item.get(key);
+        
+        if(this.flashItem.get(key) != null) {
+            removeItem(key);
+        }
+        
+        return i;
     }
 
     /**
-     * @param id the id to set
+     * @param key
+     * @param value
      */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setItem(String key, Object value) {
+        this.item.put(key, value);
     }
     
-    public void removeSession() {
-        this.id = 0;
-        this.name = "";
-        this.username = "";
-        this.email = "";
+    /**
+     * @param key
+     * @param value
+     */
+    public void setFlashItem(String key, Object value) {
+        this.item.put(key, value);
+        this.flashItem.put(key, true);
+    }
+    
+    /**
+     * @param key
+     */
+    public void removeItem(String key) {
+        this.item.remove(key);
+        
+        if(this.flashItem.get(key) != null) {
+            this.flashItem.remove(key);
+        }
+    }
+    
+    public void clearAll() {
+        this.item.clear();
+        this.flashItem.clear();
     }
     
     public Session() {
-        this.id = 0;
-        this.name = "";
-        this.username = "";
-        this.email = "";
+        this.item = new HashMap<String, Object>();
+        
+        this.flashItem = new HashMap<String, Object>();
     }
     
-    private int id;
-    private String name;
-    private String username;
-    private String email;
+    private HashMap<String, Object> item;
+    private HashMap<String, Object> flashItem;
 }

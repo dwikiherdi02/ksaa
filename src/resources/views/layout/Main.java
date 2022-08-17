@@ -4,8 +4,11 @@
  */
 package resources.views.layout;
 
+// Pakcages
 import java.awt.Color;
 import java.awt.Image;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import resources.event.EventMenuSelected;
@@ -17,17 +20,29 @@ import resources.views.component.ScrollBarFlat;
  */
 public class Main extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Main
-     */
+    public system.library.Session session;
     
-    // private system.library.Session session;
-    
+    // Form Pages
     private resources.views.page.UnderConstructionForm underconstruction;
-    private resources.views.page.dasbor.MainForm dasbor;
+    private resources.views.page.dasbor.MainForm dasborMainPage;
+    private resources.views.page.karyawan.MainForm karyawanMainPage;
+    
+    public Main(Map<String, Object> auth) {
+        this.session = new system.library.Session();
+        this.session.setItem("user", auth);
+        
+        initAll();
+       
+        labelUsername.setText((String) auth.get("name"));
+    }
     
     public Main() {
-        // system.library.Session session = new system.library.Session();
+        this.session = new system.library.Session();
+        
+        initAll();
+    }
+    
+    private void initAll() {
         
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -35,39 +50,80 @@ public class Main extends javax.swing.JFrame {
         panelMoving.iniMoving(Main.this);
         scrollContent.setVerticalScrollBar(new ScrollBarFlat());
         
-        // labelUsername.setText(session.getName());
+        pages();
+       
+    }
+    
+    private void pages() {
         
-        dasbor = new resources.views.page.dasbor.MainForm();
         underconstruction = new resources.views.page.UnderConstructionForm();
+        dasborMainPage = new resources.views.page.dasbor.MainForm();
+        karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
         
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 labelPageName.setText(panelNavbar.getPageName());
                 
-                if (index == 0) {
-                    setForm(dasbor);
-                } else if (index == 14) {
-                    Main.this.dispose();
-                    //Main.this.setVisible(false);
-                    new Login().setVisible(true);
-                } else {
-                    setForm(underconstruction);
+               switch (index) {
+                    case 0: // dasbor
+                        setPage(dasborMainPage);
+                        break;
+                    case 2: // master pengguna
+                        setPage(underconstruction);
+                        break;
+                    case 3: // master investor
+                        setPage(underconstruction);
+                        break;
+                    case 4: // master nasabah
+                        setPage(underconstruction);
+                        break;
+                    case 5: // master karyawan
+                        setPage(karyawanMainPage);
+                        break;
+                    case 6: // master jabatan
+                        setPage(underconstruction);
+                        break;
+                    case 7: // master tipe barang
+                        setPage(underconstruction);
+                        break;
+                    case 8: // master tipe pengajuan
+                        setPage(underconstruction);
+                        break;
+                    case 10: // laporan pembayaran
+                        setPage(underconstruction);
+                        break;
+                    case 11: // laporan pengajuan lunas
+                        setPage(underconstruction);
+                        break;
+                    case 12: // laporan pengajuan menunggak
+                        setPage(underconstruction);
+                        break;
+                    case 14: // logout
+                        Main.this.session.clearAll();
+
+                        Main.this.dispose();
+
+                        //Main.this.setVisible(false);
+                        new Login().setVisible(true);
+                        break;    
+                    default:
+                        setPage(underconstruction);
                 }
             }
         });
         
         labelPageName.setText("Dasbor");
-        setForm(new resources.views.page.dasbor.MainForm());
+        setPage(new resources.views.page.dasbor.MainForm()); 
     }
     
-    private void setForm(JComponent com) {
+    public void setPage(JComponent com) {
         panelContent.removeAll();
         panelContent.add(com);
         panelContent.repaint();
         panelContent.revalidate();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +150,6 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setUndecorated(true);
         setResizable(false);
@@ -202,7 +257,7 @@ public class Main extends javax.swing.JFrame {
             panelBorderContentHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorderContentHeaderLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(labelPageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelPageName, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(labelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -220,6 +275,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         scrollContent.setBorder(null);
+        scrollContent.setHorizontalScrollBar(null);
         scrollContent.setOpaque(false);
 
         panelContent.setOpaque(false);
