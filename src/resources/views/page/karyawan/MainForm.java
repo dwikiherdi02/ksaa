@@ -1,12 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package resources.views.page.karyawan;
+
+import app.controllers.KaryawanController;
 
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
@@ -18,6 +19,8 @@ import resources.views.component.ScrollBarFlat;
 public class MainForm extends javax.swing.JPanel {
     
     private resources.views.layout.Main frame;
+    
+    private app.controllers.KaryawanController empCtrl;
     
     // karyawan pages
     private AddForm add;
@@ -35,6 +38,8 @@ public class MainForm extends javax.swing.JPanel {
     
     private void init() {
         initComponents();
+        
+        this.empCtrl = new KaryawanController();
         
         String errMsg = (String) this.frame.session.getItem("errorNotif");
         
@@ -60,19 +65,42 @@ public class MainForm extends javax.swing.JPanel {
     }
     
      private void loadTableEmp() {
-         
-        tableEmp.clearRows();
         
-        tableEmp.addRow(new Object[] {1, "ADM001", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {2, "ADM002", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {3, "ADM003", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {4, "ADM004", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {5, "ADM005", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {6, "ADM006", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {7, "ADM007", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {8, "ADM008", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {9, "ADM009", "Admin", "Lorem ipsum dolor", "Aksi"});
-        tableEmp.addRow(new Object[] {10, "ADM010", "Admin", "Lorem ipsum dolor", "Aksi"});
+        try {
+            List<Map<String, Object>> data = (List<Map<String, Object>>) this.empCtrl.tableList();
+            
+            tableEmp.clearRows();
+            
+            int no = 1;
+            
+            for (Map<String, Object> map : data) {
+                tableEmp.addRow(
+                    new Object[] {
+                        no, 
+                        (String) map.get("emp_id"), 
+                        (String) map.get("position"), 
+                        (String) map.get("name"), 
+                        "Aksi"
+                    });
+                
+                no++;
+            }
+            
+//            tableEmp.addRow(new Object[] {1, "ADM001", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {2, "ADM002", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {3, "ADM003", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {4, "ADM004", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {5, "ADM005", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {6, "ADM006", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {7, "ADM007", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {8, "ADM008", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {9, "ADM009", "Admin", "Lorem ipsum dolor", "Aksi"});
+//            tableEmp.addRow(new Object[] {10, "ADM010", "Admin", "Lorem ipsum dolor", "Aksi"});
+        } catch (ClassNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
      }
 
     /**

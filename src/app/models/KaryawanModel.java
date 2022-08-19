@@ -35,6 +35,20 @@ public class KaryawanModel extends Model {
         return res;
     }
     
+    public ResultSet tableListKaryawan() throws SQLException {
+        String query = "SELECT a.id, a.emp_id, b.name as position, a.name "
+                     + "FROM karyawan a "
+                     + "LEFT JOIN jabatan b ON b.id = a.jabatan_id "
+                     + "WHERE a.deleted_at IS NULL "
+                     + "ORDER BY a.id DESC";
+            
+        PreparedStatement ps = this.conn.prepareStatement(query);
+
+        ResultSet res = ps.executeQuery();
+        
+        return res;
+    }
+    
     public boolean insert(Map<String, Object> map) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();  

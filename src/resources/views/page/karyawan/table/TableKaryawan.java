@@ -48,7 +48,7 @@ public class TableKaryawan extends Table {
                 Component com = super.getTableCellRendererComponent(jtable, o, selected, bln1, i, i1);
                 com.setBackground(Color.WHITE);
                 
-                Integer[] intArray = new Integer[]{0, 1, 2, 4};
+                Integer[] intArray = new Integer[]{0, 1, 4};
                 List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
                 
 //                System.out.println(i);

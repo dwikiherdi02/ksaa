@@ -51,11 +51,43 @@ public class KaryawanController {
             }
             
             return data;
-//            for (Map<String, Object> map : data) {
-//                System.out.println(map.get("id"));
-//                System.out.println(map.get("name"));
-//            }            
         } else {
+            return null;
+        }
+    }
+    
+    public List<Map<String, Object>> tableList() 
+        throws ClassNotFoundException, SQLException {
+        
+        KaryawanModel mEmp = new KaryawanModel();
+        
+        ResultSet res = mEmp.tableListKaryawan();
+        
+        res.last();
+        int count = res.getRow();
+        res.beforeFirst();
+        
+        if(count > 0) {
+            List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+
+            int i = 0;
+
+            while (res.next()) {            
+                Map<String, Object> map = new HashMap<String, Object>();
+
+                map.put("id", res.getInt("id"));
+                map.put("emp_id", res.getString("emp_id"));
+                map.put("position", res.getString("position"));
+                map.put("name", res.getString("name"));
+
+                data.add(i, map);
+                
+                i++;
+            }
+            
+            return data;        
+        } else {
+            System.out.println("NULL");
             return null;
         }
     }
