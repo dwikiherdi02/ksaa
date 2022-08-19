@@ -46,8 +46,6 @@ public class KaryawanModel extends Model {
                     .replace("%", "!%")
                     .replace("_", "!_")
                     .replace("[", "![");
-            
-            System.out.println(param);
 
             additionalCondition = "AND ( "
                                 + "LOWER(a.emp_id) LIKE '%"+param+"%' ESCAPE '!' "
@@ -64,21 +62,11 @@ public class KaryawanModel extends Model {
                      + "WHERE a.deleted_at IS NULL "
                      + additionalCondition
                      + "ORDER BY a.id DESC";
-        
-        System.out.println(query);
             
         PreparedStatement ps = this.conn.prepareStatement(query);
 
         ResultSet res = ps.executeQuery();
-        
-//        if(!"".equals(additionalCondition)) {
-//            ps.setString(1, "'%" + param + "%'");
-//            ps.setString(2, "'%" + param + "%'");
-//            ps.setString(3, "'%" + param + "%'");
-//            ps.setString(4, "'%" + param + "%'");
-//            ps.setString(5, "'%" + param + "%'");
-//        }
-        
+       
         return res;
     }
     

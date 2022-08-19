@@ -145,12 +145,12 @@ public class AddForm extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setBackground(new java.awt.Color(238, 238, 238));
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/left-arrow.png"))); // NOI18N
-        btnBack.setBorderColor(new java.awt.Color(51, 51, 51));
-        btnBack.setColor(new java.awt.Color(238, 238, 238));
-        btnBack.setColorClick(new java.awt.Color(238, 238, 238));
-        btnBack.setColorOver(new java.awt.Color(238, 238, 238));
+        btnBack.setBorderColor(new java.awt.Color(255, 255, 255));
+        btnBack.setColor(new java.awt.Color(255, 255, 255));
+        btnBack.setColorClick(new java.awt.Color(255, 255, 255));
+        btnBack.setColorOver(new java.awt.Color(255, 255, 255));
         btnBack.setRadius(10);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,15 +328,14 @@ public class AddForm extends javax.swing.JPanel {
                             .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(inputEmpName))
-                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(panelCardLayout.createSequentialGroup()
-                                .addComponent(labekPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputOptPosition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCardLayout.createSequentialGroup()
-                                .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCardLayout.createSequentialGroup()
+                            .addComponent(labekPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(inputOptPosition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelCardLayout.createSequentialGroup()
+                            .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(panelCardUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
