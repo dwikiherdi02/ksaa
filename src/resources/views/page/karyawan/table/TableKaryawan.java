@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellEditor;
 import resources.views.component.table.Table;
 
 /**
@@ -29,7 +30,7 @@ public class TableKaryawan extends Table {
             titles    
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -40,47 +41,66 @@ public class TableKaryawan extends Table {
         if (getColumnModel().getColumnCount() > 0) {
             getColumnModel().getColumn(0).setMinWidth(40);
             getColumnModel().getColumn(0).setMaxWidth(40);
+            
+            getColumnModel().getColumn(4).setMinWidth(80);
+            getColumnModel().getColumn(4).setMaxWidth(80);
         }
         
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
-            public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean bln1, int i, int i1) {
-                Component com = super.getTableCellRendererComponent(jtable, o, selected, bln1, i, i1);
-                com.setBackground(Color.WHITE);
+            public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean focus, int i, int i1) {
                 
                 Integer[] intArray = new Integer[]{0, 1, 4};
                 List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
-                
+
 //                System.out.println(i);
 //                System.out.println(i1);
 //                System.out.println(labelCenter.contains(i1));
 //                System.out.println(getModel().getValueAt(i, i1));
 //                System.out.println("-----------------------------------");
-                
+
                 if(labelCenter.contains(i1)) {
                     setHorizontalAlignment(JLabel.CENTER);
                 } else {
                     setHorizontalAlignment(JLabel.LEFT);
                 }
-                
+
                 setBorder(noFocusBorder);
                 
-                com.setForeground(Color.decode("#333333"));
-                
-                if(i % 2 == 0) {
-                    com.setBackground(Color.decode("#EEEEEE"));
+                if(o instanceof ModelAction) {
+                    ModelAction data = (ModelAction) o;
+                    Action cell = new Action(data);
+                    
+//                    if(i % 2 == 0) {
+//                        cell.setBackground(Color.decode("#EEEEEE"));
+//                    } else {
+//                        cell.setBackground(Color.decode("#FFFFFF"));
+//                    }
+                    
+                    return cell;
                 } else {
-                    com.setBackground(Color.decode("#FFFFFF"));
+                    Component com = super.getTableCellRendererComponent(jtable, o, selected, focus, i, i1);
+                    com.setBackground(Color.WHITE);
+                    com.setForeground(Color.decode("#333333"));
+
+//                    if(i % 2 == 0) {
+//                        com.setBackground(Color.decode("#EEEEEE"));
+//                    } else {
+//                        com.setBackground(Color.decode("#FFFFFF"));
+//                    }
+
+                    return com;
                 }
-                
-//                if (selected) {
-//                    com.setBackground(Color.decode("#EEEEEE"));
-//                } else {
-//                    com.setBackground(Color.decode("#FFFFFF"));
-//                }
-                return com;
             }
         });
     }
-    
+
+    @Override
+    public TableCellEditor getCellEditor(int row, int col) {
+        if(col == 4) {
+            return new TableCellAction();
+        } else {
+            return super.getCellEditor(row, col);
+        }
+    }
 }

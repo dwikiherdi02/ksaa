@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
+import resources.views.page.karyawan.table.EventAction;
+import resources.views.page.karyawan.table.ModelTable;
 
 /**
  *
@@ -68,35 +70,39 @@ public class MainForm extends javax.swing.JPanel {
         param = param != null ? param : "";
         
         try {
+                    
             List<Map<String, Object>> data = (List<Map<String, Object>>) this.empCtrl.tableList(param);
             
             tableEmp.clearRows();
             
+            EventAction eventAction = new EventAction() {
+                @Override
+                public void delete(ModelTable emp) {
+                    System.out.println("Deleted ID: " + emp.getId());
+                }
+
+                @Override
+                public void update(ModelTable emp) {
+                    System.out.println("Updated ID: " + emp.getId());
+                }
+            };
+            
             int no = 1;
             
             for (Map<String, Object> map : data) {
+                
                 tableEmp.addRow(
-                    new Object[] {
-                        no, 
-                        (String) map.get("emp_id"), 
-                        (String) map.get("position"), 
-                        (String) map.get("name"), 
-                        "Aksi"
-                    });
+                    new ModelTable(
+                            (int) map.get("id"), 
+                            no, 
+                            (String) map.get("emp_id"), 
+                            (String) map.get("position"), 
+                            (String) map.get("name")
+                    ).toRowTable(eventAction)
+                );
                 
                 no++;
             }
-            
-//            tableEmp.addRow(new Object[] {1, "ADM001", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {2, "ADM002", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {3, "ADM003", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {4, "ADM004", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {5, "ADM005", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {6, "ADM006", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {7, "ADM007", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {8, "ADM008", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {9, "ADM009", "Admin", "Lorem ipsum dolor", "Aksi"});
-//            tableEmp.addRow(new Object[] {10, "ADM010", "Admin", "Lorem ipsum dolor", "Aksi"});
         } catch (ClassNotFoundException ex) {
             System.err.println(ex.getMessage());
         } catch (SQLException ex) {
