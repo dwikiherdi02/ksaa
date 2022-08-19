@@ -56,12 +56,12 @@ public class KaryawanController {
         }
     }
     
-    public List<Map<String, Object>> tableList() 
+    public List<Map<String, Object>> tableList(String param) 
         throws ClassNotFoundException, SQLException {
         
         KaryawanModel mEmp = new KaryawanModel();
         
-        ResultSet res = mEmp.tableListKaryawan();
+        ResultSet res = mEmp.tableListKaryawan(param);
         
         res.last();
         int count = res.getRow();

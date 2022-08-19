@@ -197,6 +197,9 @@
                   <Color blue="e5" green="70" red="2" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchAct"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="inputSearch">
               <Properties>

@@ -35,16 +35,49 @@ public class KaryawanModel extends Model {
         return res;
     }
     
-    public ResultSet tableListKaryawan() throws SQLException {
+    public ResultSet tableListKaryawan(String param) throws SQLException {
+        
+        String additionalCondition = "";
+    
+        if(!"".equals(param)) {
+
+            param = param
+                    .replace("!", "!!")
+                    .replace("%", "!%")
+                    .replace("_", "!_")
+                    .replace("[", "![");
+            
+            System.out.println(param);
+
+            additionalCondition = "AND ( "
+                                + "LOWER(a.emp_id) LIKE '%"+param+"%' ESCAPE '!' "
+                                + "OR LOWER(b.name) LIKE '%"+param+"%' ESCAPE '!' "
+                                + "OR LOWER(a.name) LIKE '%"+param+"%' ESCAPE '!' "
+                                + "OR LOWER(a.email) LIKE '%"+param+"%' ESCAPE '!' "
+                                + "OR LOWER(a.address) LIKE '%"+param+"%' ESCAPE '!' "
+                                + ") ";
+        }
+    
         String query = "SELECT a.id, a.emp_id, b.name as position, a.name "
                      + "FROM karyawan a "
                      + "LEFT JOIN jabatan b ON b.id = a.jabatan_id "
                      + "WHERE a.deleted_at IS NULL "
+                     + additionalCondition
                      + "ORDER BY a.id DESC";
+        
+        System.out.println(query);
             
         PreparedStatement ps = this.conn.prepareStatement(query);
 
         ResultSet res = ps.executeQuery();
+        
+//        if(!"".equals(additionalCondition)) {
+//            ps.setString(1, "'%" + param + "%'");
+//            ps.setString(2, "'%" + param + "%'");
+//            ps.setString(3, "'%" + param + "%'");
+//            ps.setString(4, "'%" + param + "%'");
+//            ps.setString(5, "'%" + param + "%'");
+//        }
         
         return res;
     }

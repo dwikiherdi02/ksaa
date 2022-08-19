@@ -61,13 +61,14 @@ public class MainForm extends javax.swing.JPanel {
         p.setBackground(Color.WHITE);
         scrollTableEmp.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
         
-        loadTableEmp();
+        loadTableEmp(null);
     }
     
-     private void loadTableEmp() {
+     private void loadTableEmp(String param) {
+        param = param != null ? param : "";
         
         try {
-            List<Map<String, Object>> data = (List<Map<String, Object>>) this.empCtrl.tableList();
+            List<Map<String, Object>> data = (List<Map<String, Object>>) this.empCtrl.tableList(param);
             
             tableEmp.clearRows();
             
@@ -171,6 +172,11 @@ public class MainForm extends javax.swing.JPanel {
         btnSearch.setColor(new java.awt.Color(0, 123, 255));
         btnSearch.setColorClick(new java.awt.Color(2, 112, 229));
         btnSearch.setColorOver(new java.awt.Color(2, 112, 229));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAct(evt);
+            }
+        });
 
         inputSearch.setBackground(new java.awt.Color(255, 255, 255));
         inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -260,6 +266,12 @@ public class MainForm extends javax.swing.JPanel {
             System.exit(0);
         }
     }//GEN-LAST:event_btnAddEmpAct
+
+    private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
+        String param = inputSearch.getText().toLowerCase();
+        
+        loadTableEmp(param);
+    }//GEN-LAST:event_btnSearchAct
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
