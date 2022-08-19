@@ -4,8 +4,12 @@
  */
 package resources.views.page.karyawan;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.Map;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import resources.views.component.ScrollBarFlat;
 
 /**
  *
@@ -43,7 +47,33 @@ public class MainForm extends javax.swing.JPanel {
         } else {
             panelNotification.setVisible(false);
         }
+        
+        scrollTableEmp.setVerticalScrollBar(new ScrollBarFlat());
+        scrollTableEmp.getVerticalScrollBar().setBackground(Color.WHITE);
+        scrollTableEmp.getViewport().setBackground(Color.WHITE);
+        
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        scrollTableEmp.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        
+        loadTableEmp();
     }
+    
+     private void loadTableEmp() {
+         
+        tableEmp.clearRows();
+        
+        tableEmp.addRow(new Object[] {1, "ADM001", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {2, "ADM002", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {3, "ADM003", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {4, "ADM004", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {5, "ADM005", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {6, "ADM006", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {7, "ADM007", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {8, "ADM008", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {9, "ADM009", "Admin", "Lorem ipsum dolor", "Aksi"});
+        tableEmp.addRow(new Object[] {10, "ADM010", "Admin", "Lorem ipsum dolor", "Aksi"});
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +88,12 @@ public class MainForm extends javax.swing.JPanel {
         panelBtn = new javax.swing.JPanel();
         btnAddEmp = new resources.views.component.button.FlatButton();
         panelCard = new javax.swing.JPanel();
+        panelCardHeader = new javax.swing.JPanel();
+        labelListEmp = new javax.swing.JLabel();
+        btnSearch = new resources.views.component.button.FlatButton();
+        inputSearch = new javax.swing.JTextField();
+        scrollTableEmp = new javax.swing.JScrollPane();
+        tableEmp = new resources.views.page.karyawan.table.TableKaryawan();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
@@ -95,15 +131,69 @@ public class MainForm extends javax.swing.JPanel {
         panelCard.setBackground(new java.awt.Color(255, 255, 255));
         panelCard.setForeground(new java.awt.Color(255, 255, 255));
 
+        panelCardHeader.setOpaque(false);
+
+        labelListEmp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelListEmp.setForeground(new java.awt.Color(51, 51, 51));
+        labelListEmp.setText("Daftar Karyawan");
+
+        btnSearch.setBackground(new java.awt.Color(0, 123, 255));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/search.png"))); // NOI18N
+        btnSearch.setBorderColor(new java.awt.Color(0, 123, 255));
+        btnSearch.setColor(new java.awt.Color(0, 123, 255));
+        btnSearch.setColorClick(new java.awt.Color(2, 112, 229));
+        btnSearch.setColorOver(new java.awt.Color(2, 112, 229));
+
+        inputSearch.setBackground(new java.awt.Color(255, 255, 255));
+        inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        inputSearch.setForeground(new java.awt.Color(102, 102, 102));
+        inputSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputSearch.setOpaque(true);
+
+        javax.swing.GroupLayout panelCardHeaderLayout = new javax.swing.GroupLayout(panelCardHeader);
+        panelCardHeader.setLayout(panelCardHeaderLayout);
+        panelCardHeaderLayout.setHorizontalGroup(
+            panelCardHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCardHeaderLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(labelListEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
+                .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panelCardHeaderLayout.setVerticalGroup(
+            panelCardHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCardHeaderLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(labelListEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inputSearch)
+        );
+
+        scrollTableEmp.setBorder(null);
+        scrollTableEmp.setViewportView(tableEmp);
+
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
         panelCard.setLayout(panelCardLayout);
         panelCardLayout.setHorizontalGroup(
             panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCardLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollTableEmp)
+                    .addComponent(panelCardHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         panelCardLayout.setVerticalGroup(
             panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGroup(panelCardLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(scrollTableEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -127,7 +217,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,8 +236,14 @@ public class MainForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private resources.views.component.button.FlatButton btnAddEmp;
+    private resources.views.component.button.FlatButton btnSearch;
+    private javax.swing.JTextField inputSearch;
+    private javax.swing.JLabel labelListEmp;
     private javax.swing.JPanel panelBtn;
     private javax.swing.JPanel panelCard;
+    private javax.swing.JPanel panelCardHeader;
     private resources.views.component.PanelNotification panelNotification;
+    private javax.swing.JScrollPane scrollTableEmp;
+    private resources.views.page.karyawan.table.TableKaryawan tableEmp;
     // End of variables declaration//GEN-END:variables
 }
