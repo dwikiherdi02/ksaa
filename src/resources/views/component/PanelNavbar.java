@@ -45,8 +45,8 @@ public class PanelNavbar extends javax.swing.JPanel {
         navList.addItem(new Navigation("app", "Master Nasabah", Navigation.MenuType.MENU));
         navList.addItem(new Navigation("app", "Master Karyawan", Navigation.MenuType.MENU));
         navList.addItem(new Navigation("app", "Master Jabatan", Navigation.MenuType.MENU));
-        navList.addItem(new Navigation("app", "Master Tipe Barang", Navigation.MenuType.MENU));
-        navList.addItem(new Navigation("app", "Master Tipe Pengajuan", Navigation.MenuType.MENU));
+        navList.addItem(new Navigation("app", "Master Pengajuan", Navigation.MenuType.MENU));
+        navList.addItem(new Navigation("app", "Master Pembayaran", Navigation.MenuType.MENU));
 
         navList.addItem(new Navigation("", "Laporan", Navigation.MenuType.TITLE));
 
