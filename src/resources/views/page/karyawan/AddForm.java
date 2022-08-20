@@ -21,8 +21,6 @@ import resources.views.component.ScrollBarFlat;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -59,7 +57,21 @@ public class AddForm extends javax.swing.JPanel {
         scrollAddress.setVerticalScrollBar(new ScrollBarFlat());
         inputAddress.setLineWrap(true);
         
-        setData();
+        inputId.setVisible(false);
+        
+        Object sessKaryawanId = (Object) this.frame.session.getItem("karyawanId");
+        
+        int karyawanId = 0;
+        
+        if(sessKaryawanId != null) {
+           karyawanId = (int) sessKaryawanId;
+        } else {
+           karyawanId = 0;
+        }
+        
+        System.out.println(karyawanId);
+        
+        setData(karyawanId);
         
         inputIsUser.addItemListener(new ItemListener() {
             @Override
@@ -73,28 +85,75 @@ public class AddForm extends javax.swing.JPanel {
         });
     }
     
-    private void setData() throws ClassNotFoundException, SQLException {
-        inputEmpId.setText("");
-        setDataPosition();
-        inputEmpName.setText("");
-        inputEmail.setText("");
-        inputAddress.setText("");
+    private void setData(int karyawanId) throws ClassNotFoundException, SQLException {
+        Map<String, Object> map = this.empCtrl.getDataKaryawanById(karyawanId);
+        
+        if(map != null) {
+//            System.out.println(map.get("id"));
+//            System.out.println(map.get("emp_id"));
+//            System.out.println(map.get("jabatan_id"));
+//            System.out.println(map.get("name"));
+//            System.out.println(map.get("email"));
+//            System.out.println(map.get("address"));
+//            System.out.println(map.get("is_pengguna"));
+//            System.out.println(map.get("username"));
+//            System.out.println("------------------------------------------");
+            
+            inputId.setText(String.valueOf(karyawanId));
+            inputEmpId.setText((String) map.get("emp_id"));
+            setDataPosition((int) map.get("jabatan_id"));
+            inputEmpName.setText((String) map.get("name"));
+            inputEmail.setText((String) map.get("email"));
+            inputAddress.setText((String) map.get("address"));
+            inputUsername.setText((String) map.get("username"));
+            
+            if((int) map.get("is_pengguna") != 0) {
+                inputIsUser.setSelected(true);
+                panelCardUser.setVisible(true);
+                // inputUserpass.setVisible(false);
+            } else {
+                inputIsUser.setSelected(false);
+                panelCardUser.setVisible(false);
+                // inputUserpass.setVisible(true);
+            }
+        } else {
+            inputId.setText(String.valueOf(karyawanId));
+            inputEmpId.setText("");
+            setDataPosition(0);
+            inputEmpName.setText("");
+            inputEmail.setText("");
+            inputAddress.setText("");
+        }
     }
     
-    private void setDataPosition() throws ClassNotFoundException, SQLException {
+    private void setDataPosition(int jabatanId) throws ClassNotFoundException, SQLException {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         
         List<Map<String, Object>> data = this.empCtrl.listJabatan();
         
+        int selected = -1;
+        int key = -1;
+        
         if(data != null) {
             for (Map<String, Object> map : data) {
+                key++;
+                
+                int id = (int) map.get("id");
+                
                 model.addElement(new ComboItems((int) map.get("id"), (String) map.get("name")));
+                
+                if(id == jabatanId) {
+                    selected = key;
+                }
             }
         } else {
             model.addElement(new ComboItems("", ""));
         }
         
         inputOptPosition.setModel(model);
+        if(selected >= 0) {
+            inputOptPosition.setSelectedIndex(selected);
+        }
     }
 
     /**
@@ -110,6 +169,7 @@ public class AddForm extends javax.swing.JPanel {
         btnSave = new resources.views.component.button.FlatButton();
         btnBack = new resources.views.component.button.FlatButton();
         panelCard = new javax.swing.JPanel();
+        inputId = new javax.swing.JTextField();
         labelEmpId = new javax.swing.JLabel();
         inputEmpId = new javax.swing.JTextField();
         labekPosition = new javax.swing.JLabel();
@@ -177,6 +237,13 @@ public class AddForm extends javax.swing.JPanel {
 
         panelCard.setBackground(new java.awt.Color(255, 255, 255));
         panelCard.setForeground(new java.awt.Color(255, 255, 255));
+
+        inputId.setBackground(new java.awt.Color(255, 255, 255));
+        inputId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        inputId.setForeground(new java.awt.Color(51, 51, 51));
+        inputId.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputId.setEnabled(false);
+        inputId.setOpaque(true);
 
         labelEmpId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelEmpId.setForeground(new java.awt.Color(0, 0, 0));
@@ -314,29 +381,33 @@ public class AddForm extends javax.swing.JPanel {
                     .addGroup(panelCardLayout.createSequentialGroup()
                         .addComponent(labelAsUser, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inputIsUser))
-                    .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(panelCardLayout.createSequentialGroup()
-                            .addComponent(labelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(scrollAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelCardLayout.createSequentialGroup()
-                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputEmail))
-                        .addGroup(panelCardLayout.createSequentialGroup()
-                            .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputEmpName))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCardLayout.createSequentialGroup()
-                            .addComponent(labekPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputOptPosition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(panelCardLayout.createSequentialGroup()
-                            .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(inputIsUser)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelCardLayout.createSequentialGroup()
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(scrollAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputEmail))
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputEmpName))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCardLayout.createSequentialGroup()
+                                .addComponent(labekPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputOptPosition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
             .addComponent(panelCardUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCardLayout.setVerticalGroup(
@@ -345,7 +416,8 @@ public class AddForm extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labekPosition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -399,6 +471,7 @@ public class AddForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackAct
 
     private void btnSaveAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAct
+        int id = Integer.valueOf(inputId.getText());
         Object jabatanId = ((ComboItems) inputOptPosition.getSelectedItem()).getKey();
         String empId = inputEmpId.getText();
         String name = inputEmpName.getText();
@@ -410,6 +483,7 @@ public class AddForm extends javax.swing.JPanel {
         
         Map<String, Object> map = new HashMap<String, Object>();
         
+        map.put("id", id);
         map.put("jabatanId", jabatanId);
         map.put("empId", empId);
         map.put("name", name);
@@ -422,7 +496,7 @@ public class AddForm extends javax.swing.JPanel {
         boolean res;
         
         try {
-            res = this.empCtrl.store(map);
+            res = this.empCtrl.process(map);
         } catch (ClassNotFoundException ex) {
             res = false;
         } catch (SQLException ex) {
@@ -448,6 +522,7 @@ public class AddForm extends javax.swing.JPanel {
     private javax.swing.JTextField inputEmail;
     private javax.swing.JTextField inputEmpId;
     private javax.swing.JTextField inputEmpName;
+    private javax.swing.JTextField inputId;
     private javax.swing.JCheckBox inputIsUser;
     private javax.swing.JComboBox<String> inputOptPosition;
     private javax.swing.JTextField inputUsername;

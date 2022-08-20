@@ -101,7 +101,21 @@ public class MainForm extends javax.swing.JPanel {
 
                 @Override
                 public void update(ModelTable emp) {
-                    System.out.println("Updated ID: " + emp.getId());
+                    try {
+                        System.out.println("Updated ID: " + emp.getId());
+                        
+                        int idEmp = emp.getId();
+                        
+                        MainForm.this.frame.session.setFlashItem("karyawanId", idEmp);
+                        
+                        MainForm.this.add = new AddForm(MainForm.this.frame);
+                        
+                        MainForm.this.frame.setPage(MainForm.this.add);
+                    } catch (ClassNotFoundException ex) {
+                        System.err.println(ex.getMessage());
+                    } catch (SQLException ex) {
+                        System.err.println(ex.getMessage());
+                    }
                 }
             };
             

@@ -15,11 +15,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KaryawanController {
-
-    public boolean store(Map<String, Object> map) throws ClassNotFoundException, SQLException {
+    
+    public Map<String, Object> getDataKaryawanById(int karyawanId) 
+        throws ClassNotFoundException, SQLException {
+        
         KaryawanModel mEmp = new KaryawanModel();
         
-        boolean res = mEmp.insert(map);
+        ResultSet res = mEmp.getKaryawanById(karyawanId);
+        
+        res.last();
+        int count = res.getRow();
+        res.beforeFirst();
+        
+        if(count > 0) {
+            Map<String, Object> map = new HashMap<String, Object>();
+            
+            while (res.next()) {            
+                map.put("id", res.getInt("id"));
+                map.put("emp_id", res.getString("emp_id"));
+                map.put("jabatan_id", res.getInt("jabatan_id"));
+                map.put("name", res.getString("name"));
+                map.put("email", res.getString("email"));
+                map.put("address", res.getString("address"));
+                map.put("is_pengguna", res.getInt("is_pengguna"));
+                map.put("username", res.getString("username"));
+            }
+            
+            return map;
+        } else {
+            return null;
+        }
+    }
+
+    public boolean process(Map<String, Object> map) throws ClassNotFoundException, SQLException {
+        KaryawanModel mEmp = new KaryawanModel();
+        
+        boolean res;
+        
+        if((int) map.get("id") > 0) {
+            res = mEmp.update(map, (int) map.get("id"));
+        } else {
+            res = mEmp.insert(map);
+        }
         
         return res;
     }

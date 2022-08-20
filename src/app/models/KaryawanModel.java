@@ -22,6 +22,21 @@ public class KaryawanModel extends Model {
         super("karyawan");
     }
     
+    public ResultSet getKaryawanById(int karyawanId) throws SQLException {
+        String query = "SELECT a.id, a.emp_id, a.jabatan_id, a.name, a.email, a.address, a.is_pengguna, b.username "
+                     + "FROM karyawan a "
+                     + "LEFT JOIN pengguna b ON b.karyawan_id = a.id "
+                     + "WHERE a.id = ? "
+                     + "LIMIT 1";
+        
+        PreparedStatement ps = this.conn.prepareStatement(query);
+        
+        ps.setInt(1, karyawanId);
+
+        ResultSet res = ps.executeQuery();
+        
+        return res;
+    }
     
     public ResultSet getJabatan() throws SQLException {
         String query = "SELECT id, name "
@@ -137,6 +152,112 @@ public class KaryawanModel extends Model {
             return false;
         }
     }
+    
+    public boolean update(Map<String, Object> map, int karyawanId) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        
+        try {
+
+            String queryEmp = "UPDATE karyawan "
+                            + "SET jabatan_id = ?, "
+                            + "emp_id = ?, "
+                            + "name = ?, "
+                            + "email = ?, "
+                            + "address = ?, "
+                            + "is_pengguna = ?, "
+                            + "updated_at = ? "
+                            + "WHERE id = ?";
+            
+            PreparedStatement psEmp = this.conn.prepareStatement(queryEmp);
+            
+            psEmp.setInt(1, (int) map.get("jabatanId"));
+            psEmp.setString(2, (String) map.get("empId"));
+            psEmp.setString(3, (String) map.get("name"));
+            psEmp.setString(4, (String) map.get("email"));
+            psEmp.setString(5, (String) map.get("address"));
+            psEmp.setInt(6, (int) map.get("isPengguna"));
+            psEmp.setString(7, dtf.format(now));
+            psEmp.setInt(8, karyawanId);
+            
+            psEmp.executeUpdate();
+            
+            psEmp.close();
+            
+            // cek pengguna
+            String queryCheckUser = "SELECT karyawan_id "
+                                  + "FROM pengguna "
+                                  + "WHERE karyawan_id = ? ";
+            
+            PreparedStatement psCheckUser = this.conn.prepareStatement(queryCheckUser);
+            
+            psCheckUser.setInt(1, karyawanId);
+
+            ResultSet resCheckUser = psCheckUser.executeQuery();
+            
+            resCheckUser.last();
+            int countUser = resCheckUser.getRow();
+            resCheckUser.beforeFirst();
+            
+            psCheckUser.close();
+            
+            if(countUser > 0) {
+                String additionalSet = "";
+                String usr = (String) map.get("username");
+                String pwd = (String) map.get("password");
+
+                if(!usr.isEmpty() && !usr.isBlank()) {
+                    String u = (String) map.get("username");
+                    additionalSet = additionalSet + "username = '"+u+"', ";
+                }
+
+                if(!pwd.isEmpty() && !pwd.isBlank()) {
+                    String p = (String) BCrypt.hashpw((String) map.get("password"), BCrypt.gensalt(12));
+                    additionalSet = additionalSet + "password = '"+p+"', ";
+                }
+
+                String queryUser = "UPDATE pengguna "
+                                 + "SET "
+                                 + additionalSet
+                                 + "is_active = ?, " 
+                                 + "updated_at = ?"
+                                 + "WHERE karyawan_id = ?";
+
+                PreparedStatement psUser = this.conn.prepareStatement(queryUser);
+
+                psUser.setInt(1, (int) map.get("isPengguna"));
+                psUser.setString(2, dtf.format(now));
+                psUser.setInt(3, karyawanId);
+
+                psUser.executeUpdate();
+
+                psUser.close();
+            } else {
+                if((int) map.get("isPengguna") == 1) {
+                    String queryUser = "INSERT INTO pengguna (karyawan_id, username, password, is_active, created_at, updated_at) "
+                                     + "VALUES (?, ?, ?, ?, ?, ?)";
+
+                    PreparedStatement psUser = this.conn.prepareStatement(queryUser);
+
+                    psUser.setInt(1, karyawanId);
+                    psUser.setString(2, (String) map.get("username"));
+                    psUser.setString(3, (String) BCrypt.hashpw((String) map.get("password"), BCrypt.gensalt(12)));
+                    psUser.setInt(4, 1);
+                    psUser.setString(5, dtf.format(now));
+                    psUser.setString(6, dtf.format(now));
+
+                    psUser.executeUpdate();
+
+                    psUser.close();
+                }
+            }
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 
     public boolean delete(int id) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
@@ -144,14 +265,15 @@ public class KaryawanModel extends Model {
         
         try {
             String queryUpEmp = "UPDATE karyawan "
-                              + "SET deleted_at = ?, updated_at = ? "
+                              + "SET is_pengguna = ?, deleted_at = ?, updated_at = ? "
                               + "WHERE id = ? ";
             
             PreparedStatement psUpEmp = this.conn.prepareStatement(queryUpEmp);
             
-            psUpEmp.setString(1, dtf.format(now));
+            psUpEmp.setInt(1, 0);
             psUpEmp.setString(2, dtf.format(now));
-            psUpEmp.setInt(3, id);
+            psUpEmp.setString(3, dtf.format(now));
+            psUpEmp.setInt(4, id);
             
             psUpEmp.executeUpdate();
             
@@ -172,7 +294,7 @@ public class KaryawanModel extends Model {
             if(countUser > 0) {
                 String queryUpUser = "UPDATE pengguna "
                                   + "SET is_active = ?, updated_at = ? "
-                                  + "WHERE id = ? ";
+                                  + "WHERE karyawan_id = ? ";
                 
                 System.out.println(queryUpUser);
 
