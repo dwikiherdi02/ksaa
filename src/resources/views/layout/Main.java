@@ -27,6 +27,7 @@ public class Main extends javax.swing.JFrame {
     private resources.views.page.dasbor.MainForm dasborMainPage;
     private resources.views.page.pengguna.MainForm penggunaMainPage;
     private resources.views.page.investor.MainForm investorMainPage;
+    private resources.views.page.jabatan.MainForm jabatanMainPage;
     private resources.views.page.karyawan.MainForm karyawanMainPage;
     
     public Main(Map<String, Object> auth) {
@@ -62,6 +63,7 @@ public class Main extends javax.swing.JFrame {
         dasborMainPage = new resources.views.page.dasbor.MainForm();
         penggunaMainPage = new resources.views.page.pengguna.MainForm(Main.this);
         investorMainPage = new resources.views.page.investor.MainForm(Main.this);
+        jabatanMainPage = new resources.views.page.jabatan.MainForm(Main.this);
         karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
         
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
@@ -86,7 +88,7 @@ public class Main extends javax.swing.JFrame {
                         setPage(karyawanMainPage);
                         break;
                     case 6: // master jabatan
-                        setPage(underconstruction);
+                        setPage(jabatanMainPage);
                         break;
                     case 7: // master tipe barang
                         setPage(underconstruction);
