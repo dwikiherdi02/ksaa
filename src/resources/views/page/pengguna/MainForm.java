@@ -1,7 +1,5 @@
 package resources.views.page.pengguna;
 
-import app.controllers.KaryawanController;
-
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;

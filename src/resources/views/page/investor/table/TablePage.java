@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package resources.views.page.pengguna.table;
+package resources.views.page.investor.table;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -26,7 +26,7 @@ public class TablePage extends Table {
         
         Object[][] data = new Object[][]{};
         String[] titles = {
-            "No", "Nama", "Username", "Aksi"
+            "No", "Nama", "Alamat", "Total Investasi", "Aksi"
         };
         
         setModel(new javax.swing.table.DefaultTableModel(
@@ -34,7 +34,7 @@ public class TablePage extends Table {
             titles    
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -43,18 +43,18 @@ public class TablePage extends Table {
         });
         
         if (getColumnModel().getColumnCount() > 0) {
-            getColumnModel().getColumn(0).setMinWidth(100);
-            getColumnModel().getColumn(0).setMaxWidth(100);
+            getColumnModel().getColumn(0).setMinWidth(50);
+            getColumnModel().getColumn(0).setMaxWidth(50);
             
-            getColumnModel().getColumn(3).setMinWidth(80);
-            getColumnModel().getColumn(3).setMaxWidth(80);
+            getColumnModel().getColumn(4).setMinWidth(80);
+            getColumnModel().getColumn(4).setMaxWidth(80);
         }
         
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean focus, int i, int i1) {
                 
-                Integer[] intArray = new Integer[]{0, 3};
+                Integer[] intArray = new Integer[]{0};
                 List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
 
                 if(labelCenter.contains(i1)) {
@@ -83,7 +83,7 @@ public class TablePage extends Table {
     
     @Override
     public TableCellEditor getCellEditor(int row, int col) {
-        if(col == 3) {
+        if(col == 4) {
             return new TableCellAction();
         } else {
             return super.getCellEditor(row, col);

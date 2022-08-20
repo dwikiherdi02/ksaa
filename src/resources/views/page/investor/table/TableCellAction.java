@@ -1,4 +1,4 @@
-package resources.views.page.pengguna.table;
+package resources.views.page.investor.table;
 
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;

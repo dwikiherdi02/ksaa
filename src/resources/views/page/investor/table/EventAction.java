@@ -1,4 +1,4 @@
-package resources.views.page.pengguna.table;
+package resources.views.page.investor.table;
 
 public interface EventAction {
     public void delete(ModelTable emp);

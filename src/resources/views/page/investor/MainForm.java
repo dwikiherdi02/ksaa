@@ -1,6 +1,4 @@
-package resources.views.page.pengguna;
-
-import app.controllers.KaryawanController;
+package resources.views.page.investor;
 
 import java.awt.Color;
 import java.sql.SQLException;
@@ -11,8 +9,8 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
-import resources.views.page.pengguna.table.EventAction;
-import resources.views.page.pengguna.table.ModelTable;
+import resources.views.page.investor.table.EventAction;
+import resources.views.page.investor.table.ModelTable;
 
 /**
  *
@@ -93,12 +91,12 @@ public class MainForm extends javax.swing.JPanel {
             }
         };
         
-        table.addRow(new ModelTable(1, 1, "User 1", "user1").toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "User 2", "user2").toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "User 3", "user3").toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "User 4", "user4").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "user5").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "user5").toRowTable(eventAction) );
+        table.addRow(new ModelTable(1, 1, "User 1", "address1", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(2, 2, "User 2", "address2", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(3, 3, "User 3", "address3", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(4, 4, "User 4", "address4", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(5, 5, "User 5", "address5", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(5, 5, "User 5", "address5", 1000000).toRowTable(eventAction) );
      }
 
     /**
@@ -119,7 +117,7 @@ public class MainForm extends javax.swing.JPanel {
         btnSearch = new resources.views.component.button.FlatButton();
         inputSearch = new javax.swing.JTextField();
         scrollTable = new javax.swing.JScrollPane();
-        table = new resources.views.page.pengguna.table.TablePage();
+        table = new resources.views.page.investor.table.TablePage();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
@@ -222,9 +220,9 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -248,7 +246,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -281,6 +279,6 @@ public class MainForm extends javax.swing.JPanel {
     private javax.swing.JPanel panelCardHeader;
     private resources.views.component.PanelNotification panelNotification;
     private javax.swing.JScrollPane scrollTable;
-    private resources.views.page.pengguna.table.TablePage table;
+    private resources.views.page.investor.table.TablePage table;
     // End of variables declaration//GEN-END:variables
 }

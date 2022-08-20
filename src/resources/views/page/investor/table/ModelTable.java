@@ -1,4 +1,4 @@
-package resources.views.page.pengguna.table;
+package resources.views.page.investor.table;
 
 public class ModelTable {
 
@@ -45,35 +45,51 @@ public class ModelTable {
     }
 
     /**
-     * @return the username
+     * @return the address
      */
-    public String getUsername() {
-        return username;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * @param username the username to set
+     * @param address the address to set
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public ModelTable(int id, int no, String name, String username) {
+    /**
+     * @return the total
+     */
+    public int getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public ModelTable(int id, int no, String name, String address, int total) {
         this.id = id;
         this.no = no;
         this.name = name;
-        this.username = username;
+        this.address = address;
+        this.total = total;
     }
 
     public ModelTable() {
     }
-   
+    
     private int id;
     private int no;
     private String name;
-    private String username;
+    private String address;
+    private int total;
     
     public Object[] toRowTable(EventAction event) {
-        return new Object[] {no, name, username, new ModelAction(this, event)};
+        return new Object[] {no, name, address, total, new ModelAction(this, event)};
     }
 }

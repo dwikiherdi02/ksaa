@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package resources.views.page.pengguna;
+package resources.views.page.investor;
 
 // Controller
+import resources.views.page.pengguna.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
