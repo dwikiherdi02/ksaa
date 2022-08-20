@@ -137,4 +137,58 @@ public class KaryawanModel extends Model {
             return false;
         }
     }
+
+    public boolean delete(int id) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();
+        
+        try {
+            String queryUpEmp = "UPDATE karyawan "
+                              + "SET deleted_at = ?, updated_at = ? "
+                              + "WHERE id = ? ";
+            
+            PreparedStatement psUpEmp = this.conn.prepareStatement(queryUpEmp);
+            
+            psUpEmp.setString(1, dtf.format(now));
+            psUpEmp.setString(2, dtf.format(now));
+            psUpEmp.setInt(3, id);
+            
+            psUpEmp.executeUpdate();
+            
+            String queryCheckUser = "SELECT karyawan_id "
+                                  + "FROM pengguna "
+                                  + "WHERE karyawan_id = ? ";
+            
+            PreparedStatement psCheckUser = this.conn.prepareStatement(queryCheckUser);
+            
+            psCheckUser.setInt(1, id);
+
+            ResultSet resCheckUser = psCheckUser.executeQuery();
+            
+            resCheckUser.last();
+            int countUser = resCheckUser.getRow();
+            resCheckUser.beforeFirst();
+            
+            if(countUser > 0) {
+                String queryUpUser = "UPDATE pengguna "
+                                  + "SET is_active = ?, updated_at = ? "
+                                  + "WHERE id = ? ";
+                
+                System.out.println(queryUpUser);
+
+                PreparedStatement psUpUser = this.conn.prepareStatement(queryUpUser);
+                
+                psUpUser.setInt(1, 0);
+                psUpUser.setString(2, dtf.format(now));
+                psUpUser.setInt(3, id);
+
+                psUpUser.executeUpdate();
+            }
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }

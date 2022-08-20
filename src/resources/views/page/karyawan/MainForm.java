@@ -79,6 +79,24 @@ public class MainForm extends javax.swing.JPanel {
                 @Override
                 public void delete(ModelTable emp) {
                     System.out.println("Deleted ID: " + emp.getId());
+                    
+                    int idEmp = emp.getId();
+                    
+                    try {
+                        boolean resDeleteEmp = MainForm.this.empCtrl.remove(idEmp);
+                        
+                        if(resDeleteEmp == true) {
+                            panelNotification.notify("success", "Karyawan Berhasil Dihapus.");
+                            
+                            loadTableEmp(null);
+                        } else {
+                            panelNotification.notify("error", "Karyawan Gagal Dihapus. Silahkan Hubungi Admin");
+                        }
+                    } catch (ClassNotFoundException ex) {
+                        panelNotification.notify("error", "Karyawan Gagal Dihapus. Silahkan Hubungi Admin");
+                    } catch (SQLException ex) {
+                        panelNotification.notify("error", "Karyawan Gagal Dihapus. Silahkan Hubungi Admin");
+                    }
                 }
 
                 @Override

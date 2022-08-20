@@ -23,6 +23,14 @@ public class KaryawanController {
         
         return res;
     }
+    
+    public boolean remove(int id) throws ClassNotFoundException, SQLException {
+        KaryawanModel mEmp = new KaryawanModel();
+        
+        boolean res = mEmp.delete(id);
+        
+        return res;
+    }
             
     public List<Map<String, Object>> listJabatan() throws ClassNotFoundException, SQLException {
         
