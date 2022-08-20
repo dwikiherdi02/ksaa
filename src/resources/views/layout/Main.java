@@ -25,6 +25,7 @@ public class Main extends javax.swing.JFrame {
     // Form Pages
     private resources.views.page.UnderConstructionForm underconstruction;
     private resources.views.page.dasbor.MainForm dasborMainPage;
+    private resources.views.page.pengguna.MainForm penggunaMainPage;
     private resources.views.page.karyawan.MainForm karyawanMainPage;
     
     public Main(Map<String, Object> auth) {
@@ -58,6 +59,7 @@ public class Main extends javax.swing.JFrame {
         
         underconstruction = new resources.views.page.UnderConstructionForm();
         dasborMainPage = new resources.views.page.dasbor.MainForm();
+        penggunaMainPage = new resources.views.page.pengguna.MainForm(Main.this);
         karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
         
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
@@ -70,7 +72,7 @@ public class Main extends javax.swing.JFrame {
                         setPage(dasborMainPage);
                         break;
                     case 2: // master pengguna
-                        setPage(underconstruction);
+                        setPage(penggunaMainPage);
                         break;
                     case 3: // master investor
                         setPage(underconstruction);
