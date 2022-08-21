@@ -36,7 +36,7 @@ public class PanelNavbar extends javax.swing.JPanel {
     }
     
     private void init() {
-        navList.addItem(new Navigation("app", "Dasbor", Navigation.MenuType.MENU));
+        navList.addItem(new Navigation("app", "Dashboard", Navigation.MenuType.MENU));
 
         navList.addItem(new Navigation("", "Master", Navigation.MenuType.TITLE));
 
