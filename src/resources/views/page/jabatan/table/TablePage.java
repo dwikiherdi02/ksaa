@@ -54,7 +54,7 @@ public class TablePage extends Table {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean focus, int i, int i1) {
                 
-                Integer[] intArray = new Integer[]{0};
+                Integer[] intArray = new Integer[]{0, 2};
                 List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
 
                 if(labelCenter.contains(i1)) {

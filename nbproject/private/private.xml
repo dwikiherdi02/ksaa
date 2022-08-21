@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/pengguna/AddForm.java</file>
             <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/layout/Main.java</file>
-            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/pengguna/table/Action.java</file>
-            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/pengguna/table/TablePage.java</file>
-            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/pengguna/MainForm.java</file>
+            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/jabatan/table/ModelTable.java</file>
             <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/layout/Login.java</file>
-            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/pengguna/table/TableCellAction.java</file>
+            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/jabatan/MainForm.java</file>
+            <file>file:/D:/Java%20App/KSAA-NEW/src/resources/views/page/jabatan/table/TablePage.java</file>
         </group>
     </open-files>
 </project-private>

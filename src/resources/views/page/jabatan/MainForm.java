@@ -64,39 +64,70 @@ public class MainForm extends javax.swing.JPanel {
         param = param != null ? param : "";
         
         table.clearRows();
-            
-        EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelTable emp) {
-                System.out.println("Deleted ID: " + emp.getId());
-            }
-
-            @Override
-            public void update(ModelTable emp) {
-                try {
-                    System.out.println("Updated ID: " + + emp.getId());
-                    
-                    int id = emp.getId();
-                    
-                    MainForm.this.frame.session.setFlashItem("id", id);
-                    
-                    MainForm.this.add = new AddForm(MainForm.this.frame);
-                    
-                    MainForm.this.frame.setPage(MainForm.this.add);
-                } catch (ClassNotFoundException ex) {
-                    System.out.println(ex.getMessage());
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        };
         
-        table.addRow(new ModelTable(1, 1, "User 1", "USR001").toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "User 2", "USR002").toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "User 3", "USR003").toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "User 4", "USR004").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "USR005").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "USR005").toRowTable(eventAction) );
+        try {
+            EventAction eventAction = new EventAction() {
+                @Override
+                public void delete(ModelTable emp) {
+                    System.out.println("Deleted ID: " + emp.getId());
+                    
+                    try {
+                        int id = emp.getId();
+                        
+                        app.controllers.JabatanController posCtrl = new app.controllers.JabatanController();
+                        
+                        boolean res = posCtrl.remove(id);
+                        
+                        if(res == true) {
+                            panelNotification.notify("success", "Jabatan Berhasil Dihapus.");
+                            
+                            loadTable(null);
+                        } else {
+                            panelNotification.notify("error", "Gagal Dihapus. Pastikan Jabatan Yang Dihapus Tidak Dipakai Di Master Karyawan.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        panelNotification.notify("error", "Gagal Dihapus. Pastikan Jabatan Yang Dihapus Tidak Dipakai Di Master Karyawan.");
+                    }
+                }
+
+                @Override
+                public void update(ModelTable emp) {
+                    try {
+                        int id = emp.getId();
+
+                        MainForm.this.frame.session.setFlashItem("id", id);
+
+                        MainForm.this.add = new AddForm(MainForm.this.frame);
+
+                        MainForm.this.frame.setPage(MainForm.this.add);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            };
+            
+            app.controllers.JabatanController posCtrl = new app.controllers.JabatanController();
+            
+            List<Map<String, Object>> list = posCtrl.listTable(param);
+            
+            int no = 1;
+            
+            for (Map<String, Object> map : list) {
+                table.addRow(
+                    new ModelTable(
+                        (int) map.get("id"), 
+                        no, 
+                        (String) map.get("name"), 
+                        (String) map.get("code")
+                    ).toRowTable(eventAction) 
+                );
+                
+                no++;
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
      }
 
     /**
@@ -265,7 +296,7 @@ public class MainForm extends javax.swing.JPanel {
     private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
         String param = inputSearch.getText().toLowerCase();
         
-        System.out.println(param);
+        loadTable(param);
     }//GEN-LAST:event_btnSearchAct
 
 
