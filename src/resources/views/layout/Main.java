@@ -119,7 +119,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         
-        labelPageName.setText("Dasbor");
+        labelPageName.setText("Dashboard");
         setPage(new resources.views.page.dasbor.MainForm()); 
     }
     
@@ -247,7 +247,7 @@ public class Main extends javax.swing.JFrame {
         labelPageName.setBackground(new java.awt.Color(0, 0, 0));
         labelPageName.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelPageName.setForeground(new java.awt.Color(85, 85, 85));
-        labelPageName.setText("Dasbor");
+        labelPageName.setText("Dashboard");
 
         labelIconUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/user.png"))); // NOI18N
