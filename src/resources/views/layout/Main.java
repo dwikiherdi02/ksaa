@@ -27,6 +27,7 @@ public class Main extends javax.swing.JFrame {
     private resources.views.page.dasbor.MainForm dasborMainPage;
     private resources.views.page.pengguna.MainForm penggunaMainPage;
     private resources.views.page.investor.MainForm investorMainPage;
+    private resources.views.page.nasabah.MainForm nasabahMainPage;
     private resources.views.page.jabatan.MainForm jabatanMainPage;
     private resources.views.page.karyawan.MainForm karyawanMainPage;
     
@@ -63,6 +64,7 @@ public class Main extends javax.swing.JFrame {
         dasborMainPage = new resources.views.page.dasbor.MainForm();
         penggunaMainPage = new resources.views.page.pengguna.MainForm(Main.this);
         investorMainPage = new resources.views.page.investor.MainForm(Main.this);
+        nasabahMainPage = new resources.views.page.nasabah.MainForm(Main.this);
         jabatanMainPage = new resources.views.page.jabatan.MainForm(Main.this);
         karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
         
@@ -82,7 +84,7 @@ public class Main extends javax.swing.JFrame {
                         setPage(investorMainPage);
                         break;
                     case 4: // master nasabah
-                        setPage(underconstruction);
+                        setPage(nasabahMainPage);
                         break;
                     case 5: // master karyawan
                         setPage(karyawanMainPage);
