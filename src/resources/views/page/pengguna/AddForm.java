@@ -4,10 +4,6 @@
  */
 package resources.views.page.pengguna;
 
-// Controller
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
 // SQL
 import java.sql.SQLException;
 
@@ -48,6 +44,7 @@ public class AddForm extends javax.swing.JPanel {
         initComponents();
         
         inputId.setVisible(false);
+        inputMempId.setVisible(false);
         
         Object sessId = (Object) this.frame.session.getItem("id");
         
@@ -65,6 +62,39 @@ public class AddForm extends javax.swing.JPanel {
     
     private void setData(int id) throws ClassNotFoundException, SQLException {
         System.out.println("ID Edit: " + id);
+        
+        if(id > 0) {
+            
+            app.controllers.PenggunaController userCtrl = new app.controllers.PenggunaController();
+            
+            Map<String, Object> data = userCtrl.getData(id);
+            
+            if(data != null) {
+                inputId.setText(String.valueOf(id));
+                inputMempId.setText(String.valueOf((int) data.get("karyawan_id")));
+                inputEmpId.setText((String) data.get("emp_id"));
+                inputEmpName.setText((String) data.get("name"));
+                inputUsername.setText((String) data.get("username"));
+                if((int) data.get("is_active") == 1) {
+                    inputIsActive.setSelected(true);
+                } else {
+                    inputIsActive.setSelected(false);
+                }
+            } else {
+                this.frame.session.setFlashItem("errorNotif", "Data Tidak Ditemukan.");
+            
+                main = new MainForm(this.frame);
+
+                this.frame.setPage(main);
+            }
+            
+        } else {
+            this.frame.session.setFlashItem("errorNotif", "Data Tidak Ditemukan.");
+            
+            main = new MainForm(this.frame);
+        
+            this.frame.setPage(main);
+        }
     }
     
     /**
@@ -81,6 +111,7 @@ public class AddForm extends javax.swing.JPanel {
         btnBack = new resources.views.component.button.FlatButton();
         panelCard = new javax.swing.JPanel();
         inputId = new javax.swing.JTextField();
+        inputMempId = new javax.swing.JTextField();
         labelEmpId = new javax.swing.JLabel();
         inputEmpId = new javax.swing.JTextField();
         labelEmpName = new javax.swing.JLabel();
@@ -89,8 +120,8 @@ public class AddForm extends javax.swing.JPanel {
         inputUsername = new javax.swing.JTextField();
         labelUserpass = new javax.swing.JLabel();
         inputUserpass = new javax.swing.JPasswordField();
-        labelAsUser = new javax.swing.JLabel();
-        inputIsUser = new javax.swing.JCheckBox();
+        labelIsActive = new javax.swing.JLabel();
+        inputIsActive = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
@@ -147,6 +178,13 @@ public class AddForm extends javax.swing.JPanel {
         inputId.setEnabled(false);
         inputId.setOpaque(true);
 
+        inputMempId.setBackground(new java.awt.Color(255, 255, 255));
+        inputMempId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        inputMempId.setForeground(new java.awt.Color(51, 51, 51));
+        inputMempId.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputMempId.setEnabled(false);
+        inputMempId.setOpaque(true);
+
         labelEmpId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelEmpId.setForeground(new java.awt.Color(0, 0, 0));
         labelEmpId.setText("ID Karyawan");
@@ -188,11 +226,11 @@ public class AddForm extends javax.swing.JPanel {
         inputUserpass.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
         inputUserpass.setOpaque(true);
 
-        labelAsUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelAsUser.setForeground(new java.awt.Color(0, 0, 0));
-        labelAsUser.setText("Status Aktif");
+        labelIsActive.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelIsActive.setForeground(new java.awt.Color(0, 0, 0));
+        labelIsActive.setText("Status Aktif");
 
-        inputIsUser.setForeground(new java.awt.Color(204, 204, 204));
+        inputIsActive.setForeground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
         panelCard.setLayout(panelCardLayout);
@@ -206,7 +244,9 @@ public class AddForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputMempId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelCardLayout.createSequentialGroup()
                         .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(panelCardLayout.createSequentialGroup()
@@ -214,9 +254,9 @@ public class AddForm extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(inputEmpName))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCardLayout.createSequentialGroup()
-                                .addComponent(labelAsUser, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelIsActive, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputIsUser))
+                                .addComponent(inputIsActive))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCardLayout.createSequentialGroup()
                                 .addComponent(labelUserpass, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +265,7 @@ public class AddForm extends javax.swing.JPanel {
                                 .addComponent(labelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 431, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         panelCardLayout.setVerticalGroup(
@@ -233,9 +273,10 @@ public class AddForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputMempId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,8 +291,8 @@ public class AddForm extends javax.swing.JPanel {
                     .addComponent(inputUserpass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputIsUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelAsUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputIsActive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelIsActive, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -285,17 +326,45 @@ public class AddForm extends javax.swing.JPanel {
 
     private void btnSaveAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAct
         
-        boolean res = false;
+        try {
+            
+            int id = Integer.valueOf(inputId.getText());
+            int karyawanId = Integer.valueOf(inputMempId.getText());
+            String username = inputUsername.getText();
+            String password = inputUserpass.getText();
+            int isActive = inputIsActive.isSelected() ? 1 : 0;
+
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            map.put("id", id);
+            map.put("karyawan_id", karyawanId);
+            map.put("username", username);
+            map.put("password", password);
+            map.put("is_active", isActive);
+            
+            app.controllers.PenggunaController userCtrl = new app.controllers.PenggunaController();
+           
+            boolean res = userCtrl.process(map);
         
-        if(res == true) {
-            this.frame.session.setFlashItem("successNotif", "Karyawan Berhasil Disimpan.");
-        } else {
+            if(res == true) {
+                this.frame.session.setFlashItem("successNotif", "Karyawan Berhasil Disimpan.");
+            } else {
+                this.frame.session.setFlashItem("errorNotif", "Gagal Disimpan.");
+            }
+
+            main = new MainForm(this.frame);
+
+            this.frame.setPage(main);
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            
             this.frame.session.setFlashItem("errorNotif", "Gagal Disimpan.");
+            
+            main = new MainForm(this.frame);
+        
+            this.frame.setPage(main);
         }
-        
-        main = new MainForm(this.frame);
-        
-        this.frame.setPage(main);
     }//GEN-LAST:event_btnSaveAct
 
 
@@ -305,12 +374,13 @@ public class AddForm extends javax.swing.JPanel {
     private javax.swing.JTextField inputEmpId;
     private javax.swing.JTextField inputEmpName;
     private javax.swing.JTextField inputId;
-    private javax.swing.JCheckBox inputIsUser;
+    private javax.swing.JCheckBox inputIsActive;
+    private javax.swing.JTextField inputMempId;
     private javax.swing.JTextField inputUsername;
     private javax.swing.JPasswordField inputUserpass;
-    private javax.swing.JLabel labelAsUser;
     private javax.swing.JLabel labelEmpId;
     private javax.swing.JLabel labelEmpName;
+    private javax.swing.JLabel labelIsActive;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel labelUserpass;
     private javax.swing.JPanel panelButton;

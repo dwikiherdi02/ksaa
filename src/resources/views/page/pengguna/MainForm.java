@@ -62,39 +62,48 @@ public class MainForm extends javax.swing.JPanel {
         param = param != null ? param : "";
         
         table.clearRows();
-            
-        EventAction eventAction = new EventAction() {
-            
-            @Override
-            public void update(ModelTable emp) {
-                try {
-                    System.out.println("Updated ID: " + + emp.getId());
-                    
-                    int id = emp.getId();
-                    
-                    MainForm.this.frame.session.setFlashItem("id", id);
-                    
-                    MainForm.this.add = new AddForm(MainForm.this.frame);
-                    
-                    MainForm.this.frame.setPage(MainForm.this.add);
-                } catch (ClassNotFoundException ex) {
-                    System.out.println(ex.getMessage());
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        };
         
-        table.addRow(new ModelTable(1, 1, "User 1", "user1", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "User 2", "user2", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "User 3", "user3", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "User 4", "user4", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "user5", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(1, 1, "User 1", "user1", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "User 2", "user2", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "User 3", "user3", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "User 4", "user4", "Aktif").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "user5", "Aktif").toRowTable(eventAction) );
+        try {
+            EventAction eventAction = new EventAction() {
+
+                @Override
+                public void update(ModelTable emp) {
+                    try {
+                        int id = emp.getId();
+
+                        MainForm.this.frame.session.setFlashItem("id", id);
+
+                        MainForm.this.add = new AddForm(MainForm.this.frame);
+
+                        MainForm.this.frame.setPage(MainForm.this.add);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            };
+            
+            app.controllers.PenggunaController userCtrl = new app.controllers.PenggunaController();
+            
+            List<Map<String, Object>> list = userCtrl.listTable(param);
+            
+            int no = 1;
+            
+            for (Map<String, Object> map : list) {
+                table.addRow(
+                    new ModelTable(
+                        (int) map.get("id"), 
+                        no, 
+                        (String) map.get("name"), 
+                        (String) map.get("username"), 
+                        (String) map.get("status")
+                    ).toRowTable(eventAction) 
+                );
+                
+                no++;
+            }
+        } catch (Exception e) {
+             System.err.println(e.getMessage());
+        }
      }
 
     /**
@@ -216,7 +225,7 @@ public class MainForm extends javax.swing.JPanel {
     private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
         String param = inputSearch.getText().toLowerCase();
         
-        System.out.println(param);
+        loadTable(param);
     }//GEN-LAST:event_btnSearchAct
 
 
