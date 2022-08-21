@@ -85,13 +85,25 @@ public class AddForm extends javax.swing.JPanel {
         labelEmpId = new javax.swing.JLabel();
         inputEmpId = new javax.swing.JTextField();
         labelEmpName = new javax.swing.JLabel();
-        inputEmpName = new javax.swing.JTextField();
-        labelUsername = new javax.swing.JLabel();
-        inputUsername = new javax.swing.JTextField();
-        labelUserpass = new javax.swing.JLabel();
-        inputUserpass = new javax.swing.JPasswordField();
-        labelAsUser = new javax.swing.JLabel();
-        inputIsUser = new javax.swing.JCheckBox();
+        labelNik = new javax.swing.JLabel();
+        inputNik = new javax.swing.JTextField();
+        labelTglLahir = new javax.swing.JLabel();
+        inputTmpLahir = new javax.swing.JPasswordField();
+        labelAlamat = new javax.swing.JLabel();
+        labelTemLahir = new javax.swing.JLabel();
+        inputTglLahir = new javax.swing.JPasswordField();
+        labelLamaBekerja = new javax.swing.JLabel();
+        labelAnak = new javax.swing.JLabel();
+        inputAlamat = new javax.swing.JPasswordField();
+        inputAnak = new javax.swing.JPasswordField();
+        inputPekerjaan = new javax.swing.JPasswordField();
+        labelPerusahaan = new javax.swing.JLabel();
+        labelPekerjaan = new javax.swing.JLabel();
+        inputPerusahaan = new javax.swing.JPasswordField();
+        labelPendapatan = new javax.swing.JLabel();
+        inputLamaBekerja = new javax.swing.JPasswordField();
+        inputPendapatan = new javax.swing.JPasswordField();
+        inputInvestor = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
@@ -141,59 +153,91 @@ public class AddForm extends javax.swing.JPanel {
         panelCard.setBackground(new java.awt.Color(255, 255, 255));
         panelCard.setForeground(new java.awt.Color(255, 255, 255));
 
-        inputId.setBackground(new java.awt.Color(255, 255, 255));
         inputId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         inputId.setForeground(new java.awt.Color(51, 51, 51));
         inputId.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
         inputId.setEnabled(false);
-        inputId.setOpaque(true);
 
         labelEmpId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelEmpId.setForeground(new java.awt.Color(0, 0, 0));
-        labelEmpId.setText("ID Karyawan");
+        labelEmpId.setText("ID Investor");
 
         inputEmpId.setBackground(new java.awt.Color(238, 238, 238));
         inputEmpId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         inputEmpId.setForeground(new java.awt.Color(51, 51, 51));
         inputEmpId.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
         inputEmpId.setEnabled(false);
-        inputEmpId.setOpaque(true);
 
         labelEmpName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelEmpName.setForeground(new java.awt.Color(0, 0, 0));
-        labelEmpName.setText("Nama Karyawan");
+        labelEmpName.setText("Nama Investor");
 
-        inputEmpName.setBackground(new java.awt.Color(238, 238, 238));
-        inputEmpName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        inputEmpName.setForeground(new java.awt.Color(51, 51, 51));
-        inputEmpName.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
-        inputEmpName.setEnabled(false);
-        inputEmpName.setOpaque(true);
+        labelNik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNik.setText("NIK");
 
-        labelUsername.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelUsername.setForeground(new java.awt.Color(0, 0, 0));
-        labelUsername.setText("Nama Pengguna");
+        inputNik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        inputNik.setForeground(new java.awt.Color(51, 51, 51));
+        inputNik.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
-        inputUsername.setBackground(new java.awt.Color(255, 255, 255));
-        inputUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        inputUsername.setForeground(new java.awt.Color(51, 51, 51));
-        inputUsername.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
-        inputUsername.setOpaque(true);
+        labelTglLahir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelTglLahir.setText("Tanggal Lahir");
 
-        labelUserpass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelUserpass.setForeground(new java.awt.Color(0, 0, 0));
-        labelUserpass.setText("Kata Sandi");
+        inputTmpLahir.setForeground(new java.awt.Color(51, 51, 51));
+        inputTmpLahir.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
-        inputUserpass.setBackground(new java.awt.Color(255, 255, 255));
-        inputUserpass.setForeground(new java.awt.Color(51, 51, 51));
-        inputUserpass.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
-        inputUserpass.setOpaque(true);
+        labelAlamat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelAlamat.setText("Alamat");
 
-        labelAsUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelAsUser.setForeground(new java.awt.Color(0, 0, 0));
-        labelAsUser.setText("Status Aktif");
+        labelTemLahir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelTemLahir.setText("Tempat Lahir");
 
-        inputIsUser.setForeground(new java.awt.Color(204, 204, 204));
+        inputTglLahir.setForeground(new java.awt.Color(51, 51, 51));
+        inputTglLahir.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputTglLahir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputTglLahirActionPerformed(evt);
+            }
+        });
+
+        labelLamaBekerja.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelLamaBekerja.setText("Lama Bekerja");
+
+        labelAnak.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelAnak.setText("Jumlah Anak");
+
+        inputAlamat.setForeground(new java.awt.Color(51, 51, 51));
+        inputAlamat.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+
+        inputAnak.setForeground(new java.awt.Color(51, 51, 51));
+        inputAnak.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputAnak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputAnakActionPerformed(evt);
+            }
+        });
+
+        inputPekerjaan.setForeground(new java.awt.Color(51, 51, 51));
+        inputPekerjaan.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+
+        labelPerusahaan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPerusahaan.setText("Nama Perusahaan");
+
+        labelPekerjaan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPekerjaan.setText("Pekerjaan");
+
+        inputPerusahaan.setForeground(new java.awt.Color(51, 51, 51));
+        inputPerusahaan.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+
+        labelPendapatan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPendapatan.setText("Pendapatan");
+
+        inputLamaBekerja.setForeground(new java.awt.Color(51, 51, 51));
+        inputLamaBekerja.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+
+        inputPendapatan.setForeground(new java.awt.Color(51, 51, 51));
+        inputPendapatan.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+
+        inputInvestor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        inputInvestor.setForeground(new java.awt.Color(51, 51, 51));
+        inputInvestor.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
         panelCard.setLayout(panelCardLayout);
@@ -203,31 +247,60 @@ public class AddForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCardLayout.createSequentialGroup()
-                        .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCardLayout.createSequentialGroup()
-                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCardLayout.createSequentialGroup()
-                                .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputEmpName))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCardLayout.createSequentialGroup()
-                                .addComponent(labelAsUser, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCardLayout.createSequentialGroup()
+                                        .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(inputInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCardLayout.createSequentialGroup()
+                                        .addComponent(labelNik, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(inputNik, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCardLayout.createSequentialGroup()
+                                        .addComponent(labelTemLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(inputTmpLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(labelTglLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(inputTglLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCardLayout.createSequentialGroup()
+                                        .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(inputAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 269, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20))
+                    .addGroup(panelCardLayout.createSequentialGroup()
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelAnak, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputIsUser))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCardLayout.createSequentialGroup()
-                                .addComponent(labelUserpass, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputAnak))
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputUserpass))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCardLayout.createSequentialGroup()
-                                .addComponent(labelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputPerusahaan))
+                            .addGroup(panelCardLayout.createSequentialGroup()
+                                .addComponent(labelPekerjaan, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(20, 20, 20))
+                                .addComponent(inputPekerjaan, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelLamaBekerja, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(labelPendapatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputLamaBekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputPendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelCardLayout.setVerticalGroup(
             panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,22 +311,46 @@ public class AddForm extends javax.swing.JPanel {
                     .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelEmpName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inputInvestor, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inputNik)
+                    .addComponent(labelNik, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inputTmpLahir, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(labelTemLahir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTglLahir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inputTglLahir))
+                .addGap(18, 18, 18)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelAnak, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputAnak, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputUsername)
-                    .addComponent(labelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelUserpass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inputUserpass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputIsUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelAsUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(labelPekerjaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputPekerjaan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelPendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inputPendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCardLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelCardLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelLamaBekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputLamaBekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -274,7 +371,7 @@ public class AddForm extends javax.swing.JPanel {
                 .addComponent(panelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -299,21 +396,41 @@ public class AddForm extends javax.swing.JPanel {
         this.frame.setPage(main);
     }//GEN-LAST:event_btnSaveAct
 
+    private void inputTglLahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTglLahirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTglLahirActionPerformed
+
+    private void inputAnakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputAnakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputAnakActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private resources.views.component.button.FlatButton btnBack;
     private resources.views.component.button.FlatButton btnSave;
+    private javax.swing.JPasswordField inputAlamat;
+    private javax.swing.JPasswordField inputAnak;
     private javax.swing.JTextField inputEmpId;
-    private javax.swing.JTextField inputEmpName;
     private javax.swing.JTextField inputId;
-    private javax.swing.JCheckBox inputIsUser;
-    private javax.swing.JTextField inputUsername;
-    private javax.swing.JPasswordField inputUserpass;
-    private javax.swing.JLabel labelAsUser;
+    private javax.swing.JTextField inputInvestor;
+    private javax.swing.JPasswordField inputLamaBekerja;
+    private javax.swing.JTextField inputNik;
+    private javax.swing.JPasswordField inputPekerjaan;
+    private javax.swing.JPasswordField inputPendapatan;
+    private javax.swing.JPasswordField inputPerusahaan;
+    private javax.swing.JPasswordField inputTglLahir;
+    private javax.swing.JPasswordField inputTmpLahir;
+    private javax.swing.JLabel labelAlamat;
+    private javax.swing.JLabel labelAnak;
     private javax.swing.JLabel labelEmpId;
     private javax.swing.JLabel labelEmpName;
-    private javax.swing.JLabel labelUsername;
-    private javax.swing.JLabel labelUserpass;
+    private javax.swing.JLabel labelLamaBekerja;
+    private javax.swing.JLabel labelNik;
+    private javax.swing.JLabel labelPekerjaan;
+    private javax.swing.JLabel labelPendapatan;
+    private javax.swing.JLabel labelPerusahaan;
+    private javax.swing.JLabel labelTemLahir;
+    private javax.swing.JLabel labelTglLahir;
     private javax.swing.JPanel panelButton;
     private javax.swing.JPanel panelCard;
     // End of variables declaration//GEN-END:variables

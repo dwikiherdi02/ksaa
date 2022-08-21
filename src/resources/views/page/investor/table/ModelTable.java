@@ -45,6 +45,20 @@ public class ModelTable {
     }
 
     /**
+     * @return the nik
+     */
+    public int getNik() {
+        return nik;
+    }
+
+    /**
+     * @param nik the nik to set
+     */
+    public void setNik(int nik) {
+        this.nik = nik;
+    }
+
+    /**
      * @return the address
      */
     public String getAddress() {
@@ -72,10 +86,11 @@ public class ModelTable {
         this.total = total;
     }
 
-    public ModelTable(int id, int no, String name, String address, int total) {
+    public ModelTable(int id, int no, String name, int nik, String address, int total) {
         this.id = id;
         this.no = no;
         this.name = name;
+        this.nik = nik;
         this.address = address;
         this.total = total;
     }
@@ -86,10 +101,11 @@ public class ModelTable {
     private int id;
     private int no;
     private String name;
+    private int nik;
     private String address;
     private int total;
     
     public Object[] toRowTable(EventAction event) {
-        return new Object[] {no, name, address, total, new ModelAction(this, event)};
+        return new Object[] {no, name, nik, address, total, new ModelAction(this, event)};
     }
 }

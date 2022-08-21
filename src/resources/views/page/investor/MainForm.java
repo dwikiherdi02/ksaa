@@ -91,12 +91,12 @@ public class MainForm extends javax.swing.JPanel {
             }
         };
         
-        table.addRow(new ModelTable(1, 1, "User 1", "address1", 1000000).toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "User 2", "address2", 1000000).toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "User 3", "address3", 1000000).toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "User 4", "address4", 1000000).toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "address5", 1000000).toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "address5", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(1, 1, "User 1", 123456789, "address1", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(2, 2, "User 2", 123456789, "address2", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(3, 3, "User 3", 123456789, "address3", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(4, 4, "User 4", 123456789, "address4", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(5, 5, "User 5", 123456789, "address5", 1000000).toRowTable(eventAction) );
+        table.addRow(new ModelTable(5, 5, "User 5", 123456789, "address5", 1000000).toRowTable(eventAction) );
      }
 
     /**
@@ -126,7 +126,7 @@ public class MainForm extends javax.swing.JPanel {
         panelBtn.setForeground(new java.awt.Color(204, 204, 204));
         panelBtn.setOpaque(false);
 
-        btnAdd.setText("Tambah Pengguna");
+        btnAdd.setText("Tambah Investor");
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAdd.setRadius(10);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class MainForm extends javax.swing.JPanel {
 
         labelTableTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelTableTitle.setForeground(new java.awt.Color(51, 51, 51));
-        labelTableTitle.setText("Daftar Pengguna");
+        labelTableTitle.setText("Daftar Investor");
 
         btnSearch.setBackground(new java.awt.Color(0, 123, 255));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/search.png"))); // NOI18N
@@ -173,11 +173,9 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
-        inputSearch.setBackground(new java.awt.Color(255, 255, 255));
         inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         inputSearch.setForeground(new java.awt.Color(102, 102, 102));
         inputSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
-        inputSearch.setOpaque(true);
 
         javax.swing.GroupLayout panelCardHeaderLayout = new javax.swing.GroupLayout(panelCardHeader);
         panelCardHeader.setLayout(panelCardHeaderLayout);
@@ -201,7 +199,6 @@ public class MainForm extends javax.swing.JPanel {
             .addComponent(inputSearch)
         );
 
-        scrollTable.setBorder(null);
         scrollTable.setViewportView(table);
 
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
@@ -220,9 +217,9 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -26,7 +26,7 @@ public class TablePage extends Table {
         
         Object[][] data = new Object[][]{};
         String[] titles = {
-            "No", "Nama", "Alamat", "Total Investasi", "Aksi"
+            "No", "Nama", "NIK", "Alamat", "Total Investasi", "Aksi"
         };
         
         setModel(new javax.swing.table.DefaultTableModel(
@@ -34,7 +34,7 @@ public class TablePage extends Table {
             titles    
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -46,8 +46,8 @@ public class TablePage extends Table {
             getColumnModel().getColumn(0).setMinWidth(50);
             getColumnModel().getColumn(0).setMaxWidth(50);
             
-            getColumnModel().getColumn(4).setMinWidth(80);
-            getColumnModel().getColumn(4).setMaxWidth(80);
+            getColumnModel().getColumn(5).setMinWidth(80);
+            getColumnModel().getColumn(5).setMaxWidth(80);
         }
         
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
@@ -83,7 +83,7 @@ public class TablePage extends Table {
     
     @Override
     public TableCellEditor getCellEditor(int row, int col) {
-        if(col == 4) {
+        if(col == 5) {
             return new TableCellAction();
         } else {
             return super.getCellEditor(row, col);
