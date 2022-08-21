@@ -27,7 +27,6 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="panelBtn" max="32767" attributes="0"/>
                   <Component id="panelCard" alignment="0" max="32767" attributes="0"/>
                   <Component id="panelNotification" max="32767" attributes="0"/>
               </Group>
@@ -41,8 +40,6 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="panelNotification" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="panelBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="panelCard" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
@@ -52,52 +49,6 @@
   <SubComponents>
     <Component class="resources.views.component.PanelNotification" name="panelNotification">
     </Component>
-    <Container class="javax.swing.JPanel" name="panelBtn">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
-        </Property>
-        <Property name="opaque" type="boolean" value="false"/>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="btnAdd" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="resources.views.component.button.FlatButton" name="btnAdd">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tambah Pengguna"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="radius" type="int" value="10"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddAct"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="panelCard">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -127,7 +78,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="panelCardHeader" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="scrollTable" min="-2" pref="492" max="-2" attributes="0"/>
+                  <Component id="scrollTable" min="-2" pref="450" max="-2" attributes="0"/>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>

@@ -3,6 +3,20 @@ package resources.views.page.pengguna.table;
 public class ModelTable {
 
     /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
@@ -58,11 +72,12 @@ public class ModelTable {
         this.username = username;
     }
 
-    public ModelTable(int id, int no, String name, String username) {
+    public ModelTable(int id, int no, String name, String username, String status) {
         this.id = id;
         this.no = no;
         this.name = name;
         this.username = username;
+        this.status = status;
     }
 
     public ModelTable() {
@@ -72,8 +87,9 @@ public class ModelTable {
     private int no;
     private String name;
     private String username;
+    private String status; 
     
     public Object[] toRowTable(EventAction event) {
-        return new Object[] {no, name, username, new ModelAction(this, event)};
+        return new Object[] {no, name, username, status, new ModelAction(this, event)};
     }
 }

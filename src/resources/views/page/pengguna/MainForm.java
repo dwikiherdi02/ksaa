@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
@@ -66,11 +64,7 @@ public class MainForm extends javax.swing.JPanel {
         table.clearRows();
             
         EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelTable emp) {
-                System.out.println("Deleted ID: " + emp.getId());
-            }
-
+            
             @Override
             public void update(ModelTable emp) {
                 try {
@@ -91,12 +85,16 @@ public class MainForm extends javax.swing.JPanel {
             }
         };
         
-        table.addRow(new ModelTable(1, 1, "User 1", "user1").toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "User 2", "user2").toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "User 3", "user3").toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "User 4", "user4").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "user5").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "User 5", "user5").toRowTable(eventAction) );
+        table.addRow(new ModelTable(1, 1, "User 1", "user1", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(2, 2, "User 2", "user2", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(3, 3, "User 3", "user3", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(4, 4, "User 4", "user4", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(5, 5, "User 5", "user5", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(1, 1, "User 1", "user1", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(2, 2, "User 2", "user2", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(3, 3, "User 3", "user3", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(4, 4, "User 4", "user4", "Aktif").toRowTable(eventAction) );
+        table.addRow(new ModelTable(5, 5, "User 5", "user5", "Aktif").toRowTable(eventAction) );
      }
 
     /**
@@ -109,8 +107,6 @@ public class MainForm extends javax.swing.JPanel {
     private void initComponents() {
 
         panelNotification = new resources.views.component.PanelNotification();
-        panelBtn = new javax.swing.JPanel();
-        btnAdd = new resources.views.component.button.FlatButton();
         panelCard = new javax.swing.JPanel();
         panelCardHeader = new javax.swing.JPanel();
         labelTableTitle = new javax.swing.JLabel();
@@ -121,36 +117,6 @@ public class MainForm extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
-
-        panelBtn.setBackground(new java.awt.Color(204, 204, 204));
-        panelBtn.setForeground(new java.awt.Color(204, 204, 204));
-        panelBtn.setOpaque(false);
-
-        btnAdd.setText("Tambah Pengguna");
-        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAdd.setRadius(10);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddAct(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelBtnLayout = new javax.swing.GroupLayout(panelBtn);
-        panelBtn.setLayout(panelBtnLayout);
-        panelBtnLayout.setHorizontalGroup(
-            panelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtnLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
-        panelBtnLayout.setVerticalGroup(
-            panelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBtnLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         panelCard.setBackground(new java.awt.Color(255, 255, 255));
         panelCard.setForeground(new java.awt.Color(255, 255, 255));
@@ -221,7 +187,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -232,7 +198,6 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
@@ -243,24 +208,10 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(panelNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAct
-        try {
-            add = new AddForm(this.frame);
-            
-            this.frame.setPage(add);
-        } catch (ClassNotFoundException ex) {
-            System.exit(0);
-        } catch (SQLException ex) {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_btnAddAct
 
     private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
         String param = inputSearch.getText().toLowerCase();
@@ -270,11 +221,9 @@ public class MainForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private resources.views.component.button.FlatButton btnAdd;
     private resources.views.component.button.FlatButton btnSearch;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JLabel labelTableTitle;
-    private javax.swing.JPanel panelBtn;
     private javax.swing.JPanel panelCard;
     private javax.swing.JPanel panelCardHeader;
     private resources.views.component.PanelNotification panelNotification;

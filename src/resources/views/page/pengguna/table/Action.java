@@ -32,15 +32,6 @@ public class Action extends javax.swing.JPanel {
             }
             
         });
-        
-        btnDelete.setContentAreaFilled(false);
-        btnDelete.setBorderPainted(false);
-        btnDelete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                data.getEvent().delete(data.getDataTable());
-            }
-        });
     }
 
     /**
@@ -53,7 +44,6 @@ public class Action extends javax.swing.JPanel {
     private void initComponents() {
 
         btnEdit = new resources.views.component.button.FlatButton();
-        btnDelete = new resources.views.component.button.FlatButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -65,13 +55,6 @@ public class Action extends javax.swing.JPanel {
         btnEdit.setColorClick(new java.awt.Color(255, 102, 0));
         btnEdit.setColorOver(new java.awt.Color(255, 102, 0));
 
-        btnDelete.setBackground(new java.awt.Color(204, 0, 0));
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/trash.png"))); // NOI18N
-        btnDelete.setBorderColor(new java.awt.Color(204, 0, 0));
-        btnDelete.setColor(new java.awt.Color(204, 0, 0));
-        btnDelete.setColorClick(new java.awt.Color(204, 0, 0));
-        btnDelete.setColorOver(new java.awt.Color(204, 0, 0));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,24 +62,19 @@ public class Action extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private resources.views.component.button.FlatButton btnDelete;
     private resources.views.component.button.FlatButton btnEdit;
     // End of variables declaration//GEN-END:variables
 }
