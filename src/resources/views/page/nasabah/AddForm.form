@@ -262,11 +262,13 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelIncome" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="labelJobLength" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="inputJobLength" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="inputIncome" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelIncome" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="labelJobLength" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="inputJobLength" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
