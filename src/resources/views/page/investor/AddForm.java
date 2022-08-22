@@ -53,6 +53,9 @@ public class AddForm extends javax.swing.JPanel {
     private void init() throws ClassNotFoundException, SQLException {
         initComponents();
         
+        scrollAddress.setVerticalScrollBar(new ScrollBarFlat());
+        inputAddress.setLineWrap(true);
+        
         inputId.setVisible(false);
         
         Object sessId = (Object) this.frame.session.getItem("id");
@@ -277,6 +280,7 @@ public class AddForm extends javax.swing.JPanel {
         inputId.setEnabled(false);
 
         labelName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelName.setForeground(new java.awt.Color(0, 0, 0));
         labelName.setText("Nama Investor");
 
         inputName.setBackground(new java.awt.Color(255, 255, 255));
@@ -285,6 +289,7 @@ public class AddForm extends javax.swing.JPanel {
         inputName.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelNik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelNik.setForeground(new java.awt.Color(0, 0, 0));
         labelNik.setText("NIK");
 
         inputNik.setBackground(new java.awt.Color(255, 255, 255));
@@ -293,6 +298,7 @@ public class AddForm extends javax.swing.JPanel {
         inputNik.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelBirthPlace.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelBirthPlace.setForeground(new java.awt.Color(0, 0, 0));
         labelBirthPlace.setText("Tempat Lahir");
 
         inputBirthPlace.setBackground(new java.awt.Color(255, 255, 255));
@@ -301,6 +307,7 @@ public class AddForm extends javax.swing.JPanel {
         inputBirthPlace.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelBirthDate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelBirthDate.setForeground(new java.awt.Color(0, 0, 0));
         labelBirthDate.setText("Tanggal Lahir");
 
         inputBirthDate.setBackground(new java.awt.Color(255, 255, 255));
@@ -310,6 +317,7 @@ public class AddForm extends javax.swing.JPanel {
         inputBirthDate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         labelAddress.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelAddress.setForeground(new java.awt.Color(0, 0, 0));
         labelAddress.setText("Alamat");
 
         scrollAddress.setBorder(null);
@@ -324,6 +332,7 @@ public class AddForm extends javax.swing.JPanel {
         scrollAddress.setViewportView(inputAddress);
 
         labelPhone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelPhone.setForeground(new java.awt.Color(0, 0, 0));
         labelPhone.setText("No HP");
 
         inputPhone.setBackground(new java.awt.Color(255, 255, 255));
@@ -332,6 +341,7 @@ public class AddForm extends javax.swing.JPanel {
         inputPhone.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelChildren.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelChildren.setForeground(new java.awt.Color(0, 0, 0));
         labelChildren.setText("Jumlah Anak");
 
         inputChildren.setBackground(new java.awt.Color(255, 255, 255));
@@ -341,6 +351,7 @@ public class AddForm extends javax.swing.JPanel {
         inputChildren.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelCompanyName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelCompanyName.setForeground(new java.awt.Color(0, 0, 0));
         labelCompanyName.setText("Nama Perusahaan");
 
         inputCompanyName.setBackground(new java.awt.Color(255, 255, 255));
@@ -349,6 +360,7 @@ public class AddForm extends javax.swing.JPanel {
         inputCompanyName.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelJob.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelJob.setForeground(new java.awt.Color(0, 0, 0));
         labelJob.setText("Pekerjaan");
 
         inputJob.setBackground(new java.awt.Color(255, 255, 255));
@@ -357,6 +369,7 @@ public class AddForm extends javax.swing.JPanel {
         inputJob.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelJobLength.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelJobLength.setForeground(new java.awt.Color(0, 0, 0));
         labelJobLength.setText("Lama Bekerja (Bulan)");
 
         inputJobLength.setBackground(new java.awt.Color(255, 255, 255));
@@ -366,6 +379,7 @@ public class AddForm extends javax.swing.JPanel {
         inputJobLength.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(17, 17, 17)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
         labelIncome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelIncome.setForeground(new java.awt.Color(0, 0, 0));
         labelIncome.setText("Pendapatan (Rp)");
 
         inputIncome.setBackground(new java.awt.Color(255, 255, 255));

@@ -1,4 +1,4 @@
-package resources.views.page.investor.table.main;
+package resources.views.page.investor.table.stock;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -18,16 +18,6 @@ public class Action extends javax.swing.JPanel {
         
         setOpaque(false);
         setBackground(new Color(0, 0, 0, 0));
-        
-        btnAddStock.setContentAreaFilled(false);
-        btnAddStock.setBorderPainted(false);
-        btnAddStock.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                data.getEvent().addStock(data.getDataTable());
-            }
-            
-        });
         
         btnEdit.setContentAreaFilled(false);
         btnEdit.setBorderPainted(false);
@@ -58,15 +48,11 @@ public class Action extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAddStock = new resources.views.component.button.FlatButton();
         btnEdit = new resources.views.component.button.FlatButton();
         btnDelete = new resources.views.component.button.FlatButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
-
-        btnAddStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/plus.png"))); // NOI18N
-        btnAddStock.setColorClick(new java.awt.Color(72, 112, 58));
 
         btnEdit.setBackground(new java.awt.Color(255, 102, 0));
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/assets/icons/pencil.png"))); // NOI18N
@@ -88,12 +74,10 @@ public class Action extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,15 +85,13 @@ public class Action extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private resources.views.component.button.FlatButton btnAddStock;
     private resources.views.component.button.FlatButton btnDelete;
     private resources.views.component.button.FlatButton btnEdit;
     // End of variables declaration//GEN-END:variables

@@ -26,12 +26,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnAddStock" min="-2" pref="28" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnEdit" min="-2" pref="28" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnDelete" min="-2" pref="28" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,7 +40,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnDelete" pref="28" max="32767" attributes="0"/>
                   <Component id="btnEdit" max="32767" attributes="0"/>
-                  <Component id="btnAddStock" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -50,16 +47,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="resources.views.component.button.FlatButton" name="btnAddStock">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/assets/icons/plus.png"/>
-        </Property>
-        <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3a" green="70" red="48" type="rgb"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="resources.views.component.button.FlatButton" name="btnEdit">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

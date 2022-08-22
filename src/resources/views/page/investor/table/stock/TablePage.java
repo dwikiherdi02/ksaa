@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package resources.views.page.investor.table.main;
+package resources.views.page.investor.table.stock;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -26,7 +22,7 @@ public class TablePage extends Table {
         
         Object[][] data = new Object[][]{};
         String[] titles = {
-            "No", "Nama", "NIK", "Pekerjaan", "Perusahaan", "Aksi"
+            "No", "Nama Investor", "No Saham", "No Bukti", "Tanggal Beli", "Total Beli (Rp)"
         };
         
         setModel(new javax.swing.table.DefaultTableModel(
@@ -45,20 +41,23 @@ public class TablePage extends Table {
         if (getColumnModel().getColumnCount() > 0) {
             getColumnModel().getColumn(0).setMinWidth(50);
             getColumnModel().getColumn(0).setMaxWidth(50);
-            
-            getColumnModel().getColumn(5).setMinWidth(120);
-            getColumnModel().getColumn(5).setMaxWidth(120);
         }
         
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean focus, int i, int i1) {
                 
-                Integer[] intArray = new Integer[]{0, 2};
-                List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
+                Integer[] intArrayCenter = new Integer[]{0, 2, 3, 4};
+                List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArrayCenter));
+                
+                Integer[] intArrayRight = new Integer[]{5};
+                List<Integer> labelRight = new ArrayList<>(Arrays.asList(intArrayRight));
+                
 
                 if(labelCenter.contains(i1)) {
                     setHorizontalAlignment(JLabel.CENTER);
+                } else if(labelRight.contains(i1)) {
+                    setHorizontalAlignment(JLabel.RIGHT);
                 } else {
                     setHorizontalAlignment(JLabel.LEFT);
                 }
@@ -83,10 +82,12 @@ public class TablePage extends Table {
     
     @Override
     public TableCellEditor getCellEditor(int row, int col) {
-        if(col == 5) {
-            return new TableCellAction();
-        } else {
-            return super.getCellEditor(row, col);
-        }
+//        if(col == 5) {
+//            return new TableCellAction();
+//        } else {
+//            return super.getCellEditor(row, col);
+//        }
+        
+        return super.getCellEditor(row, col);
     }
 }

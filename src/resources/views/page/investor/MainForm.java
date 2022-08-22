@@ -20,6 +20,7 @@ public class MainForm extends javax.swing.JPanel {
     
     // pages
     private AddForm add;
+    private AddStockForm addStock;
 
     public MainForm(resources.views.layout.Main frm) {
         
@@ -66,6 +67,23 @@ public class MainForm extends javax.swing.JPanel {
          try {
              
             EventAction eventAction = new EventAction() {
+                @Override
+                public void addStock(ModelTable emp) {
+                    try {
+                        System.out.println("Add Stock ID: " + emp.getId());
+                        
+                        int id = emp.getId();
+
+                        MainForm.this.frame.session.setFlashItem("id", id);
+
+                        MainForm.this.addStock = new AddStockForm(MainForm.this.frame);
+
+                        MainForm.this.frame.setPage(MainForm.this.addStock);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+                
                 @Override
                 public void delete(ModelTable emp) {
                     System.out.println("Deleted ID: " + emp.getId());
@@ -255,7 +273,7 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -281,7 +299,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
