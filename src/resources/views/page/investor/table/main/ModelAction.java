@@ -1,4 +1,4 @@
-package resources.views.page.investor.table;
+package resources.views.page.investor.table.main;
 
 public class ModelAction {
 

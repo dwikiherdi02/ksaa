@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package resources.views.page.investor.table;
+package resources.views.page.investor.table.main;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -26,7 +26,7 @@ public class TablePage extends Table {
         
         Object[][] data = new Object[][]{};
         String[] titles = {
-            "No", "Nama", "NIK", "Alamat", "Total Investasi", "Aksi"
+            "No", "Nama", "NIK", "Pekerjaan", "Perusahaan", "Aksi"
         };
         
         setModel(new javax.swing.table.DefaultTableModel(
@@ -54,7 +54,7 @@ public class TablePage extends Table {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean focus, int i, int i1) {
                 
-                Integer[] intArray = new Integer[]{0};
+                Integer[] intArray = new Integer[]{0, 2};
                 List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
 
                 if(labelCenter.contains(i1)) {
