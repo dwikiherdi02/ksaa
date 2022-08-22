@@ -1,6 +1,5 @@
 package resources.views.page.nasabah.table;
 
-import resources.views.page.investor.table.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

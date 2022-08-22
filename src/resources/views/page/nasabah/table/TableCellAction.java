@@ -1,6 +1,5 @@
 package resources.views.page.nasabah.table;
 
-import resources.views.page.investor.table.*;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
