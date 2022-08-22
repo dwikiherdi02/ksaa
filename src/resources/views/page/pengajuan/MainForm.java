@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
-import resources.views.page.investor.table.EventAction;
-import resources.views.page.investor.table.ModelTable;
+import resources.views.page.pengajuan.table.EventAction;
+import resources.views.page.pengajuan.table.ModelTable;
 
 /**
  *
@@ -117,7 +117,7 @@ public class MainForm extends javax.swing.JPanel {
         btnSearch = new resources.views.component.button.FlatButton();
         inputSearch = new javax.swing.JTextField();
         scrollTable = new javax.swing.JScrollPane();
-        table = new resources.views.page.investor.table.TablePage();
+        table = new resources.views.page.pengajuan.table.TablePage();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
@@ -173,6 +173,7 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
+        inputSearch.setBackground(new java.awt.Color(255, 255, 255));
         inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         inputSearch.setForeground(new java.awt.Color(102, 102, 102));
         inputSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
@@ -217,9 +218,9 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -243,7 +244,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,6 +277,6 @@ public class MainForm extends javax.swing.JPanel {
     private javax.swing.JPanel panelCardHeader;
     private resources.views.component.PanelNotification panelNotification;
     private javax.swing.JScrollPane scrollTable;
-    private resources.views.page.investor.table.TablePage table;
+    private resources.views.page.pengajuan.table.TablePage table;
     // End of variables declaration//GEN-END:variables
 }
