@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
@@ -64,39 +62,76 @@ public class MainForm extends javax.swing.JPanel {
         param = param != null ? param : "";
         
         table.clearRows();
-            
-        EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelTable emp) {
-                System.out.println("Deleted ID: " + emp.getId());
-            }
-
-            @Override
-            public void update(ModelTable emp) {
-                try {
-                    System.out.println("Updated ID: " + + emp.getId());
-                    
-                    int id = emp.getId();
-                    
-                    MainForm.this.frame.session.setFlashItem("id", id);
-                    
-                    MainForm.this.add = new AddForm(MainForm.this.frame);
-                    
-                    MainForm.this.frame.setPage(MainForm.this.add);
-                } catch (ClassNotFoundException ex) {
-                    System.out.println(ex.getMessage());
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        };
         
-        table.addRow(new ModelTable(1, 1, "Nasabah 1", 123456789, "address1", "PT. ABC").toRowTable(eventAction) );
-        table.addRow(new ModelTable(2, 2, "Nasabah 2", 123456789, "address2", "PT. ABC").toRowTable(eventAction) );
-        table.addRow(new ModelTable(3, 3, "Nasabah 3", 123456789, "address3", "PT. ABC").toRowTable(eventAction) );
-        table.addRow(new ModelTable(4, 4, "Nasabah 4", 123456789, "address4", "PT. ABC").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "Nasabah 5", 123456789, "address5", "PT. ABC").toRowTable(eventAction) );
-        table.addRow(new ModelTable(5, 5, "Nasabah 5", 123456789, "address5", "PT. ABC").toRowTable(eventAction) );
+         try {
+             
+            EventAction eventAction = new EventAction() {
+                @Override
+                public void delete(ModelTable emp) {
+                    System.out.println("Deleted ID: " + emp.getId());
+                    
+                    try {
+                        int id = emp.getId();
+                        
+                        app.controllers.NasabahController custCtrl = new app.controllers.NasabahController();
+                        
+                        boolean res = custCtrl.remove(id);
+                        
+                        if(res == true) {
+                            panelNotification.notify("success", "Nasabah Berhasil Dihapus.");
+                            
+                            loadTable(null);
+                        } else {
+                            panelNotification.notify("error", "Gagal Dihapus.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        panelNotification.notify("error", "Gagal Dihapus.");
+                    }
+                }
+
+                @Override
+                public void update(ModelTable emp) {
+                    try {
+                        System.out.println("Updated ID: " + + emp.getId());
+
+                        int id = emp.getId();
+
+                        MainForm.this.frame.session.setFlashItem("id", id);
+
+                        MainForm.this.add = new AddForm(MainForm.this.frame);
+
+                        MainForm.this.frame.setPage(MainForm.this.add);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            };
+            
+            app.controllers.NasabahController custCtrl = new app.controllers.NasabahController();
+            
+            List<Map<String, Object>> list = custCtrl.listTable(param);
+            
+            int no = 1;
+            
+            for (Map<String, Object> map : list) {
+                
+                table.addRow(
+                    new ModelTable(
+                        (int) map.get("id"), 
+                        no, 
+                        (String) map.get("name"), 
+                        (String) map.get("nik"), 
+                        (String) map.get("job"), 
+                        (String) map.get("company_name")
+                    ).toRowTable(eventAction) 
+                );
+                
+                no++;
+            }
+         } catch (Exception e) {
+             System.err.println(e.getMessage());
+         }
      }
 
     /**
@@ -173,9 +208,11 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
+        inputSearch.setBackground(new java.awt.Color(255, 255, 255));
         inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         inputSearch.setForeground(new java.awt.Color(102, 102, 102));
         inputSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputSearch.setOpaque(true);
 
         javax.swing.GroupLayout panelCardHeaderLayout = new javax.swing.GroupLayout(panelCardHeader);
         panelCardHeader.setLayout(panelCardHeaderLayout);
@@ -199,6 +236,7 @@ public class MainForm extends javax.swing.JPanel {
             .addComponent(inputSearch)
         );
 
+        scrollTable.setBorder(null);
         scrollTable.setViewportView(table);
 
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
@@ -217,9 +255,9 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -242,8 +280,8 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -262,7 +300,7 @@ public class MainForm extends javax.swing.JPanel {
     private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
         String param = inputSearch.getText().toLowerCase();
         
-        System.out.println(param);
+        loadTable(param);
     }//GEN-LAST:event_btnSearchAct
 
 

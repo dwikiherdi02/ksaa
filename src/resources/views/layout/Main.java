@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package resources.views.layout;
 
 // Pakcages
@@ -28,8 +24,9 @@ public class Main extends javax.swing.JFrame {
     private resources.views.page.pengguna.MainForm penggunaMainPage;
     private resources.views.page.investor.MainForm investorMainPage;
     private resources.views.page.nasabah.MainForm nasabahMainPage;
-    private resources.views.page.jabatan.MainForm jabatanMainPage;
     private resources.views.page.karyawan.MainForm karyawanMainPage;
+    private resources.views.page.jabatan.MainForm jabatanMainPage;
+    private resources.views.page.pengajuan.MainForm pengajuanMainPage;
     
     public Main(Map<String, Object> auth) {
         this.session = new system.library.Session();
@@ -65,8 +62,9 @@ public class Main extends javax.swing.JFrame {
         penggunaMainPage = new resources.views.page.pengguna.MainForm(Main.this);
         investorMainPage = new resources.views.page.investor.MainForm(Main.this);
         nasabahMainPage = new resources.views.page.nasabah.MainForm(Main.this);
-        jabatanMainPage = new resources.views.page.jabatan.MainForm(Main.this);
         karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
+        jabatanMainPage = new resources.views.page.jabatan.MainForm(Main.this);
+        pengajuanMainPage = new resources.views.page.pengajuan.MainForm(Main.this);
         
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -92,10 +90,10 @@ public class Main extends javax.swing.JFrame {
                     case 6: // master jabatan
                         setPage(jabatanMainPage);
                         break;
-                    case 7: // master tipe barang
-                        setPage(underconstruction);
+                    case 7: // master pengajuan
+                        setPage(pengajuanMainPage);
                         break;
-                    case 8: // master tipe pengajuan
+                    case 8: // master pembayaran
                         setPage(underconstruction);
                         break;
                     case 10: // laporan pembayaran

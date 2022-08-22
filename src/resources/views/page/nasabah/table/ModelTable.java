@@ -4,6 +4,20 @@ package resources.views.page.nasabah.table;
 public class ModelTable {
 
     /**
+     * @return the job
+     */
+    public String getJob() {
+        return job;
+    }
+
+    /**
+     * @param job the job to set
+     */
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
@@ -48,30 +62,16 @@ public class ModelTable {
     /**
      * @return the nik
      */
-    public int getNik() {
+    public String getNik() {
         return nik;
     }
 
     /**
      * @param nik the nik to set
      */
-    public void setNik(int nik) {
+    public void setNik(String nik) {
         this.nik = nik;
-    }
-
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    }    
 
     /**
      * @return the company
@@ -87,12 +87,12 @@ public class ModelTable {
         this.company = company;
     }
 
-    public ModelTable(int id, int no, String name, int nik, String address, String company) {
+    public ModelTable(int id, int no, String name, String nik, String job, String company) {
         this.id = id;
         this.no = no;
         this.name = name;
         this.nik = nik;
-        this.address = address;
+        this.job = job;
         this.company = company;
     }
 
@@ -102,11 +102,11 @@ public class ModelTable {
     private int id;
     private int no;
     private String name;
-    private int nik;
-    private String address;
+    private String nik;
+    private String job;
     private String company;
     
     public Object[] toRowTable(EventAction event) {
-        return new Object[] {no, name, nik, address, company, new ModelAction(this, event)};
+        return new Object[] {no, name, nik, job, company, new ModelAction(this, event)};
     }
 }

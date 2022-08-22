@@ -1,4 +1,4 @@
-package resources.views.page.investor.table;
+package resources.views.page.pengajuan.table;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

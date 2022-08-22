@@ -1,4 +1,4 @@
-package resources.views.page.investor;
+package resources.views.page.pengajuan;
 
 import java.awt.Color;
 import java.sql.SQLException;
