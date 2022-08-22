@@ -206,12 +206,12 @@ public class KaryawanModel extends Model {
                 String usr = (String) map.get("username");
                 String pwd = (String) map.get("password");
 
-                if(!usr.isEmpty() && !usr.isBlank()) {
+                if(!usr.isEmpty()) {
                     String u = (String) map.get("username");
                     additionalSet = additionalSet + "username = '"+u+"', ";
                 }
 
-                if(!pwd.isEmpty() && !pwd.isBlank()) {
+                if(!pwd.isEmpty()) {
                     String p = (String) BCrypt.hashpw((String) map.get("password"), BCrypt.gensalt(12));
                     additionalSet = additionalSet + "password = '"+p+"', ";
                 }
