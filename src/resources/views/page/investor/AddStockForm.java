@@ -581,6 +581,8 @@ public class AddStockForm extends javax.swing.JPanel {
             resetData();
             
             loadTotalStock(this.investorId);
+            
+            loadTable(this.investorId, null);
         } else {
             panelNotification.notify("error", "Saham Gagal Ditambah.");
         }
@@ -595,7 +597,7 @@ public class AddStockForm extends javax.swing.JPanel {
     private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
         String param = inputSearch.getText().toLowerCase();
 
-        System.out.println(param);
+        loadTable(this.investorId, param);
     }//GEN-LAST:event_btnSearchAct
 
 
