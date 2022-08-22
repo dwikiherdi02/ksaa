@@ -126,23 +126,25 @@ public class AddStockForm extends javax.swing.JPanel {
             
             List<Map<String, Object>> list = stockCtrl.listTable(investorId, param);
             
-            int no = 1;
+            if(list != null) {
+                int no = 1;
             
-            for (Map<String, Object> map : list) {
-                
-                table.addRow(
-                    new ModelTable(
-                        (int) map.get("id"),
-                        no,
-                        (String) map.get("name"),
-                        (String) map.get("no_saham"),
-                        (String) map.get("no_bukti"),
-                        (String) map.get("buy_date"),
-                        String.format("%,d", map.get("buy_price"))
-                    ).toRowTable()
-                );
-                
-                no++;
+                for (Map<String, Object> map : list) {
+
+                    table.addRow(
+                        new ModelTable(
+                            (int) map.get("id"),
+                            no,
+                            (String) map.get("name"),
+                            (String) map.get("no_saham"),
+                            (String) map.get("no_bukti"),
+                            (String) map.get("buy_date"),
+                            String.format("%,d", map.get("buy_price"))
+                        ).toRowTable()
+                    );
+
+                    no++;
+                }
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
