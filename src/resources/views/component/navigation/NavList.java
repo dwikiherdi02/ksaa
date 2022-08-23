@@ -44,7 +44,7 @@ public class NavList<E extends Object> extends JList<E> {
                     if (o instanceof Navigation) {
                         Navigation menu = (Navigation) o;
                         if (menu.getType() == Navigation.MenuType.MENU) {
-                            setPageName(menu.getName());
+                            setPageName(menu.getMenu());
                             selectedIndex = index;
                             if (event != null) {
                                 event.selected(index);
@@ -93,7 +93,7 @@ public class NavList<E extends Object> extends JList<E> {
                 if (o instanceof Navigation) {
                     data = (Navigation) o;
                 } else {
-                    data = new Navigation("", o + "", Navigation.MenuType.EMPTY);
+                    data = new Navigation("", o + "", "", Navigation.MenuType.EMPTY);
                 }
                 NavItem item = new NavItem(data);
                 item.setSelected(selectedIndex == index);

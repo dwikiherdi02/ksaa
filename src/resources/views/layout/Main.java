@@ -27,6 +27,7 @@ public class Main extends javax.swing.JFrame {
     private resources.views.page.karyawan.MainForm karyawanMainPage;
     private resources.views.page.jabatan.MainForm jabatanMainPage;
     private resources.views.page.pengajuan.MainForm pengajuanMainPage;
+    private resources.views.page.pembayaran.MainForm pembayaranMainPage;
     
     public Main(Map<String, Object> auth) {
         this.session = new system.library.Session();
@@ -65,6 +66,7 @@ public class Main extends javax.swing.JFrame {
         karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
         jabatanMainPage = new resources.views.page.jabatan.MainForm(Main.this);
         pengajuanMainPage = new resources.views.page.pengajuan.MainForm(Main.this);
+        pembayaranMainPage = new resources.views.page.pembayaran.MainForm(Main.this);
         
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -94,7 +96,7 @@ public class Main extends javax.swing.JFrame {
                         setPage(pengajuanMainPage);
                         break;
                     case 8: // master pembayaran
-                        setPage(underconstruction);
+                        setPage(pembayaranMainPage);
                         break;
                     case 10: // laporan pembayaran
                         setPage(underconstruction);

@@ -7,6 +7,20 @@ import javax.swing.ImageIcon;
 public class Navigation {
 
     /**
+     * @return the menu
+     */
+    public String getMenu() {
+        return menu;
+    }
+
+    /**
+     * @param menu the menu to set
+     */
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+
+    /**
      * @return the icon
      */
     public String getIcon() {
@@ -48,9 +62,10 @@ public class Navigation {
         this.type = type;
     }
     
-    public Navigation(String icon, String name, MenuType type) {
+    public Navigation(String icon, String name, String menu, MenuType type) {
         this.icon = icon;
         this.name = name;
+        this.menu = menu;
         this.type = type;
     }
     
@@ -60,6 +75,7 @@ public class Navigation {
     
     private String icon;
     private String name;
+    private String menu;
     private MenuType type;
     
     public Icon toIcon() {
