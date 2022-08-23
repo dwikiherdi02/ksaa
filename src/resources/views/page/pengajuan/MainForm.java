@@ -4,9 +4,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import resources.views.component.ScrollBarFlat;
 import resources.views.page.pengajuan.table.EventAction;
@@ -49,10 +48,13 @@ public class MainForm extends javax.swing.JPanel {
             panelNotification.setVisible(false);
         }
         
-        scrollTable.setVerticalScrollBar(new ScrollBarFlat());
         scrollTable.getVerticalScrollBar().setBackground(Color.WHITE);
+        scrollTable.setVerticalScrollBar(new ScrollBarFlat());
+        ScrollBarFlat sbf = new ScrollBarFlat();
+        sbf.setOrientation(JScrollBar.HORIZONTAL);
+        scrollTable.setHorizontalScrollBar(sbf);
         scrollTable.getViewport().setBackground(Color.WHITE);
-        
+
         JPanel p = new JPanel();
         p.setBackground(Color.WHITE);
         scrollTable.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
@@ -64,39 +66,91 @@ public class MainForm extends javax.swing.JPanel {
         param = param != null ? param : "";
         
         table.clearRows();
-            
-        EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelTable emp) {
-                System.out.println("Deleted ID: " + emp.getId());
-            }
-
-            @Override
-            public void update(ModelTable emp) {
-                try {
-                    System.out.println("Updated ID: " + + emp.getId());
-                    
-                    int id = emp.getId();
-                    
-                    MainForm.this.frame.session.setFlashItem("id", id);
-                    
-                    MainForm.this.add = new AddForm(MainForm.this.frame);
-                    
-                    MainForm.this.frame.setPage(MainForm.this.add);
-                } catch (ClassNotFoundException ex) {
-                    System.out.println(ex.getMessage());
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        };
         
-        table.addRow(new ModelTable(1, "P210921", "Murabahah", "Nasabah 1", "Honda Beat", "Kendaraan", 15840000, 476000, 2060000, 4, 460000, "22/09/2021", 400000, "Disetujui", "Lunas", "ardli").toRowTable(eventAction) );
-        table.addRow(new ModelTable(1, "P210921", "Murabahah", "Nasabah 2", "Honda Beat", "Kendaraan", 15840000, 476000, 2060000, 4, 460000, "22/09/2021", 400000, "Disetujui", "Lunas", "ardli").toRowTable(eventAction) );
-        table.addRow(new ModelTable(1, "P210921", "Murabahah", "Nasabah 3", "Honda Beat", "Kendaraan", 15840000, 476000, 2060000, 4, 460000, "22/09/2021", 400000, "Disetujui", "Lunas", "ardli").toRowTable(eventAction) );
-        table.addRow(new ModelTable(1, "P210921", "Murabahah", "Nasabah 4", "Honda Beat", "Kendaraan", 15840000, 476000, 2060000, 4, 460000, "22/09/2021", 400000, "Disetujui", "Lunas", "ardli").toRowTable(eventAction) );
-        table.addRow(new ModelTable(1, "P210921", "Murabahah", "Nasabah 5", "Honda Beat", "Kendaraan", 15840000, 476000, 2060000, 4, 460000, "22/09/2021", 400000, "Disetujui", "Lunas", "ardli").toRowTable(eventAction) );
-        table.addRow(new ModelTable(1, "P210921", "Murabahah", "Nasabah 6", "Honda Beat", "Kendaraan", 15840000, 476000, 2060000, 4, 460000, "22/09/2021", 400000, "Disetujui", "Lunas", "ardli").toRowTable(eventAction) );
+         try {
+             
+            EventAction eventAction = new EventAction() {
+                @Override
+                public void delete(ModelTable emp) {
+                    System.out.println("Deleted ID: " + emp.getId());
+                    
+                    try {
+                        if(emp.getStatus_pengajuan_id() == 1) {
+                            int id = emp.getId();
+                        
+                            app.controllers.PengajuanController sbmsCtrl = new app.controllers.PengajuanController();
+
+                            boolean res = sbmsCtrl.remove(id);
+
+                            if(res == true) {
+                                panelNotification.notify("success", "Pengajuan Berhasil Dihapus.");
+
+                                loadTable(null);
+                            } else {
+                                panelNotification.notify("error", "Gagal Dihapus.");
+                            }
+                        } else {
+                            panelNotification.notify("error", "Pengajuan Yang Sudah Diproses Tidak Bisa Dihapus.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        panelNotification.notify("error", "Gagal Dihapus.");
+                    }
+                }
+
+                @Override
+                public void update(ModelTable emp) {
+                    try {
+                        System.out.println("Updated ID: " + + emp.getId());
+                        
+                        if(emp.getStatus_pengajuan_id() == 1) {
+                            int id = emp.getId();
+
+                            MainForm.this.frame.session.setFlashItem("id", id);
+
+                            MainForm.this.add = new AddForm(MainForm.this.frame);
+
+                            MainForm.this.frame.setPage(MainForm.this.add);
+                        } else {
+                            panelNotification.notify("error", "Pengajuan Yang Sudah Diproses Tidak Bisa Diubah.");
+                        }
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            };
+            
+            app.controllers.PengajuanController sbmsCtrl = new app.controllers.PengajuanController();
+            
+            List<Map<String, Object>> list = sbmsCtrl.listTable(param);
+            
+            for (Map<String, Object> map : list) {
+                table.addRow(
+                    new ModelTable(
+                        (int) map.get("id"),
+                        (int) map.get("status_pengajuan_id"),
+                        (int) map.get("total_paid"),
+                        (String) map.get("no_pengajuan"),
+                        (String) map.get("status_pengajuan"),
+                        (String) map.get("status_pembiayan"),
+                        (String) map.get("nasabah"),
+                        (String) map.get("tipe_pengajuan"),
+                        (String) map.get("tipe_barang"),
+                        (String) map.get("nama_barang"),
+                        String.format("%,d", map.get("modal")),
+                        String.format("%,d", map.get("laba")),
+                        String.format("%,d", map.get("total")),
+                        String.format("%,d", map.get("dp")),
+                        (String) map.get("dp_date"),
+                        String.format("%,d", map.get("cicilan")),
+                        String.valueOf(map.get("total_angsuran"))
+                    ).toRowTable(eventAction) 
+                );
+            }
+             
+         } catch (Exception e) {
+             System.err.println(e.getMessage());
+         }
      }
 
     /**
@@ -173,7 +227,8 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
-        inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        inputSearch.setBackground(new java.awt.Color(255, 255, 255));
+        inputSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         inputSearch.setForeground(new java.awt.Color(102, 102, 102));
         inputSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
 
@@ -184,7 +239,7 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardHeaderLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(labelTableTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 532, Short.MAX_VALUE)
                 .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,6 +254,9 @@ public class MainForm extends javax.swing.JPanel {
             .addComponent(inputSearch)
         );
 
+        scrollTable.setBackground(new java.awt.Color(72, 112, 58));
+        scrollTable.setBorder(null);
+        scrollTable.setForeground(new java.awt.Color(72, 162, 61));
         scrollTable.setViewportView(table);
 
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
@@ -217,9 +275,9 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelCardHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -227,12 +285,12 @@ public class MainForm extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                    .addComponent(panelNotification, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
+                    .addComponent(panelCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +301,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(panelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,9 +310,7 @@ public class MainForm extends javax.swing.JPanel {
             add = new AddForm(this.frame);
             
             this.frame.setPage(add);
-        } catch (ClassNotFoundException ex) {
-            System.exit(0);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnAddAct
@@ -262,7 +318,7 @@ public class MainForm extends javax.swing.JPanel {
     private void btnSearchAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAct
         String param = inputSearch.getText().toLowerCase();
         
-        System.out.println(param);
+        loadTable(param);
     }//GEN-LAST:event_btnSearchAct
 
 

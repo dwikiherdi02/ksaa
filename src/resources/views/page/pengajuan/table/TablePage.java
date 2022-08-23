@@ -23,10 +23,25 @@ public class TablePage extends Table {
 
     public TablePage() {
         super();
+        setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         
         Object[][] data = new Object[][]{};
         String[] titles = {
-            "No Pengajuan", "Nasabah", "Tipe Pengajuan", "Barang", "Tipe Barang", "Modal", "Laba", "Total Pengajuan", "Lama", "DP", "Tgl DP", "Cicilan", "Status Pengajuan", "Status Pembayaran", "Update By", "Aksi"
+            "No Pengajuan",
+            "Status Pengajuan", 
+            "Status Pembiayaan",
+            "Nasabah", 
+            "Tipe Pengajuan", 
+            "Tipe Barang", 
+            "Nama Barang", 
+            "Harga Modal (Rp)", 
+            "Keuntungan (Rp)", 
+            "Total Pengajuan (Rp)", 
+            "Total DP (Rp)", 
+            "Tanggal DP", 
+            "Cicilan (Rp)", 
+            "Lama Angsuran",   
+            "Aksi"
         };
         
         setModel(new javax.swing.table.DefaultTableModel(
@@ -34,7 +49,7 @@ public class TablePage extends Table {
             titles    
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -43,22 +58,29 @@ public class TablePage extends Table {
         });
         
         if (getColumnModel().getColumnCount() > 0) {
-            getColumnModel().getColumn(0).setMinWidth(50);
-            getColumnModel().getColumn(0).setMaxWidth(50);
+            for (int i = 0; i <= 13; i++) {
+                getColumnModel().getColumn(i).setMinWidth(150);
+                getColumnModel().getColumn(i).setMaxWidth(150);
+            }
             
-            getColumnModel().getColumn(15).setMinWidth(80);
-            getColumnModel().getColumn(15).setMaxWidth(80);
+            getColumnModel().getColumn(14).setMinWidth(80);
+            getColumnModel().getColumn(14).setMaxWidth(80);
         }
         
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean focus, int i, int i1) {
                 
-                Integer[] intArray = new Integer[]{0};
-                List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArray));
+                Integer[] intArrayCenter = new Integer[]{0, 1, 2, 4, 5, 11, 13, 14};
+                List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArrayCenter));
+                
+                Integer[] intArrayRight = new Integer[]{7, 8, 9, 10, 12};
+                List<Integer> labelRight = new ArrayList<>(Arrays.asList(intArrayRight));
 
                 if(labelCenter.contains(i1)) {
                     setHorizontalAlignment(JLabel.CENTER);
+                } else if(labelRight.contains(i1)) {
+                    setHorizontalAlignment(JLabel.RIGHT);
                 } else {
                     setHorizontalAlignment(JLabel.LEFT);
                 }
@@ -83,7 +105,7 @@ public class TablePage extends Table {
     
     @Override
     public TableCellEditor getCellEditor(int row, int col) {
-        if(col == 15) {
+        if(col == 14) {
             return new TableCellAction();
         } else {
             return super.getCellEditor(row, col);
