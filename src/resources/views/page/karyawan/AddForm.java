@@ -173,7 +173,6 @@ public class AddForm extends javax.swing.JPanel {
         labelEmpId = new javax.swing.JLabel();
         inputEmpId = new javax.swing.JTextField();
         labekPosition = new javax.swing.JLabel();
-        inputOptPosition = new javax.swing.JComboBox<>();
         labelEmpName = new javax.swing.JLabel();
         inputEmpName = new javax.swing.JTextField();
         labelEmail = new javax.swing.JLabel();
@@ -189,6 +188,7 @@ public class AddForm extends javax.swing.JPanel {
         inputUsername = new javax.swing.JTextField();
         labelUserpass = new javax.swing.JLabel();
         inputUserpass = new javax.swing.JPasswordField();
+        inputOptPosition = new resources.views.component.form.combobox.ComboBoxSuggestion();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
@@ -258,11 +258,6 @@ public class AddForm extends javax.swing.JPanel {
         labekPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labekPosition.setForeground(new java.awt.Color(0, 0, 0));
         labekPosition.setText("Jabatan");
-
-        inputOptPosition.setBackground(new java.awt.Color(255, 255, 255));
-        inputOptPosition.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        inputOptPosition.setForeground(new java.awt.Color(51, 51, 51));
-        inputOptPosition.setBorder(null);
 
         labelEmpName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelEmpName.setForeground(new java.awt.Color(0, 0, 0));
@@ -371,6 +366,9 @@ public class AddForm extends javax.swing.JPanel {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        inputOptPosition.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+        inputOptPosition.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout panelCardLayout = new javax.swing.GroupLayout(panelCard);
         panelCard.setLayout(panelCardLayout);
         panelCardLayout.setHorizontalGroup(
@@ -397,10 +395,10 @@ public class AddForm extends javax.swing.JPanel {
                                 .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(inputEmpName))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCardLayout.createSequentialGroup()
+                            .addGroup(panelCardLayout.createSequentialGroup()
                                 .addComponent(labekPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputOptPosition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(inputOptPosition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(panelCardLayout.createSequentialGroup()
                                 .addComponent(labelEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -419,10 +417,10 @@ public class AddForm extends javax.swing.JPanel {
                     .addComponent(inputEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labekPosition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inputOptPosition, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
+                .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labekPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputOptPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(panelCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -524,7 +522,7 @@ public class AddForm extends javax.swing.JPanel {
     private javax.swing.JTextField inputEmpName;
     private javax.swing.JTextField inputId;
     private javax.swing.JCheckBox inputIsUser;
-    private javax.swing.JComboBox<String> inputOptPosition;
+    private resources.views.component.form.combobox.ComboBoxSuggestion inputOptPosition;
     private javax.swing.JTextField inputUsername;
     private javax.swing.JPasswordField inputUserpass;
     private javax.swing.JLabel labekPosition;
