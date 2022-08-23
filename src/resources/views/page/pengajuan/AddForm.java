@@ -305,9 +305,6 @@ public class AddForm extends javax.swing.JPanel {
             Map<String, Object> map = sbsmCtrl.getData(id);
             
             if(map != null) {
-                System.out.println("nasabah_id: " + map.get("nasabah_id"));
-                System.out.println("tipe_pengajuan_id: " + map.get("tipe_pengajuan_id"));
-
                 setInputOptNasabah((int) map.get("nasabah_id"));
                 setInputOptTipePengajuan((int) map.get("tipe_pengajuan_id"));
                 setInputOptTipeBarang((int) map.get("tipe_barang_id"));
