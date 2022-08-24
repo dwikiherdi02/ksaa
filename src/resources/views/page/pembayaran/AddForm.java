@@ -115,13 +115,6 @@ public class AddForm extends javax.swing.JPanel {
 
             inputOptNoPengajuan.setModel(model);
             
-//            inputOptNoPengajuan.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    System.out.println("change");
-//                }
-//            });
-            
             if(selected >= 0) {
                 inputOptNoPengajuan.setSelectedIndex(selected);
             }
@@ -137,8 +130,51 @@ public class AddForm extends javax.swing.JPanel {
         
         inputId.setText(String.valueOf(id));
         
-        setInputOptPengajuan(0);
-         
+        app.controllers.PembayaranController payCtrl = new app.controllers.PembayaranController();
+                
+        Map<String, Object> map = payCtrl.getData(id);
+        
+        if(map != null) {
+            if(id != 0) {
+                inputOptNoPengajuan.setEnabled(false);
+                
+                setInputOptPengajuan((int) map.get("pengajuan_id"));
+                inputNamaNasabah.setText((String) map.get("nasabah"));
+                inputCicilan.setText(String.valueOf(map.get("nominal")));
+                if(
+                    map.get("date") != null
+                    && String.valueOf((String) map.get("date")).length() > 0
+                    && !String.valueOf((String) map.get("date")).equals("0000-00-00")
+                ) {
+                    SimpleDateFormat sdf = new SimpleDateFormat(inputTanggalBayar.getDateFormatString());
+                    Date date;
+                    try {
+                        date = sdf.parse((String) map.get("date"));
+                    } catch (ParseException ex) {
+                        date = new Date();
+                    }
+                    inputTanggalBayar.setDate(date);
+                } else {
+                    inputTanggalBayar.setDate(null);
+                }
+                inputCaraBayar.setText((String) map.get("cara_bayar"));
+                inputNotes.setText((String) map.get("notes"));
+            } else {
+                setInputOptPengajuan(0);
+                inputNamaNasabah.setText("");
+                inputCicilan.setText("");
+                inputTanggalBayar.setDate(null);
+                inputCaraBayar.setText("");
+                inputNotes.setText("");
+            }
+        } else {
+            setInputOptPengajuan(0);
+            inputNamaNasabah.setText("");
+            inputCicilan.setText("");
+            inputTanggalBayar.setDate(null);
+            inputCaraBayar.setText("");
+            inputNotes.setText("");
+        }
     }
     
     /**
@@ -394,8 +430,33 @@ public class AddForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackAct
 
     private void btnSaveAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAct
-       
-        boolean res = false;
+        int id = inputId.getText().isEmpty() ? 0 : Integer.valueOf(inputId.getText());
+        Object pengajuanId = ((ComboItems) inputOptNoPengajuan.getSelectedItem()).getKey();
+        int nominal = inputCicilan.getText().isEmpty() 
+                    ? 0
+                    : Integer.valueOf(inputCicilan.getText());
+        String date;
+        if(inputTanggalBayar.getDate() != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat(inputTanggalBayar.getDateFormatString());
+            date = sdf.format(inputTanggalBayar.getDate());
+        } else {
+            date = "";
+        }
+        String caraBayar = inputCaraBayar.getText();
+        String notes = inputNotes.getText();
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        map.put("id", id);
+        map.put("pengajuan_id", pengajuanId);
+        map.put("nominal", nominal);
+        map.put("date", date);
+        map.put("cara_bayar", caraBayar);
+        map.put("notes", notes);
+        
+        app.controllers.PembayaranController payCtrl = new app.controllers.PembayaranController();
+        
+        boolean res = payCtrl.process(map);
         
         if(res == true) {
             this.frame.session.setFlashItem("successNotif", "Nasabah Berhasil Disimpan.");

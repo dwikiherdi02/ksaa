@@ -63,89 +63,71 @@ public class MainForm extends javax.swing.JPanel {
         
         table.clearRows();
         
-        EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelTable emp) {
-                System.out.println("Deleted ID: " + emp.getId());
-            }
+        try {
+             
+            EventAction eventAction = new EventAction() {
+                @Override
+                public void delete(ModelTable emp) {
+                    System.out.println("Deleted ID: " + emp.getId());
+                    
+                    try {
+                        int id = emp.getId();
+                        
+                        app.controllers.PembayaranController payCtrl = new app.controllers.PembayaranController();
+                        
+                        boolean res = payCtrl.remove(id);
+                        
+                        if(res == true) {
+                            panelNotification.notify("success", "Pembayaran Berhasil Dihapus.");
+                            
+                            loadTable(null);
+                        } else {
+                            panelNotification.notify("error", "Gagal Dihapus.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        panelNotification.notify("error", "Gagal Dihapus.");
+                    }
+                }
 
-            @Override
-            public void update(ModelTable emp) {
-                System.out.println("Updated ID: " + + emp.getId());
+                @Override
+                public void update(ModelTable emp) {
+                    try {
+                        System.out.println("Updated ID: " + + emp.getId());
+
+                        int id = emp.getId();
+
+                        MainForm.this.frame.session.setFlashItem("id", id);
+
+                        MainForm.this.add = new AddForm(MainForm.this.frame);
+
+                        MainForm.this.frame.setPage(MainForm.this.add);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            };
+            
+            app.controllers.PembayaranController payCtrl = new app.controllers.PembayaranController();
+            
+            List<Map<String, Object>> list = payCtrl.listTable(param);
+            
+            for (Map<String, Object> map : list) {
+                
+                table.addRow(
+                    new ModelTable(
+                        (int) map.get("id"), 
+                        (String) map.get("no_pengajuan"), 
+                        (String) map.get("nasabah"), 
+                        String.format("%,d", map.get("nominal")),
+                        (String) map.get("date"), 
+                        (String) map.get("cara_bayar")
+                    ).toRowTable(eventAction)
+                );
             }
-        };
-        
-        table.addRow(new ModelTable(1, "P210921/1", "Amirudin", "200,000", "2022-08-24", "Tranfer").toRowTable(eventAction));
-        
-//        try {
-//             
-//            EventAction eventAction = new EventAction() {
-//                @Override
-//                public void delete(ModelTable emp) {
-//                    System.out.println("Deleted ID: " + emp.getId());
-//                    
-//                    try {
-//                        int id = emp.getId();
-//                        
-//                        app.controllers.NasabahController custCtrl = new app.controllers.NasabahController();
-//                        
-//                        boolean res = custCtrl.remove(id);
-//                        
-//                        if(res == true) {
-//                            panelNotification.notify("success", "Nasabah Berhasil Dihapus.");
-//                            
-//                            loadTable(null);
-//                        } else {
-//                            panelNotification.notify("error", "Gagal Dihapus.");
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.println(e.getMessage());
-//                        panelNotification.notify("error", "Gagal Dihapus.");
-//                    }
-//                }
-//
-//                @Override
-//                public void update(ModelTable emp) {
-//                    try {
-//                        System.out.println("Updated ID: " + + emp.getId());
-//
-//                        int id = emp.getId();
-//
-//                        MainForm.this.frame.session.setFlashItem("id", id);
-//
-//                        MainForm.this.add = new AddForm(MainForm.this.frame);
-//
-//                        MainForm.this.frame.setPage(MainForm.this.add);
-//                    } catch (Exception ex) {
-//                        System.out.println(ex.getMessage());
-//                    }
-//                }
-//            };
-//            
-//            app.controllers.NasabahController custCtrl = new app.controllers.NasabahController();
-//            
-//            List<Map<String, Object>> list = custCtrl.listTable(param);
-//            
-//            int no = 1;
-//            
-//            for (Map<String, Object> map : list) {
-//                
-//                table.addRow(
-//                    new ModelTable(
-//                        (int) map.get("id"), 
-//                        no, 
-//                        (String) map.get("name"), 
-//                        (String) map.get("nik"), 
-//                        (String) map.get("job"), 
-//                        (String) map.get("company_name")
-//                    ).toRowTable(eventAction) 
-//                );
-//                
-//                no++;
-//            }
-//         } catch (Exception e) {
-//             System.err.println(e.getMessage());
-//         }
+         } catch (Exception e) {
+             System.err.println(e.getMessage());
+         }
      }
 
     /**
