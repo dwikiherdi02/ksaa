@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import resources.event.EventMenuSelected;
 import resources.views.component.ScrollBarFlat;
+import resources.views.page.*;
 
 /**
  *
@@ -17,17 +18,6 @@ import resources.views.component.ScrollBarFlat;
 public class Main extends javax.swing.JFrame {
 
     public system.library.Session session;
-    
-    // Form Pages
-    private resources.views.page.UnderConstructionForm underconstruction;
-    private resources.views.page.dasbor.MainForm dasborMainPage;
-    private resources.views.page.pengguna.MainForm penggunaMainPage;
-    private resources.views.page.investor.MainForm investorMainPage;
-    private resources.views.page.nasabah.MainForm nasabahMainPage;
-    private resources.views.page.karyawan.MainForm karyawanMainPage;
-    private resources.views.page.jabatan.MainForm jabatanMainPage;
-    private resources.views.page.pengajuan.MainForm pengajuanMainPage;
-    private resources.views.page.pembayaran.MainForm pembayaranMainPage;
     
     public Main(Map<String, Object> auth) {
         this.session = new system.library.Session();
@@ -58,16 +48,6 @@ public class Main extends javax.swing.JFrame {
     
     private void pages() {
         
-        underconstruction = new resources.views.page.UnderConstructionForm();
-        dasborMainPage = new resources.views.page.dasbor.MainForm();
-        penggunaMainPage = new resources.views.page.pengguna.MainForm(Main.this);
-        investorMainPage = new resources.views.page.investor.MainForm(Main.this);
-        nasabahMainPage = new resources.views.page.nasabah.MainForm(Main.this);
-        karyawanMainPage = new resources.views.page.karyawan.MainForm(Main.this);
-        jabatanMainPage = new resources.views.page.jabatan.MainForm(Main.this);
-        pengajuanMainPage = new resources.views.page.pengajuan.MainForm(Main.this);
-        pembayaranMainPage = new resources.views.page.pembayaran.MainForm(Main.this);
-        
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
@@ -75,37 +55,37 @@ public class Main extends javax.swing.JFrame {
                 
                switch (index) {
                     case 0: // dasbor
-                        setPage(dasborMainPage);
+                        setPage(new resources.views.page.dasbor.MainForm());
                         break;
                     case 2: // master pengguna
-                        setPage(penggunaMainPage);
+                        setPage(new resources.views.page.pengguna.MainForm(Main.this));
                         break;
                     case 3: // master investor
-                        setPage(investorMainPage);
+                        setPage(new resources.views.page.investor.MainForm(Main.this));
                         break;
                     case 4: // master nasabah
-                        setPage(nasabahMainPage);
+                        setPage(new resources.views.page.nasabah.MainForm(Main.this));
                         break;
                     case 5: // master karyawan
-                        setPage(karyawanMainPage);
+                        setPage(new resources.views.page.karyawan.MainForm(Main.this));
                         break;
                     case 6: // master jabatan
-                        setPage(jabatanMainPage);
+                        setPage(new resources.views.page.jabatan.MainForm(Main.this));
                         break;
                     case 7: // master pengajuan
-                        setPage(pengajuanMainPage);
+                        setPage(new resources.views.page.pengajuan.MainForm(Main.this));
                         break;
                     case 8: // master pembayaran
-                        setPage(pembayaranMainPage);
+                        setPage(new resources.views.page.pembayaran.MainForm(Main.this));
                         break;
                     case 10: // laporan pembayaran
-                        setPage(underconstruction);
+                        setPage(new resources.views.page.UnderConstructionForm());
                         break;
                     case 11: // laporan pengajuan lunas
-                        setPage(underconstruction);
+                        setPage(new resources.views.page.UnderConstructionForm());
                         break;
                     case 12: // laporan pengajuan menunggak
-                        setPage(underconstruction);
+                        setPage(new resources.views.page.UnderConstructionForm());
                         break;
                     case 14: // logout
                         Main.this.session.clearAll();
@@ -116,13 +96,13 @@ public class Main extends javax.swing.JFrame {
                         new Login().setVisible(true);
                         break;    
                     default:
-                        setPage(underconstruction);
+                        setPage(new resources.views.page.UnderConstructionForm());
                 }
             }
         });
         
         labelPageName.setText("Dashboard");
-        setPage(new resources.views.page.dasbor.MainForm()); 
+        setPage(new resources.views.page.dasbor.MainForm() ); 
     }
     
     public void setPage(JComponent com) {
