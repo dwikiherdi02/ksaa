@@ -85,7 +85,7 @@ public class Main extends javax.swing.JFrame {
                         setPage(new resources.views.page.laporan.lunas.MainForm(Main.this));
                         break;
                     case 12: // laporan pengajuan menunggak
-                        setPage(new resources.views.page.UnderConstructionForm());
+                        setPage(new resources.views.page.laporan.menunggak.MainForm(Main.this));
                         break;
                     case 14: // logout
                         Main.this.session.clearAll();
