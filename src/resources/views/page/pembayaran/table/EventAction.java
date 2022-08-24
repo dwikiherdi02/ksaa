@@ -1,5 +1,4 @@
-package resources.views.page.pengajuan.table;
-
+package resources.views.page.pembayaran.table;
 
 public interface EventAction {
     public void delete(ModelTable emp);

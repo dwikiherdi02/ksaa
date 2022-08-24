@@ -1,5 +1,4 @@
-package resources.views.page.pengajuan.table;
-
+package resources.views.page.pembayaran.table;
 
 public class ModelTable {
 
@@ -18,256 +17,95 @@ public class ModelTable {
     }
 
     /**
-     * @return the no
+     * @return the noPengajuan
      */
-    public String getNo() {
-        return no;
+    public String getNoPengajuan() {
+        return noPengajuan;
     }
 
     /**
-     * @param no the no to set
+     * @param noPengajuan the noPengajuan to set
      */
-    public void setNo(String no) {
-        this.no = no;
+    public void setNoPengajuan(String noPengajuan) {
+        this.noPengajuan = noPengajuan;
     }
 
     /**
-     * @return the nasabah
+     * @return the namaNasabah
      */
-    public String getNasabah() {
-        return nasabah;
+    public String getNamaNasabah() {
+        return namaNasabah;
     }
 
     /**
-     * @param nasabah the nasabah to set
+     * @param namaNasabah the namaNasabah to set
      */
-    public void setNasabah(String nasabah) {
-        this.nasabah = nasabah;
+    public void setNamaNasabah(String namaNasabah) {
+        this.namaNasabah = namaNasabah;
     }
 
     /**
-     * @return the tppengajuan
+     * @return the nominalCicilan
      */
-    public String getTppengajuan() {
-        return tppengajuan;
+    public String getNominalCicilan() {
+        return nominalCicilan;
     }
 
     /**
-     * @param tppengajuan the tppengajuan to set
+     * @param nominalCicilan the nominalCicilan to set
      */
-    public void setTppengajuan(String tppengajuan) {
-        this.tppengajuan = tppengajuan;
+    public void setNominalCicilan(String nominalCicilan) {
+        this.nominalCicilan = nominalCicilan;
     }
 
     /**
-     * @return the barang
+     * @return the tanggalBayar
      */
-    public String getBarang() {
-        return barang;
+    public String getTanggalBayar() {
+        return tanggalBayar;
     }
 
     /**
-     * @param barang the barang to set
+     * @param tanggalBayar the tanggalBayar to set
      */
-    public void setBarang(String barang) {
-        this.barang = barang;
+    public void setTanggalBayar(String tanggalBayar) {
+        this.tanggalBayar = tanggalBayar;
     }
 
     /**
-     * @return the tpbarang
+     * @return the caraBayar
      */
-    public String getTpbarang() {
-        return tpbarang;
+    public String getCaraBayar() {
+        return caraBayar;
     }
 
     /**
-     * @param tpbarang the tpbarang to set
+     * @param caraBayar the caraBayar to set
      */
-    public void setTpbarang(String tpbarang) {
-        this.tpbarang = tpbarang;
+    public void setCaraBayar(String caraBayar) {
+        this.caraBayar = caraBayar;
     }
 
-    /**
-     * @return the modal
-     */
-    public int getModal() {
-        return modal;
-    }
-
-    /**
-     * @param modal the modal to set
-     */
-    public void setModal(int modal) {
-        this.modal = modal;
-    }
-
-    /**
-     * @return the laba
-     */
-    public int getLaba() {
-        return laba;
-    }
-
-    /**
-     * @param laba the laba to set
-     */
-    public void setLaba(int laba) {
-        this.laba = laba;
-    }
-
-    /**
-     * @return the total
-     */
-    public int getTotal() {
-        return total;
-    }
-
-    /**
-     * @param total the total to set
-     */
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    /**
-     * @return the lama
-     */
-    public int getLama() {
-        return lama;
-    }
-
-    /**
-     * @param lama the lama to set
-     */
-    public void setLama(int lama) {
-        this.lama = lama;
-    }
-
-    /**
-     * @return the dp
-     */
-    public int getDp() {
-        return dp;
-    }
-
-    /**
-     * @param dp the dp to set
-     */
-    public void setDp(int dp) {
-        this.dp = dp;
-    }
-
-    /**
-     * @return the date
-     */
-    public String getDate() {
-        return date;
-    }
-
-    /**
-     * @param date the date to set
-     */
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    /**
-     * @return the cicilan
-     */
-    public int getCicilan() {
-        return cicilan;
-    }
-
-    /**
-     * @param cicilan the cicilan to set
-     */
-    public void setCicilan(int cicilan) {
-        this.cicilan = cicilan;
-    }
-
-    /**
-     * @return the stpengajuan
-     */
-    public String getStpengajuan() {
-        return stpengajuan;
-    }
-
-    /**
-     * @param stpengajuan the stpengajuan to set
-     */
-    public void setStpengajuan(String stpengajuan) {
-        this.stpengajuan = stpengajuan;
-    }
-
-    /**
-     * @return the stpembayaran
-     */
-    public String getStpembayaran() {
-        return stpembayaran;
-    }
-
-    /**
-     * @param stpembayaran the stpembayaran to set
-     */
-    public void setStpembayaran(String stpembayaran) {
-        this.stpembayaran = stpembayaran;
-    }
-
-    /**
-     * @return the update
-     */
-    public String getUpdate() {
-        return update;
-    }
-
-    /**
-     * @param update the update to set
-     */
-    public void setUpdate(String update) {
-        this.update = update;
-    }
-
-    public ModelTable(int id, String no, String nasabah, String tppengajuan, String barang, String tpbarang, int modal, int laba, int total, int lama, int dp, String date, int cicilan, String stpengajuan, String stpembayaran, String update) {
+    public ModelTable(int id, String noPengajuan, String namaNasabah, String nominalCicilan, String tanggalBayar, String caraBayar) {
         this.id = id;
-        this.no = no;
-        this.nasabah = nasabah;
-        this.tppengajuan = tppengajuan;
-        this.barang = barang;
-        this.tpbarang = tpbarang;
-        this.modal = modal;
-        this.laba = laba;
-        this.total = total;
-        this.lama = lama;
-        this.dp = dp;
-        this.date = date;
-        this.cicilan = cicilan;
-        this.stpengajuan = stpengajuan;
-        this.stpembayaran = stpembayaran;
-        this.update = update;
+        this.noPengajuan = noPengajuan;
+        this.namaNasabah = namaNasabah;
+        this.nominalCicilan = nominalCicilan;
+        this.tanggalBayar = tanggalBayar;
+        this.caraBayar = caraBayar;
     }
 
     public ModelTable() {
     }
-    
+   
     private int id;
-    private String no;
-    private String nasabah;
-    private String tppengajuan;
-    private String barang;
-    private String tpbarang;
-    private int modal;
-    private int laba;
-    private int total;
-    private int lama;
-    private int dp;
-    private String date;
-    private int cicilan;
-    private String stpengajuan;
-    private String stpembayaran;
-    private String update;
-    
+    private String noPengajuan;
+    private String namaNasabah;
+    private String nominalCicilan;
+    private String tanggalBayar;
+    private String caraBayar;
     
     public Object[] toRowTable(EventAction event) {
-        return new Object[] {no, nasabah, tppengajuan, barang, tpbarang, modal, laba, total, lama, dp, date, cicilan, stpengajuan, stpembayaran, update, new ModelAction(this, event)};
+        return new Object[] {noPengajuan, namaNasabah, nominalCicilan, tanggalBayar, caraBayar, new ModelAction(this, event)};
     }
 }
