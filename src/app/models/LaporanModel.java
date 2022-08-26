@@ -191,4 +191,52 @@ public class LaporanModel extends Model{
             return null;
         }
     }
+
+    public ResultSet listDataTopInvestor() {
+        try {
+            String query = "SELECT "
+                        + "a.id, "
+                        + "a.name, "
+                        + "SUM(b.buy_price) AS nominal "
+                        + "FROM investor a "
+                        + "LEFT JOIN saham b ON b.investor_id = a.id "
+                        + "WHERE b.buy_price IS NOT NULL "
+                        + "GROUP BY a.id "
+                        + "ORDER BY SUM(b.buy_price) DESC "
+                        + "LIMIT 5 ";
+            
+            PreparedStatement ps = this.conn.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            return rs;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+    
+    public ResultSet listDataTopNasabah() {
+        try {
+            String query = "SELECT "
+                        + "a.id, "
+                        + "a.name, "
+                        + "SUM(b.est_laba) AS nominal "
+                        + "FROM nasabah a "
+                        + "LEFT JOIN pengajuan b ON b.nasabah_id = a.id "
+                        + "WHERE b.est_laba IS NOT NULL "
+                        + "GROUP BY a.id "
+                        + "ORDER BY SUM(b.est_laba) DESC  "
+                        + "LIMIT 5 ";
+            
+            PreparedStatement ps = this.conn.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            return rs;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
 }

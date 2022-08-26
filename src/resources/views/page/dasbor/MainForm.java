@@ -1,12 +1,105 @@
 package resources.views.page.dasbor;
 
+import java.awt.Color;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import resources.views.component.ScrollBarFlat;
+
 public class MainForm extends javax.swing.JPanel {
+    
+    private resources.views.layout.Main frame;
 
     /**
      * Creates new form MainForm
      */
+    
+    public MainForm(resources.views.layout.Main frm) {
+        
+        this.frame = frm;
+        
+        init();
+    }
+    
     public MainForm() {
+        init();
+    }
+    
+    private void init() {
         initComponents();
+        
+        loadTableTopInvestor();
+        
+        loadTableTopNasabah();
+    }
+    
+    private void loadTableTopInvestor() {
+        scrollTableInvestor.setVerticalScrollBar(new ScrollBarFlat());
+        scrollTableInvestor.getVerticalScrollBar().setBackground(Color.WHITE);
+        scrollTableInvestor.getViewport().setBackground(Color.WHITE);
+        
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        scrollTableInvestor.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        
+        tableInvestor.clearRows();
+        
+        try {
+            app.controllers.LaporanController rprtCtrl = new app.controllers.LaporanController();
+            
+            List<Map<String, Object>> list = rprtCtrl.listTableTopInvestor();
+            
+            int no = 1;
+            
+            for (Map<String, Object> map : list) {
+                tableInvestor.addRow(
+                    new resources.views.page.dasbor.table.investor.ModelTable(
+                        no,
+                        (String) map.get("name"),
+                        String.format("%,d", map.get("nominal"))
+                    ).toRowTable() 
+                );
+                
+                no++;
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    
+    private void loadTableTopNasabah() {
+        scrollTableNasabah.setVerticalScrollBar(new ScrollBarFlat());
+        scrollTableNasabah.getVerticalScrollBar().setBackground(Color.WHITE);
+        scrollTableNasabah.getViewport().setBackground(Color.WHITE);
+        
+        JPanel p = new JPanel();
+        p.setBackground(Color.WHITE);
+        scrollTableNasabah.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+        
+        tableNasabah.clearRows();
+        
+        try {
+            app.controllers.LaporanController rprtCtrl = new app.controllers.LaporanController();
+            
+            List<Map<String, Object>> list = rprtCtrl.listTableTopNasabah();
+            
+            int no = 1;
+            
+            for (Map<String, Object> map : list) {
+                tableNasabah.addRow(
+                    new resources.views.page.dasbor.table.investor.ModelTable(
+                        no,
+                        (String) map.get("name"),
+                        String.format("%,d", map.get("nominal"))
+                    ).toRowTable() 
+                );
+                
+                no++;
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     /**
@@ -65,7 +158,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(labelTopInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(scrollTableInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollTableInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -99,8 +192,8 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(labelTopNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(scrollTableNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(scrollTableNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -123,10 +216,10 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelTopInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelTopNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelTopInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTopNasabah, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

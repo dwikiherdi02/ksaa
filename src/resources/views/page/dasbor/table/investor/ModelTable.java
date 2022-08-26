@@ -57,7 +57,7 @@ public class ModelTable {
     private String name;
     private String nominal;
     
-    public Object[] toRowTable(EventAction event) {
+    public Object[] toRowTable() {
         return new Object[] {no, name, nominal};
     }
 }

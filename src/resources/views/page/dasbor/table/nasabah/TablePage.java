@@ -50,7 +50,7 @@ public class TablePage extends Table {
                 Integer[] intArrayCenter = new Integer[]{0};
                 List<Integer> labelCenter = new ArrayList<>(Arrays.asList(intArrayCenter));
                 
-                Integer[] intArrayRight = new Integer[]{0};
+                Integer[] intArrayRight = new Integer[]{2};
                 List<Integer> labelRight = new ArrayList<>(Arrays.asList(intArrayRight));
 
                 if(labelCenter.contains(i1)) {

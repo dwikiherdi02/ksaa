@@ -210,4 +210,80 @@ public class LaporanController {
             return null;
         }
     }
+    
+    public List<Map<String, Object>> listTableTopInvestor() {
+        
+        try {
+            ResultSet res = this.mrprt.listDataTopInvestor();
+            
+            res.last();
+            int count = res.getRow();
+            res.beforeFirst();
+            
+            if(count > 0) {
+                List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+
+                int i = 0;
+
+                while (res.next()) {            
+                    Map<String, Object> map = new HashMap<String, Object>();
+
+                    map.put("id", res.getInt("id"));
+                    map.put("name", res.getString("name"));
+                    map.put("nominal", res.getInt("nominal"));
+                    
+                    data.add(i, map);
+
+                    i++;
+                }
+
+                return data;
+            } else {
+                System.err.println("listData Top Investor NULL");
+                return null;
+            }
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+    
+    public List<Map<String, Object>> listTableTopNasabah() {
+        
+        try {
+            ResultSet res = this.mrprt.listDataTopNasabah();
+            
+            res.last();
+            int count = res.getRow();
+            res.beforeFirst();
+            
+            if(count > 0) {
+                List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+
+                int i = 0;
+
+                while (res.next()) {            
+                    Map<String, Object> map = new HashMap<String, Object>();
+
+                    map.put("id", res.getInt("id"));
+                    map.put("name", res.getString("name"));
+                    map.put("nominal", res.getInt("nominal"));
+                    
+                    data.add(i, map);
+
+                    i++;
+                }
+
+                return data;
+            } else {
+                System.err.println("listData Top Nasabah NULL");
+                return null;
+            }
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
 }
