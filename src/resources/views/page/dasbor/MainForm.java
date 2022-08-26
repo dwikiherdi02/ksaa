@@ -18,36 +18,128 @@ public class MainForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelWelcome = new javax.swing.JLabel();
+        panelTopInvestor = new javax.swing.JPanel();
+        labelTopInvestor = new javax.swing.JLabel();
+        scrollTableInvestor = new javax.swing.JScrollPane();
+        tableInvestor = new resources.views.page.dasbor.table.investor.TablePage();
+        panelTopNasabah = new javax.swing.JPanel();
+        labelTopNasabah = new javax.swing.JLabel();
+        scrollTableNasabah = new javax.swing.JScrollPane();
+        tableNasabah = new resources.views.page.dasbor.table.nasabah.TablePage();
 
         setBackground(new java.awt.Color(238, 238, 238));
         setForeground(new java.awt.Color(238, 238, 238));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(85, 85, 85));
-        jLabel1.setText("Selamat Datang Di Aplikasi Koperasi Syariah");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        labelWelcome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelWelcome.setForeground(new java.awt.Color(85, 85, 85));
+        labelWelcome.setText("Selamat Datang Di Aplikasi Koperasi Syariah");
+
+        panelTopInvestor.setBackground(new java.awt.Color(255, 255, 255));
+        panelTopInvestor.setForeground(new java.awt.Color(255, 255, 255));
+        panelTopInvestor.setPreferredSize(new java.awt.Dimension(527, 505));
+
+        labelTopInvestor.setBackground(new java.awt.Color(51, 51, 51));
+        labelTopInvestor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelTopInvestor.setForeground(new java.awt.Color(51, 51, 51));
+        labelTopInvestor.setText("Top 5 Investor");
+        labelTopInvestor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(238, 238, 238)));
+
+        scrollTableInvestor.setBorder(null);
+        scrollTableInvestor.setViewportView(tableInvestor);
+
+        javax.swing.GroupLayout panelTopInvestorLayout = new javax.swing.GroupLayout(panelTopInvestor);
+        panelTopInvestor.setLayout(panelTopInvestorLayout);
+        panelTopInvestorLayout.setHorizontalGroup(
+            panelTopInvestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopInvestorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelTopInvestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelTopInvestor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollTableInvestor, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        panelTopInvestorLayout.setVerticalGroup(
+            panelTopInvestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopInvestorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(labelTopInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(scrollTableInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+
+        panelTopNasabah.setBackground(new java.awt.Color(255, 255, 255));
+        panelTopNasabah.setForeground(new java.awt.Color(255, 255, 255));
+        panelTopNasabah.setPreferredSize(new java.awt.Dimension(527, 505));
+
+        labelTopNasabah.setBackground(new java.awt.Color(51, 51, 51));
+        labelTopNasabah.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelTopNasabah.setForeground(new java.awt.Color(51, 51, 51));
+        labelTopNasabah.setText("Top 5 Nasabah");
+        labelTopNasabah.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(238, 238, 238)));
+
+        scrollTableNasabah.setBorder(null);
+        scrollTableNasabah.setViewportView(tableNasabah);
+
+        javax.swing.GroupLayout panelTopNasabahLayout = new javax.swing.GroupLayout(panelTopNasabah);
+        panelTopNasabah.setLayout(panelTopNasabahLayout);
+        panelTopNasabahLayout.setHorizontalGroup(
+            panelTopNasabahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopNasabahLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelTopNasabahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelTopNasabah, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addComponent(scrollTableNasabah))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        panelTopNasabahLayout.setVerticalGroup(
+            panelTopNasabahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTopNasabahLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(labelTopNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(scrollTableNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 1052, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelTopInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(panelTopNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(344, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(labelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelTopInvestor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelTopNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelTopInvestor;
+    private javax.swing.JLabel labelTopNasabah;
+    private javax.swing.JLabel labelWelcome;
+    private javax.swing.JPanel panelTopInvestor;
+    private javax.swing.JPanel panelTopNasabah;
+    private javax.swing.JScrollPane scrollTableInvestor;
+    private javax.swing.JScrollPane scrollTableNasabah;
+    private resources.views.page.dasbor.table.investor.TablePage tableInvestor;
+    private resources.views.page.dasbor.table.nasabah.TablePage tableNasabah;
     // End of variables declaration//GEN-END:variables
 }
