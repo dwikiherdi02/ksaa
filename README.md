@@ -1,5 +1,5 @@
 # KSAA APP versi 1.0.0 (public)
-___
+
 Aplikasi **Koperasi Syariah Al - Amin** merupakan tugas proyek Pemrograman Visual Universitas Indraprasta PGRI. Aplikasi ini dibuat dengan menggunakan bahasa pemrograman java dan *MySQL* sebagai tempat penyimpanan datanya (*database*).
 
 ## #Fitur
