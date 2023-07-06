@@ -1,0 +1,186 @@
+<!-- global style -->
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 12pt "Calibri";
+    }
+
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-justify {
+        text-align: justify;
+    }
+</style>
+<!-- table style -->
+<style>
+    table td,
+    table td * {
+        vertical-align: top;
+    }
+
+    table,
+    td,
+    th {
+        /* border: 1px solid; */
+        padding: 5px 2px;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        page-break-after: auto;
+        page-break-before: auto;
+        page-break-inside: auto;
+    }
+
+    th,
+    td {
+        word-wrap: break-word;
+    }
+
+    .styling-table td,
+    .styling-table th {
+        border: 1px solid #ddd;
+        padding: 8px
+    }
+
+    .styling-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .styling-table tr:hover {
+        background-color: #ddd;
+    }
+
+    .styling-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #04AA6D;
+        color: #FFFFFF;
+    }
+</style>
+
+<!-- Table Title -->
+<table>
+    <tr>
+        <td>
+            <h2 class="text-center">Laporan Pembayaran</h2>
+        </td>
+    </tr>
+</table>
+<!-- Table Filter -->
+<table>
+    <tr>
+        <td width="50%">
+            <table>
+                <tr>
+                    <td width="55%">Nomor Pengajuan</td>
+                    <td width="45%">: <span id="no_pengajuan"></span></td>
+                </tr>
+                <tr>
+                    <td width="55%">Nama Nasabah</td>
+                    <td width="45%">: <span id="nama_nasabah"></span></td>
+                </tr>
+                <tr>
+                    <td width="55%">Nama Barang</td>
+                    <td width="45%">: <span id="nama_barang"></span></td>
+                </tr>
+                <tr>
+                    <td width="55%">Sisa Cicilan</td>
+                    <td width="45%">: <span id="sisa_cicilan"></span></td>
+                </tr>
+            </table>
+        </td>
+        <td width="50%">
+            <table>
+                <tr>
+                    <td width="55%">Lama Angsuran</td>
+                    <td width="45%">: <span id="lama_angsuran"></span></td>
+                </tr>
+                <tr>
+                    <td width="55%">Harga Jual</td>
+                    <td width="45%">: <span id="harga_jual"></span></td>
+                </tr>
+                <tr>
+                    <td width="55%">Status Pembiayaan</td>
+                    <td width="45%">: <span id="status_pembiayaan"></span></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- Table Title List -->
+<table>
+    <tr>
+        <td>
+            <h2 class="text-center">Daftar Pembayaran</h2>
+        </td>
+    </tr>
+</table>
+<!-- Table List -->
+<table class="styling-table">
+    <thead>
+        <tr>
+            <th>Angsuran Ke</th>
+            <th>Nominal Cicilan</th>
+            <th>Tanggal Bayar</th>
+            <th>Catatan</th>
+        </tr>
+    </thead>
+    <tbody id="data_laporan"></tbody>
+</table>
+<!-- Table Sign -->
+<table>
+    <tr>
+        <td width="70%"></td>
+        <td width="30%">
+            <table>
+                <tr>
+                    <td colspan="3">Bekasi, <span id="tanggal_buat"></span></td>
+                </tr>
+                <tr>
+                    <td class="text-center" colspan="3">Ketua</td>
+                </tr>
+                <tr>
+                    <td height="90px" colspan="3"></td>
+                </tr>
+                <tr>
+                    <td class="text-center">(</td>
+                    <td></td>
+                    <td class="text-center">)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

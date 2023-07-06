@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- paper style -->
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            font: 12pt "Calibri";
+        }
+
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .subpage {
+            padding: 1cm;
+            border: 5px #FFFFFF solid;
+            height: 257mm;
+            outline: 2cm #FFFFFF solid;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+
+            html,
+            body {
+                width: 210mm;
+                height: 297mm;
+            }
+
+            .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+    </style>
+    <!-- table style -->
+    <style>
+        table td,
+        table td * {
+            vertical-align: top;
+        }
+
+        table,
+        td,
+        th {
+            /* border: 1px solid; */
+            padding: 5px 2px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            word-wrap: break-word;
+        }
+
+        .styling-table td,
+        .styling-table th {
+            border: 1px solid #ddd;
+            padding: 8px
+        }
+
+        .styling-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .styling-table tr:hover {
+            background-color: #ddd;
+        }
+
+        .styling-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #04AA6D;
+            color: #FFFFFF;
+        }
+    </style>
+    <!-- global style -->
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="book">
+        <div class="page">
+            <div class="subpage">
+                <table>
+                    <tr>
+                        <td>
+                            <h2 class="text-center">Laporan Pengajuan Menunggak</h2>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <table class="styling-table">
+                    <thead>
+                        <tr>
+                            <th>No Pengajuan</th>
+                            <th>Nama Nasabah</th>
+                            <th>Harga Jual</th>
+                            <th>Keuntungan</th>
+                            <th>Terakhir Bayar</th>
+                            <th>Estimasi Lunas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        [table-list]
+                        <!-- <tr>
+                            <td class="text-center">P201292-01</td>
+                            <td>Dwiki Herdiansyah</td>
+                            <td class="text-right">2,000,000</td>
+                            <td class="text-right">500,000</td>
+                            <td class="text-center">2020-01-01</td>
+                            <td class="text-center">2020-01-01</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">P201292-01</td>
+                            <td>Dwiki Herdiansyah</td>
+                            <td class="text-right">2,000,000</td>
+                            <td class="text-right">500,000</td>
+                            <td class="text-center">2020-01-01</td>
+                            <td class="text-center">2020-01-01</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">P201292-01</td>
+                            <td>Dwiki Herdiansyah</td>
+                            <td class="text-right">2,000,000</td>
+                            <td class="text-right">500,000</td>
+                            <td class="text-center">2020-01-01</td>
+                            <td class="text-center">2020-01-01</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">P201292-01</td>
+                            <td>Dwiki Herdiansyah</td>
+                            <td class="text-right">2,000,000</td>
+                            <td class="text-right">500,000</td>
+                            <td class="text-center">2020-01-01</td>
+                            <td class="text-center">2020-01-01</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <br><br><br><br>
+                <table>
+                    <tr>
+                        <td width="50%"></td>
+                        <td width="50%">
+                            <table>
+                                <tr>
+                                    <td colspan="3">Bekasi, [tanggal-buat]</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="3">Ketua</td>
+                                </tr>
+                                <tr>
+                                    <td height="90px" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">(</td>
+                                    <td></td>
+                                    <td class="text-center">)</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
