@@ -48,6 +48,11 @@ public class ExportToPDF {
                 dest = this.desktopPath + "\\laporan_pengajuan_lunas_"+(now.getTime()/1000)+".pdf";
                 tmpFile = makeSubmissionOfPaidReport(map);
                 break;
+            // laporan pengajuan menunggak
+            case 3:
+                dest = this.desktopPath + "\\laporan_pengajuan_menunggak_"+(now.getTime()/1000)+".pdf";
+                tmpFile = makeSubmissionOfarrearsReport(map);
+                break;
         }
         
         if (tmpFile != null) {
@@ -158,6 +163,54 @@ public class ExportToPDF {
                 listTable += "<tr> \n" +
                         "<td class=\"text-center\">" + mapList.get("no_pengajuan") +"</td>\n" +
                         "<td>" + mapList.get("nasabah") +"</td>\n" +
+                        "<td class=\"text-right\">" + String.format("%,d", mapList.get("modal")) +"</td>\n" +
+                        "<td class=\"text-right\">" + String.format("%,d", mapList.get("est_laba")) +"</td>\n" +
+                        "<td class=\"text-center\">" + mapList.get("lfn_date") +"</td>\n" +
+                        "<td class=\"text-center\">" + mapList.get("est_end") + "</td>\n" +
+                        "</tr> \n";
+                no++;
+            }
+            doc.getElementById("data_laporan").html(listTable);
+
+            // generate to temporary file
+            String head = doc.head().children().outerHtml();
+            String body = doc.body().children().toString();
+            String outerHTML = head + "\n" + body;
+            File tmp = new File(tempFile);
+            FileUtils.writeStringToFile(tmp, outerHTML, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            tempFile = null;
+        }
+        
+        return tempFile;
+    }
+    
+    private String makeSubmissionOfarrearsReport(Map<String, Object> map) {
+        Date now = new Date();
+        
+        // path of file
+        String reportPurchase = this.appPath + "\\templates\\laporan_pengajuan_menunggak.html";
+        String tempFile = this.appPath + "\\temp\\temp_"+(now.getTime()/1000)+".html";
+        
+        // parse template file
+        try {
+            File input = new File(reportPurchase);
+            org.jsoup.nodes.Document doc = Jsoup.parse(input, "UTF-8", "");
+            
+            // set data to parse file
+            Locale locale = new Locale("id", "ID");
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM y", locale);
+            doc.getElementById("tanggal_buat").text(sdf.format(now));
+            
+            String listTable = null;
+            int no = 1;
+
+            for (Map<String, Object> mapList : (List<Map<String, Object>>) map.get("data_laporan")) {
+                listTable += "<tr> \n" +
+                        "<td class=\"text-center\">" + mapList.get("no_pengajuan") +"</td>\n" +
+                        "<td>" + mapList.get("nasabah") +"</td>\n" +
+                        "<td class=\"text-right\">" + String.format("%,d", mapList.get("sisa")) +"</td>\n" +
                         "<td class=\"text-right\">" + String.format("%,d", mapList.get("modal")) +"</td>\n" +
                         "<td class=\"text-right\">" + String.format("%,d", mapList.get("est_laba")) +"</td>\n" +
                         "<td class=\"text-center\">" + mapList.get("lfn_date") +"</td>\n" +

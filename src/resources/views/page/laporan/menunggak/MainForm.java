@@ -1,7 +1,10 @@
 package resources.views.page.laporan.menunggak;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JPanel;
@@ -54,7 +57,7 @@ public class MainForm extends javax.swing.JPanel {
         loadTable(null);
     }
     
-     private void loadTable(String param) {
+    private void loadTable(String param) {
         param = param != null ? param : "";
         
         table.clearRows();
@@ -81,6 +84,33 @@ public class MainForm extends javax.swing.JPanel {
             System.err.println(e.getMessage());
         }
      }
+     
+    private void loadGenerateExport(String param) {
+        param = param != null ? param : "";
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        try {
+            app.controllers.LaporanController rprtCtrl = new app.controllers.LaporanController();
+            
+            List<Map<String, Object>> list = rprtCtrl.listTableArrears(param);
+            
+            map.put("data_laporan", list);
+        } catch (Exception e) {
+            List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+                
+            map.put("data_laporan", list);
+
+            System.err.println(e.getMessage());
+        }
+        
+        try {
+            system.library.ExportToPDF exportPDF = new system.library.ExportToPDF();
+            exportPDF.generate(map, 3);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,6 +128,7 @@ public class MainForm extends javax.swing.JPanel {
         labelTableTitle = new javax.swing.JLabel();
         btnSearch = new resources.views.component.button.FlatButton();
         inputSearch = new javax.swing.JTextField();
+        btnExport = new resources.views.component.button.FlatButton();
         scrollTable = new javax.swing.JScrollPane();
         table = new resources.views.page.laporan.menunggak.table.TablePage();
 
@@ -135,6 +166,14 @@ public class MainForm extends javax.swing.JPanel {
         inputSearch.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 51, 51)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10)));
         inputSearch.setOpaque(true);
 
+        btnExport.setText("Export");
+        btnExport.setRadius(10);
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCardHeaderLayout = new javax.swing.GroupLayout(panelCardHeader);
         panelCardHeader.setLayout(panelCardHeaderLayout);
         panelCardHeaderLayout.setHorizontalGroup(
@@ -142,7 +181,9 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardHeaderLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(labelTableTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 532, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 416, Short.MAX_VALUE)
+                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,6 +195,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(labelTableTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(inputSearch)
         );
 
@@ -223,8 +265,15 @@ public class MainForm extends javax.swing.JPanel {
         loadTable(param);
     }//GEN-LAST:event_btnSearchAct
 
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        String param = inputSearch.getText().toLowerCase();
+        
+        loadGenerateExport(param);
+    }//GEN-LAST:event_btnExportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private resources.views.component.button.FlatButton btnExport;
     private resources.views.component.button.FlatButton btnSearch;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JLabel labelTableTitle;

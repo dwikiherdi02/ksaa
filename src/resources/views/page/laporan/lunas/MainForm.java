@@ -57,7 +57,7 @@ public class MainForm extends javax.swing.JPanel {
         loadTable(null);
     }
     
-     private void loadTable(String param) {
+    private void loadTable(String param) {
         param = param != null ? param : "";
         
         table.clearRows();
@@ -84,7 +84,7 @@ public class MainForm extends javax.swing.JPanel {
         }
      }
      
-     private void loadGenerateExport(String param) {
+    private void loadGenerateExport(String param) {
         param = param != null ? param : "";
         
         Map<String, Object> map = new HashMap<String, Object>();
