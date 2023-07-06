@@ -1,7 +1,10 @@
 package resources.views.page.laporan.pembayaran;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
@@ -115,6 +118,34 @@ public class MainForm extends javax.swing.JPanel {
             }
         }
      }
+    
+    private void loadGenerateExport(Map<String, Object> map) {
+        if((int) map.get("id_pengajuan") > 0) {
+            
+            try {
+                app.controllers.LaporanController rprtCtrl = new app.controllers.LaporanController();
+
+                List<Map<String, Object>> list = rprtCtrl.listTablePembayaran((int) map.get("id_pengajuan"));
+                
+                map.put("data_laporan", list);
+            } catch (Exception e) {
+                List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+                
+                map.put("data_laporan", list);
+                
+                System.err.println(e.getMessage());
+            }
+            
+            try {
+                system.library.ExportToPDF exportPDF = new system.library.ExportToPDF();
+                exportPDF.generate(map, 1);
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        } else {
+            System.err.println("err: ID pengajuan belum dipilih");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,6 +178,7 @@ public class MainForm extends javax.swing.JPanel {
         panelCard = new javax.swing.JPanel();
         panelCardHeader = new javax.swing.JPanel();
         labelTableTitle = new javax.swing.JLabel();
+        btnExport = new resources.views.component.button.FlatButton();
         scrollTable = new javax.swing.JScrollPane();
         table = new resources.views.page.laporan.pembayaran.table.TablePage();
 
@@ -342,26 +374,29 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(panelLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inputLamaAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelLamaAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelLamaAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelNasabah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inputHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputSisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inputStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCardFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(inputSisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelSisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -374,6 +409,14 @@ public class MainForm extends javax.swing.JPanel {
         labelTableTitle.setForeground(new java.awt.Color(51, 51, 51));
         labelTableTitle.setText("Daftar Pembayaran");
 
+        btnExport.setText("Export");
+        btnExport.setRadius(10);
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCardHeaderLayout = new javax.swing.GroupLayout(panelCardHeader);
         panelCardHeader.setLayout(panelCardHeaderLayout);
         panelCardHeaderLayout.setHorizontalGroup(
@@ -381,14 +424,17 @@ public class MainForm extends javax.swing.JPanel {
             .addGroup(panelCardHeaderLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(labelTableTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         panelCardHeaderLayout.setVerticalGroup(
             panelCardHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCardHeaderLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCardHeaderLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(labelTableTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTableTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(btnExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         scrollTable.setBorder(null);
@@ -433,7 +479,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(panelCardFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(panelCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -479,8 +525,27 @@ public class MainForm extends javax.swing.JPanel {
         loadTable((int) pengajuanId);
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        Object pengajuanId =  ((ComboItems) inputOptNoPengajuan.getSelectedItem()).getKey();
+        Object pengajuanVal =  ((ComboItems) inputOptNoPengajuan.getSelectedItem()).getValue();
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("id_pengajuan", (int) pengajuanId);
+        map.put("no_pengajuan", (String) pengajuanVal);
+        map.put("nama_nasabah", inputNasabah.getText());
+        map.put("nama_barang", inputBarang.getText());
+        map.put("sisa_cicilan", inputSisa.getText());
+        map.put("lama_angsuran", inputLamaAngsuran.getText());
+        map.put("harga_jual", inputHargaJual.getText());
+        map.put("status_pembiayaan", inputStatus.getText());
+        
+        loadGenerateExport(map);
+    }//GEN-LAST:event_btnExportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private resources.views.component.button.FlatButton btnExport;
     private resources.views.component.button.FlatButton btnSave;
     private javax.swing.JTextField inputBarang;
     private javax.swing.JTextField inputHargaJual;
