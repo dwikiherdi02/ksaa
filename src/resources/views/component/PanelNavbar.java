@@ -6,7 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import resources.event.EventMenuSelected;
+import system.library.Helper;
 import system.library.Navigation;
+import system.library.json.Menu;
 
 public class PanelNavbar extends javax.swing.JPanel {
 
@@ -32,56 +34,43 @@ public class PanelNavbar extends javax.swing.JPanel {
         scrollPaneNav.setVerticalScrollBar(new ScrollBarFlat());
         scrollPaneNav.setBackground(new Color(242, 242, 242, 80));
         navList.setOpaque(false);
-//        init();
     }
     
-    public void setMenuList(String position) {
-        menuList(position);
-    }
-    
-    private void menuList(String pst) {
-        String position = null;
-        switch (pst) {
-            case "LDR":
-                position = "leader";
-                break;
-            case "TRS":
-                position = "treasurer";
-                break;
-            default:
-                position = "all";
-        }
+    public void menuList(String position) {
         
-        navList.addItem(new Navigation("app", "Dashboard", "Dashboard", Navigation.MenuType.MENU));
-        
-        if (position != "leader") {
-            navList.addItem(new Navigation("", "Master", " ", Navigation.MenuType.TITLE));
-            if (position != "treasurer") {
-                navList.addItem(new Navigation("app", "Master Pengguna", "Master Pengguna", Navigation.MenuType.MENU));
-                navList.addItem(new Navigation("app", "Master Investor", "Master Investor", Navigation.MenuType.MENU));
-                navList.addItem(new Navigation("app", "Master Nasabah", "Master Nasabah", Navigation.MenuType.MENU));
-                navList.addItem(new Navigation("app", "Master Karyawan", "Master Karyawan", Navigation.MenuType.MENU));
-                navList.addItem(new Navigation("app", "Master Jabatan", "Master Jabatan", Navigation.MenuType.MENU));
+        try {
+            system.library.json.structure.Menu menu = Menu.data();
+            
+            if (menu.getData() != null) {
+                int i = 0;
+                for (system.library.json.structure.MenuList list : menu.getData()) {
+                    if (
+                        list.getPermission().length == 0 ||
+                        Helper.inArray(position, list.getPermission())
+                    ) {
+                        if (list.getType().equals("menu")) {
+                            navList.addItem(new Navigation(
+                                list.getIcon(), 
+                                list.getName(), 
+                                list.getMenu(), 
+                                Navigation.MenuType.MENU
+                            ));
+                        } else {
+                            navList.addItem(new Navigation(
+                                list.getIcon(), 
+                                list.getName(), 
+                                list.getMenu(), 
+                                Navigation.MenuType.TITLE
+                            ));
+                        }
+                    }
+                }
             }
-            navList.addItem(new Navigation("app", "Master Pengajuan", "Master Pengajuan", Navigation.MenuType.MENU));
-            navList.addItem(new Navigation("app", "Master Pembayaran", "Master Pembayaran", Navigation.MenuType.MENU));
+        } catch (Exception e) {
+            System.err.println("PanelNavbar Menu.data Err: " + e.getMessage());
         }
-        
-        navList.addItem(new Navigation("", "Laporan", " ", Navigation.MenuType.TITLE));
-
-        navList.addItem(new Navigation("app", "Pembayaran", "Laporan Pembayaran", Navigation.MenuType.MENU));
-        navList.addItem(new Navigation("app", "Pengajuan Lunas", "Laporan Pengajuan Lunas", Navigation.MenuType.MENU));
-        navList.addItem(new Navigation("app", "Pengajuan Menunggak", "Laporan Pengajuan Menunggak", Navigation.MenuType.MENU));
-        
-        navList.addItem(new Navigation(" ", "Pengaturan", " ", Navigation.MenuType.TITLE));
-
-        navList.addItem(new Navigation("exit", "Keluar", " ", Navigation.MenuType.MENU));
     }
     
-    private void init() {
-        setMenuList("");
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

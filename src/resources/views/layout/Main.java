@@ -3,6 +3,7 @@ package resources.views.layout;
 // Pakcages
 import java.awt.Color;
 import java.awt.Image;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -10,6 +11,8 @@ import javax.swing.JComponent;
 import resources.event.EventMenuSelected;
 import resources.views.component.ScrollBarFlat;
 import resources.views.page.*;
+import system.library.Helper;
+import system.library.json.Menu;
 
 /**
  *
@@ -47,10 +50,7 @@ public class Main extends javax.swing.JFrame {
         panelMoving.iniMoving(Main.this);
         scrollContent.setVerticalScrollBar(new ScrollBarFlat());
         
-        System.out.print("test_session: ");
-        System.out.println(this.session.getItem("test_session"));
-        
-        panelNavbar.setMenuList((String) this.session.getItem("user.position_code"));
+        panelNavbar.menuList((String) this.session.getItem("user.position_code"));
         pages();
         
         String authUser = (String) this.session.getItem("user.name") 
@@ -58,147 +58,68 @@ public class Main extends javax.swing.JFrame {
         labelUsername.setText(authUser);
     }
     
-    private void allModules() {
-        panelNavbar.addEventMenuSelected(new EventMenuSelected() {
-            @Override
-            public void selected(int index) {
-                labelPageName.setText(panelNavbar.getPageName());
-                
-                switch (index) {
-                    case 0: // dasbor
-                        setPage(new resources.views.page.dasbor.MainForm());
-                        break;
-                    case 2: // master pengguna
-                        setPage(new resources.views.page.pengguna.MainForm(Main.this));
-                        break;
-                    case 3: // master investor
-                        setPage(new resources.views.page.investor.MainForm(Main.this));
-                        break;
-                    case 4: // master nasabah
-                        setPage(new resources.views.page.nasabah.MainForm(Main.this));
-                        break;
-                    case 5: // master karyawan
-                        setPage(new resources.views.page.karyawan.MainForm(Main.this));
-                        break;
-                    case 6: // master jabatan
-                        setPage(new resources.views.page.jabatan.MainForm(Main.this));
-                        break;
-                    case 7: // master pengajuan
-                        setPage(new resources.views.page.pengajuan.MainForm(Main.this));
-                        break;
-                    case 8: // master pembayaran
-                        setPage(new resources.views.page.pembayaran.MainForm(Main.this));
-                        break;
-                    case 10: // laporan pembayaran
-                        setPage(new resources.views.page.laporan.pembayaran.MainForm(Main.this));
-                        break;
-                    case 11: // laporan pengajuan lunas
-                        setPage(new resources.views.page.laporan.lunas.MainForm(Main.this));
-                        break;
-                    case 12: // laporan pengajuan menunggak
-                        setPage(new resources.views.page.laporan.menunggak.MainForm(Main.this));
-                        break;
-                    case 14: // logout
-                        Main.this.session.clearAll();
-
-                        Main.this.dispose();
-
-                        //Main.this.setVisible(false);
-                        new Login().setVisible(true);
-                        break;    
-                    default:
-                        setPage(new resources.views.page.UnderConstructionForm());
-                }
-            }
-        });
-    }
-    
-    private void leaderModules() {
-        panelNavbar.addEventMenuSelected(new EventMenuSelected() {
-            @Override
-            public void selected(int index) {
-                labelPageName.setText(panelNavbar.getPageName());
-                
-                switch (index) {
-                    case 0: // dasbor
-                        setPage(new resources.views.page.dasbor.MainForm());
-                        break;
-                    case 2: // laporan pembayaran
-                        setPage(new resources.views.page.laporan.pembayaran.MainForm(Main.this));
-                        break;
-                    case 3: // laporan pengajuan lunas
-                        setPage(new resources.views.page.laporan.lunas.MainForm(Main.this));
-                        break;
-                    case 4: // laporan pengajuan menunggak
-                        setPage(new resources.views.page.laporan.menunggak.MainForm(Main.this));
-                        break;
-                    case 6: // logout
-                        Main.this.session.clearAll();
-
-                        Main.this.dispose();
-
-                        //Main.this.setVisible(false);
-                        new Login().setVisible(true);
-                        break;    
-                    default:
-                        setPage(new resources.views.page.UnderConstructionForm());
-                }
-            }
-        });
-    }
-    
-    private void treasurerModules() {
-        panelNavbar.addEventMenuSelected(new EventMenuSelected() {
-            @Override
-            public void selected(int index) {
-                labelPageName.setText(panelNavbar.getPageName());
-                
-                switch (index) {
-                    case 0: // dasbor
-                        setPage(new resources.views.page.dasbor.MainForm());
-                        break;
-                    case 2: // master pengajuan
-                        setPage(new resources.views.page.pengajuan.MainForm(Main.this));
-                        break;
-                    case 3: // master pembayaran
-                        setPage(new resources.views.page.pembayaran.MainForm(Main.this));
-                        break;
-                    case 5: // laporan pembayaran
-                        setPage(new resources.views.page.laporan.pembayaran.MainForm(Main.this));
-                        break;
-                    case 6: // laporan pengajuan lunas
-                        setPage(new resources.views.page.laporan.lunas.MainForm(Main.this));
-                        break;
-                    case 7: // laporan pengajuan menunggak
-                        setPage(new resources.views.page.laporan.menunggak.MainForm(Main.this));
-                        break;
-                    case 9: // logout
-                        Main.this.session.clearAll();
-
-                        Main.this.dispose();
-
-                        //Main.this.setVisible(false);
-                        new Login().setVisible(true);
-                        break;    
-                    default:
-                        setPage(new resources.views.page.UnderConstructionForm());
-                }
-            }
-        });
-    }
-    
     private void pages() {
         
-        switch ((String) this.session.getItem("user.position_code")) {
-            case "LDR":
-                leaderModules();
-                break;
-            case "TRS":
-                treasurerModules();
-                break;
-            default:
-                allModules();
-        }
+        String position = (String) this.session.getItem("user.position_code");
+        
+        panelNavbar.addEventMenuSelected(new EventMenuSelected() {
+            @Override
+            public void selected(int index) {
+                labelPageName.setText(panelNavbar.getPageName());
+                
+                try {
+                    system.library.json.structure.Menu menu = Menu.data();
+
+                    if (menu.getData() != null) {
+                        int i = 0;
+                        for (system.library.json.structure.MenuList list : menu.getData()) {
+                            if (
+                                    list.getType().equals("menu") &&
+                                    !list.getClazz().equals("") &&
+                                    (
+                                        list.getPermission().length == 0 ||
+                                        Helper.inArray(position, list.getPermission())
+                                    )
+
+                            ) { 
+                                if (index == i) {
+                                    if (!list.getClazz().equals("exit")) {
+                                        Class<?> clazz = Class.forName(list.getClazz());
+                                        
+                                        Constructor<?> constructor = clazz.getConstructor(resources.views.layout.Main.class);
+                                        
+                                        Object instance = constructor.newInstance(Main.this);
+                                        
+                                        setPage((JComponent) instance);
+                                    } else {
+                                        Main.this.session.clearAll();
+
+                                        Main.this.dispose();
+
+                                        //Main.this.setVisible(false);
+                                        new Login().setVisible(true);
+                                    }
+                                }
+                                
+                                i++;
+                            } else if (
+                                list.getType().equals("title") &&
+                                (
+                                    list.getPermission().length == 0 ||
+                                    Helper.inArray(position, list.getPermission())
+                                )
+                            ) { 
+                                i++;
+                            }
+                        }
+                        
+                        // setPage(new resources.views.page.UnderConstructionForm());
+                    }
+                } catch (Exception e) {
+                    System.err.println("Main Menu.data Err: " + e.getMessage());
+                }
+            }
+        });
         
         labelPageName.setText("Dashboard");
         setPage(new resources.views.page.dasbor.MainForm() ); 

@@ -1,0 +1,124 @@
+{
+	"data": [
+		{
+			"icon": "app",
+			"name": "Dashboard",
+			"menu": "Dashboard",
+			"type": "menu",
+			"permission": [],
+			"clazz": "resources.views.page.dasbor.MainForm"
+		},
+		{
+			"icon": "",
+			"name": "Master",
+			"menu": " ",
+			"type": "title",
+			"permission": ["ADM","TRS"],
+			"clazz": ""
+		},
+		{
+			"icon": "app", 
+			"name": "Master Pengguna", 
+			"menu": "Master Pengguna",
+			"type": "menu",
+			"permission": ["ADM"],
+			"clazz": "resources.views.page.pengguna.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Master Investor", 
+			"menu": "Master Investor",
+			"type": "menu",
+			"permission": ["ADM"],
+			"clazz": "resources.views.page.investor.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Master Nasabah", 
+			"menu": "Master Nasabah",
+			"type": "menu",
+			"permission": ["ADM"],
+			"clazz": "resources.views.page.nasabah.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Master Karyawan", 
+			"menu": "Master Karyawan",
+			"type": "menu",
+			"permission": ["ADM"],
+			"clazz": "resources.views.page.karyawan.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Master Jabatan", 
+			"menu": "Master Jabatan",
+			"type": "menu",
+			"permission": ["ADM"],
+			"clazz": "resources.views.page.jabatan.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Master Pengajuan", 
+			"menu": "Master Pengajuan",
+			"type": "menu",
+			"permission": ["ADM", "TRS"],
+			"clazz": "resources.views.page.pengajuan.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Master Pembayaran", 
+			"menu": "Master Pembayaran",
+			"type": "menu",
+			"permission": ["ADM", "TRS"],
+			"clazz": "resources.views.page.pembayaran.MainForm"
+		},
+		{
+			"icon": "",
+			"name": "Laporan",
+			"menu": " ",
+			"type": "title",
+			"permission": ["ADM", "LDR", "TRS"],
+			"clazz": ""
+		},
+		{
+			"icon": "app", 
+			"name": "Pembayaran", 
+			"menu": "Laporan Pembayaran",
+			"type": "menu",
+			"permission": ["ADM", "LDR", "TRS"],
+			"clazz": "resources.views.page.laporan.pembayaran.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Pengajuan Lunas", 
+			"menu": "Laporan Pengajuan Lunas",
+			"type": "menu",
+			"permission": ["ADM", "LDR", "TRS"],
+			"clazz": "resources.views.page.laporan.lunas.MainForm"
+		},
+		{
+			"icon": "app", 
+			"name": "Pengajuan Menunggak", 
+			"menu": "Laporan Pengajuan Menunggak",
+			"type": "menu",
+			"permission": ["ADM", "LDR", "TRS"],
+			"clazz": "resources.views.page.laporan.menunggak.MainForm"
+		},
+		{
+			"icon": "",
+			"name": "Pengaturan",
+			"menu": " ",
+			"type": "title",
+			"permission": [],
+			"clazz": ""
+		},
+		{
+			"icon": "exit",
+			"name": "Keluar",
+			"menu": " ",
+			"type": "menu",
+			"permission": [],
+			"clazz": "exit"
+		}
+	]
+}
