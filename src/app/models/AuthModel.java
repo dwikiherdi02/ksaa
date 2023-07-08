@@ -20,10 +20,17 @@ public class AuthModel extends Model {
     
 //    public Map<String, Object> getDataByUsername(String username) throws SQLException {
     public ResultSet getDataByUsername(String username) throws SQLException {
-        String query = "SELECT a.id, b.name, a.username, a.password, a.is_active FROM "
-                     + "pengguna a "
-                     + "LEFT JOIN karyawan b ON b.id = a.karyawan_id "
-                     + "WHERE username = ?";
+        String query = "SELECT a.id, "
+                + "b.name, "
+                + "c.name as position_name, "
+                + "c.code as position_code,  "
+                + "a.username, "
+                + "a.password, "
+                + "a.is_active "
+                + "FROM pengguna a "
+                + "LEFT JOIN karyawan b ON b.id = a.karyawan_id "
+                + "LEFT JOIN jabatan c ON c.id = b.jabatan_id "
+                + "WHERE username = ? ";
             
         PreparedStatement ps = this.conn.prepareStatement(query);
 

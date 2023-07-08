@@ -22,10 +22,15 @@ public class Main extends javax.swing.JFrame {
     public Main(Map<String, Object> auth) {
         this.session = new system.library.Session();
         this.session.setItem("user", auth);
+        this.session.setItem("user.id", (int) auth.get("id"));
+        this.session.setItem("user.name", (String) auth.get("name"));
+        this.session.setItem("user.position_name", (String) auth.get("position_name"));
+        this.session.setItem("user.position_code", (String) auth.get("position_code"));
+        this.session.setItem("user.username", (String) auth.get("username"));
+        this.session.setItem("user.password", (String) auth.get("password"));
+        this.session.setItem("user.is_active", (int) auth.get("is_active"));
         
         initAll();
-       
-        labelUsername.setText((String) auth.get("name"));
     }
     
     public Main() {
@@ -42,18 +47,24 @@ public class Main extends javax.swing.JFrame {
         panelMoving.iniMoving(Main.this);
         scrollContent.setVerticalScrollBar(new ScrollBarFlat());
         
+        System.out.print("test_session: ");
+        System.out.println(this.session.getItem("test_session"));
+        
+        panelNavbar.setMenuList((String) this.session.getItem("user.position_code"));
         pages();
-       
+        
+        String authUser = (String) this.session.getItem("user.name") 
+                + " ("+ this.session.getItem("user.position_name") +")";
+        labelUsername.setText(authUser);
     }
     
-    private void pages() {
-        
+    private void allModules() {
         panelNavbar.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
                 labelPageName.setText(panelNavbar.getPageName());
                 
-               switch (index) {
+                switch (index) {
                     case 0: // dasbor
                         setPage(new resources.views.page.dasbor.MainForm());
                         break;
@@ -100,6 +111,94 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    
+    private void leaderModules() {
+        panelNavbar.addEventMenuSelected(new EventMenuSelected() {
+            @Override
+            public void selected(int index) {
+                labelPageName.setText(panelNavbar.getPageName());
+                
+                switch (index) {
+                    case 0: // dasbor
+                        setPage(new resources.views.page.dasbor.MainForm());
+                        break;
+                    case 2: // laporan pembayaran
+                        setPage(new resources.views.page.laporan.pembayaran.MainForm(Main.this));
+                        break;
+                    case 3: // laporan pengajuan lunas
+                        setPage(new resources.views.page.laporan.lunas.MainForm(Main.this));
+                        break;
+                    case 4: // laporan pengajuan menunggak
+                        setPage(new resources.views.page.laporan.menunggak.MainForm(Main.this));
+                        break;
+                    case 6: // logout
+                        Main.this.session.clearAll();
+
+                        Main.this.dispose();
+
+                        //Main.this.setVisible(false);
+                        new Login().setVisible(true);
+                        break;    
+                    default:
+                        setPage(new resources.views.page.UnderConstructionForm());
+                }
+            }
+        });
+    }
+    
+    private void treasurerModules() {
+        panelNavbar.addEventMenuSelected(new EventMenuSelected() {
+            @Override
+            public void selected(int index) {
+                labelPageName.setText(panelNavbar.getPageName());
+                
+                switch (index) {
+                    case 0: // dasbor
+                        setPage(new resources.views.page.dasbor.MainForm());
+                        break;
+                    case 2: // master pengajuan
+                        setPage(new resources.views.page.pengajuan.MainForm(Main.this));
+                        break;
+                    case 3: // master pembayaran
+                        setPage(new resources.views.page.pembayaran.MainForm(Main.this));
+                        break;
+                    case 5: // laporan pembayaran
+                        setPage(new resources.views.page.laporan.pembayaran.MainForm(Main.this));
+                        break;
+                    case 6: // laporan pengajuan lunas
+                        setPage(new resources.views.page.laporan.lunas.MainForm(Main.this));
+                        break;
+                    case 7: // laporan pengajuan menunggak
+                        setPage(new resources.views.page.laporan.menunggak.MainForm(Main.this));
+                        break;
+                    case 9: // logout
+                        Main.this.session.clearAll();
+
+                        Main.this.dispose();
+
+                        //Main.this.setVisible(false);
+                        new Login().setVisible(true);
+                        break;    
+                    default:
+                        setPage(new resources.views.page.UnderConstructionForm());
+                }
+            }
+        });
+    }
+    
+    private void pages() {
+        
+        switch ((String) this.session.getItem("user.position_code")) {
+            case "LDR":
+                leaderModules();
+                break;
+            case "TRS":
+                treasurerModules();
+                break;
+            default:
+                allModules();
+        }
         
         labelPageName.setText("Dashboard");
         setPage(new resources.views.page.dasbor.MainForm() ); 

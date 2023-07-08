@@ -35,6 +35,10 @@ public class AuthController {
                 map.put("id", res.getInt("id"));
 
                 map.put("name", res.getString("name"));
+                
+                map.put("position_name", res.getString("position_name"));
+                
+                map.put("position_code", res.getString("position_code"));
 
                 map.put("username", res.getString("username"));
                 
